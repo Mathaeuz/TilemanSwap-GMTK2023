@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8430799799607399890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5239516736863569479}
+  - component: {fileID: 3728695553324767609}
+  m_Layer: 0
+  m_Name: RoleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5239516736863569479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430799799607399890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3728695553324767609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430799799607399890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7852880602e55e548ab4e89a37a01b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EditorTests:
+    A: {fileID: 0}
+    B: {fileID: 0}
+    Swap: 0
+  Roles:
+  - {fileID: 11400000, guid: 9fad51fdd5ebd5048b6b8690c1291d10, type: 2}
+  - {fileID: 11400000, guid: 573524c46031b564a8810ccfc4ab593d, type: 2}
+  - {fileID: 11400000, guid: 84efcfa59677ba24c85b58e712e59521, type: 2}
+  - {fileID: 11400000, guid: 357b59c5abc43084e97db138eb692075, type: 2}
+  - {fileID: 11400000, guid: 73d4d822f9571cf4aa1ee723959fbe9d, type: 2}
+  Themes:
+  - {r: 0.15574935, g: 0.17576554, b: 0.18867922, a: 1}
+  - {r: 0.6918832, g: 0.7988887, b: 0.8679245, a: 1}
+  - {r: 0.92794704, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.6476717, a: 1}
+  - {r: 0, g: 0.6090963, b: 1, a: 1}
