@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ public class Player : MonoBehaviour
     public RoleObject Behaviour;
     public Rigidbody2D Body;
     PlayerBindings.Input UserInput;
+
+    /// <summary>
+    /// reusing the flicker for death;
+    /// </summary>
+    BaloonFlicker BaloonFlicker;
 
 
     [Flags]
@@ -41,13 +47,18 @@ public class Player : MonoBehaviour
     {
         Behaviour = GetComponent<RoleObject>();
         Body = GetComponent<Rigidbody2D>();
+        BaloonFlicker = GetComponent<BaloonFlicker>();
         if (SwapSensor == null) SwapSensor = GetComponentInChildren<SwapSense>();
-        Behaviour.RoleDestroyed.AddListener(DestroyPlayer);
+        Behaviour.RoleDestroyed.AddListener(SimulateDeath);
         UserInput = Bindings.Init();
     }
 
-
-    private void DestroyPlayer(float time)
+    private void Death()
+    {
+        BaloonFlicker.Hide(3f);
+        SimulateDeath(3f);
+    }
+    private void SimulateDeath(float time)
     {
         Velocity = Vector3.zero;
         Body.simulated = false;
@@ -88,28 +99,33 @@ public class Player : MonoBehaviour
     {
         if (SwappingList == null)
         {
-            if (UserInput.Swap.Down)
+            if (UserInput.Swap.Down && SwapSensor.HasOptions())
             {
-                if (SwapSensor.HasOptions())
-                {
-                    Time.timeScale = 0.05f;
-                    SwappingList = SwapSensor.GetOptions();
-                }
+                StartCoroutine(nameof(SwapRoutine));
             }
         }
-        else
+    }
+
+    private IEnumerator SwapRoutine()
+    {
+        UserInput.Reset();
+        Time.timeScale = 0.05f;
+        SwappingList = SwapSensor.GetOptions();
+        yield return 0;
+        while (SwappingList != null)
         {
+
             Vector2 delta, worldpos = Camera.main.ScreenToWorldPoint(UserInput.MousePosition);
 
-            int closest = 0;
-            var dist = float.MaxValue;
+            int closest = -1;
+            var sqrDist = 9f;
 
             for (int i = 0; i < SwappingList.Count; i++)
             {
                 delta = SwappingList[i].Position - worldpos;
-                if (delta.sqrMagnitude < dist)
+                if (delta.sqrMagnitude < sqrDist)
                 {
-                    dist = delta.sqrMagnitude;
+                    sqrDist = delta.sqrMagnitude;
                     closest = i;
                 }
             }
@@ -118,17 +134,30 @@ public class Player : MonoBehaviour
             for (int i = 0; i < SwappingList.Count; i++)
             {
                 pos = (Vector3)SwappingList[i].Position + Vector3.back * 5f;
-                Debug.DrawLine(pos + Vector3.up, pos + Vector3.down, closest == i ? Color.cyan : Color.red);
-                Debug.DrawLine(pos + Vector3.right, pos + Vector3.left, closest == i ? Color.cyan : Color.red);
+
+                if (closest == i)
+                {
+                    Debug.DrawLine(pos + Vector3.up, pos + Vector3.right, Color.cyan);
+                    Debug.DrawLine(pos + Vector3.right, pos + Vector3.down, Color.cyan);
+                    Debug.DrawLine(pos + Vector3.down, pos + Vector3.left, Color.cyan);
+                    Debug.DrawLine(pos + Vector3.left, pos + Vector3.up, Color.cyan);
+
+                }
+                Debug.DrawLine(pos + Vector3.up, pos + Vector3.down, Color.red);
+                Debug.DrawLine(pos + Vector3.right, pos + Vector3.left, Color.red);
             }
 
-            if (UserInput.Swap.Up)
+            if (UserInput.Swap.Down)
             {
-
-                RoleManager.Instance.Swap(Behaviour.ActiveRole, SwappingList[closest].Role);
+                if (closest != -1)
+                {
+                    RoleManager.Instance.Swap(Behaviour.ActiveRole, SwappingList[closest].Role);
+                }
                 Time.timeScale = 1f;
                 SwappingList = null;
             }
+            UserInput.Reset();
+            yield return 0;
         }
     }
 
@@ -212,7 +241,7 @@ public class Player : MonoBehaviour
                 //break jump
                 Velocity.y *= 0.4f;
             }
-            else if (Velocity.y < 0 && UserInput.Crouch.Hold)
+            else if (Velocity.y < 0 && (UserInput.Crouch.Hold || UserInput.Jump.Hold))
             {
                 State |= StateFlags.Ball;
                 Legs.enabled = false;
@@ -223,7 +252,7 @@ public class Player : MonoBehaviour
 
     private void BallState()
     {
-        if (UserInput.Crouch.Hold)
+        if (UserInput.Crouch.Hold || UserInput.Jump.Hold)
         {
             return;
         }
@@ -232,7 +261,7 @@ public class Player : MonoBehaviour
         {
             if (Velocity == Vector2.zero)
             {
-                DestroyPlayer(3f);
+                Death();
             }
         }
         else
