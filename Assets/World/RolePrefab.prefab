@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6960817200110513766}
   - component: {fileID: 4016253113057853057}
   - component: {fileID: 1098586445271242459}
-  - component: {fileID: 4763783122287775577}
-  - component: {fileID: 2701569779981692879}
+  - component: {fileID: -4727849939482694223}
+  - component: {fileID: -6663643095480176508}
   m_Layer: 0
   m_Name: RolePrefab
   m_TagString: Untagged
@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015e67218e968da438e0759af614cf19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Targets: []
+  SpriteSwap: []
+  ColorSwap: []
+  VisibilitySwap: []
 --- !u!114 &1098586445271242459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +69,7 @@ MonoBehaviour:
   RoleDestroyed:
     m_PersistentCalls:
       m_Calls: []
---- !u!50 &4763783122287775577
+--- !u!50 &-4727849939482694223
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -88,7 +90,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &2701569779981692879
+--- !u!66 &-6663643095480176508
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +104,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths: []

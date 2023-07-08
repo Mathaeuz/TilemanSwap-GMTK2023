@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -20,12 +21,64 @@ public class MapRoleLoader : MonoBehaviour
         public Role Role;
     }
 
+#if UNITY_EDITOR
+
     private void Process()
     {
-        BuildTileList();
+        Tilemap map = FindMap();
+
+        if (map == null)
+        {
+            return;
+        }
+
+        List<RolePosition> tiles = GetTiles(map);
+        var roles = UpdateColliders(map, tiles);
+        UpdateRenderers(roles);
     }
-#if UNITY_EDITOR
-    private void BuildTileList()
+
+    private void UpdateRenderers(List<RoleObject> roles)
+    {
+        for (int i = 0; i < roles.Count; i++)
+        {
+            var view = roles[i].GetComponent<RoleView>();
+            view.SpriteSwap = roles[i].GetComponentsInChildren<SpriteRenderer>();
+            view.VisibilitySwap = roles[i].GetComponentsInChildren<Renderer>();
+            view.ColorSwap = new Renderer[0];
+            
+        }
+    }
+
+    private List<RoleObject> UpdateColliders(Tilemap map, List<RolePosition> tiles)
+    {
+        var roles = new List<RoleObject>(GetComponentsInChildren<RoleObject>());
+        var groups = tiles.GroupBy(x => x.Role).ToDictionary(x => x.Key, x => x.ToArray());
+
+        for (int i = 0; i < roles.Count; i++)
+        {
+            for (int j = roles[i].transform.childCount - 1; j >= 0; j--)
+            {
+                DestroyImmediate(roles[i].transform.GetChild(j).gameObject);
+            }
+
+            if (groups.ContainsKey(roles[i].ActiveRole))
+            {
+                BuildColliders(map, roles[i], groups[roles[i].ActiveRole]);
+                groups.Remove(roles[i].ActiveRole);
+            }
+        }
+        foreach (var item in groups)
+        {
+            var obj = Instantiate(RolePrefab);//PrefabUtility.InstantiatePrefab(RolePrefab).GetComponent<RoleObject>();
+            obj.ActiveRole = item.Key;
+            obj.transform.SetParent(transform);
+            BuildColliders(map, obj, item.Value);
+            roles.Add(obj);
+        }
+        return roles;
+    }
+
+    private Tilemap FindMap()
     {
         var layers = GetComponentsInChildren<LDtkComponentLayer>();
         Tilemap map = null;
@@ -37,11 +90,11 @@ public class MapRoleLoader : MonoBehaviour
             }
         }
 
-        if (map == null)
-        {
-            return;
-        }
+        return map;
+    }
 
+    private List<RolePosition> GetTiles(Tilemap map)
+    {
         var translations = RoleSettings.Settings.ToDictionary(x => x.Tile, x => x.Role);
         var roles = new List<RolePosition>();
         for (int i = 0; i < map.size.y; i++)
@@ -62,30 +115,7 @@ public class MapRoleLoader : MonoBehaviour
             }
         }
 
-        var groups = roles.GroupBy(x => x.Role).ToDictionary(x => x.Key, x => x.ToArray());
-        var existingRoles = GetComponentsInChildren<RoleObject>();
-
-        for (int i = 0; i < existingRoles.Length; i++)
-        {
-            for (int j = 0; j < existingRoles[i].transform.childCount; j++)
-            {
-                DestroyImmediate(existingRoles[i].transform.GetChild(0).gameObject);
-            }
-
-            if (groups.ContainsKey(existingRoles[i].ActiveRole))
-            {
-                BuildColliders(map, existingRoles[i], groups[existingRoles[i].ActiveRole]);
-                groups.Remove(existingRoles[i].ActiveRole);
-            }
-        }
-
-        foreach (var item in groups)
-        {
-            var obj = PrefabUtility.InstantiatePrefab(RolePrefab).GetComponent<RoleObject>();
-            obj.ActiveRole = item.Key;
-            obj.transform.SetParent(transform);
-            BuildColliders(map, obj, item.Value);
-        }
+        return roles;
     }
 
     private void BuildColliders(Tilemap map, RoleObject roleObject, RolePosition[] rolePositions)
@@ -95,7 +125,7 @@ public class MapRoleLoader : MonoBehaviour
         {
             cell = PrefabUtility.InstantiatePrefab(CellPrefab).GetComponent<SpriteRenderer>();
             cell.transform.SetParent(roleObject.transform);
-            cell.transform.position = map.CellToWorld(rolePositions[i].Position);
+            cell.transform.position = map.CellToWorld(rolePositions[i].Position) + (Vector3)Vector2.one / 2f;
             cell.sprite = RoleSettings.Get(roleObject.ActiveRole).Theme.Sprite;
         }
     }

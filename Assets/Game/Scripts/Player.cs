@@ -7,9 +7,9 @@ public class Player : MonoBehaviour
 {
     public Transform RespawnAnchor;
 
-    public SwapSense SwapSensor;
+    public SwapSelector SwapSelector;
     public PlayerBindings Bindings;
-    public RoleObject Behaviour;
+    public RoleObject RoleObject;
     public Rigidbody2D Body;
     PlayerBindings.Input UserInput;
 
@@ -41,33 +41,37 @@ public class Player : MonoBehaviour
 
     public Vector2 LastVelocity, Velocity;
 
-    List<SwapSense.Option> SwappingList;
-
     private void Awake()
     {
-        Behaviour = GetComponent<RoleObject>();
+        RoleObject = GetComponent<RoleObject>();
         Body = GetComponent<Rigidbody2D>();
         BaloonFlicker = GetComponent<BaloonFlicker>();
-        if (SwapSensor == null) SwapSensor = GetComponentInChildren<SwapSense>();
-        Behaviour.RoleDestroyed.AddListener(SimulateDeath);
+        if (SwapSelector == null) SwapSelector = GetComponentInChildren<SwapSelector>();
+        RoleObject.RoleDestroyed.AddListener(ExternalDeath);
+        RoleObject.RoleRestored.AddListener(ExternalRespawn);
         UserInput = Bindings.Init();
     }
 
     private void Death()
     {
         BaloonFlicker.Hide(3f);
-        SimulateDeath(3f);
+        ExternalDeath(3f);
+        Invoke(nameof(Respawn), 2.5f);
     }
-    private void SimulateDeath(float time)
+    private void Respawn()
+    {
+        ExternalRespawn();
+    }
+
+    private void ExternalDeath(float time)
     {
         Velocity = Vector3.zero;
         Body.simulated = false;
         Body.velocity = Vector3.zero;
         UserInput.Lock();
-        Invoke(nameof(Respawn), time - 0.5f);
     }
 
-    private void Respawn()
+    private void ExternalRespawn()
     {
         State = StateFlags.None;
         Legs.enabled = true;
@@ -97,67 +101,9 @@ public class Player : MonoBehaviour
 
     private void HandleSwap()
     {
-        if (SwappingList == null)
+        if (UserInput.Swap.Down && SwapSelector.Off)
         {
-            if (UserInput.Swap.Down && SwapSensor.HasOptions())
-            {
-                StartCoroutine(nameof(SwapRoutine));
-            }
-        }
-    }
-
-    private IEnumerator SwapRoutine()
-    {
-        UserInput.Reset();
-        Time.timeScale = 0.05f;
-        SwappingList = SwapSensor.GetOptions();
-        yield return 0;
-        while (SwappingList != null)
-        {
-
-            Vector2 delta, worldpos = Camera.main.ScreenToWorldPoint(UserInput.MousePosition);
-
-            int closest = -1;
-            var sqrDist = 9f;
-
-            for (int i = 0; i < SwappingList.Count; i++)
-            {
-                delta = SwappingList[i].Position - worldpos;
-                if (delta.sqrMagnitude < sqrDist)
-                {
-                    sqrDist = delta.sqrMagnitude;
-                    closest = i;
-                }
-            }
-
-            Vector3 pos;
-            for (int i = 0; i < SwappingList.Count; i++)
-            {
-                pos = (Vector3)SwappingList[i].Position + Vector3.back * 5f;
-
-                if (closest == i)
-                {
-                    Debug.DrawLine(pos + Vector3.up, pos + Vector3.right, Color.cyan);
-                    Debug.DrawLine(pos + Vector3.right, pos + Vector3.down, Color.cyan);
-                    Debug.DrawLine(pos + Vector3.down, pos + Vector3.left, Color.cyan);
-                    Debug.DrawLine(pos + Vector3.left, pos + Vector3.up, Color.cyan);
-
-                }
-                Debug.DrawLine(pos + Vector3.up, pos + Vector3.down, Color.red);
-                Debug.DrawLine(pos + Vector3.right, pos + Vector3.left, Color.red);
-            }
-
-            if (UserInput.Swap.Down)
-            {
-                if (closest != -1)
-                {
-                    RoleManager.Instance.Swap(Behaviour.ActiveRole, SwappingList[closest].Role);
-                }
-                Time.timeScale = 1f;
-                SwappingList = null;
-            }
-            UserInput.Reset();
-            yield return 0;
+            SwapSelector.BeginSelection(this);
         }
     }
 
@@ -173,6 +119,12 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.CompareTag("KillPlane"))
+        {
+            Death();
+            return;
+        }
+
         for (int i = 0; i < collision.contacts.Length; i++)
         {
             //Debug.DrawLine(collision.contacts[i].point + Vector2.left, collision.contacts[i].point + Vector2.right, Color.red);
@@ -252,23 +204,23 @@ public class Player : MonoBehaviour
 
     private void BallState()
     {
+        if (State.HasFlag(StateFlags.Ground) && State.HasFlag(StateFlags.Ceil))
+        {
+            if (Mathf.Abs(Velocity.x) < 0.01)
+            {
+                Death();
+            }
+            return;
+        }
+
         if (UserInput.Crouch.Hold || UserInput.Jump.Hold)
         {
             return;
         }
 
-        if (State.HasFlag(StateFlags.Ground) && State.HasFlag(StateFlags.Ceil))
-        {
-            if (Velocity == Vector2.zero)
-            {
-                Death();
-            }
-        }
-        else
-        {
-            State ^= StateFlags.Ball;
-            Legs.enabled = true;
-        }
+        State ^= StateFlags.Ball;
+        Legs.enabled = true;
+
     }
 
     private void DigestNormal(Vector2 normal)
@@ -292,5 +244,15 @@ public class Player : MonoBehaviour
                 State |= StateFlags.RightWall;
             }
         }
+    }
+
+    public void SwapWith(Role activeRole)
+    {
+        RoleManager.Instance.Swap(RoleObject.ActiveRole, activeRole);
+    }
+
+    public bool CanSwap(Role activeRole)
+    {
+        return RoleObject.ActiveRole != activeRole;
     }
 }

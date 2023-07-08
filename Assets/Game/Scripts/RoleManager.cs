@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
+using static UnityEditor.Progress;
 
 public class RoleManager : Singleton<RoleManager>
 {
@@ -18,15 +20,18 @@ public class RoleManager : Singleton<RoleManager>
     public Dictionary<Role, Theme> ThemeMap = new();
     Role[] Roles;
     List<RoleObject>[] Instances;
+    List<SwapHolder>[] Holders;
 
     private void Awake()
     {
         Instances = new List<RoleObject>[RoleSettings.Settings.Length];
+        Holders = new List<SwapHolder>[RoleSettings.Settings.Length];
         Roles = new Role[RoleSettings.Settings.Length];
         for (int i = 0; i < RoleSettings.Settings.Length; i++)
         {
             RoleSettings.Settings[i].Role.Init();
             Instances[i] = new List<RoleObject>();
+            Holders[i] = new List<SwapHolder>();
             Roles[i] = RoleSettings.Settings[i].Role;
             ThemeMap[Roles[i]] = RoleSettings.Settings[i].Theme;
         }
@@ -61,17 +66,29 @@ public class RoleManager : Singleton<RoleManager>
             return;
         }
 
-        var l = Instances[idA];
+        var instances = Instances[idA];
         Instances[idA] = Instances[idB];
-        Instances[idB] = l;
+        Instances[idB] = instances;
+
+        var holders = Holders[idA];
+        Holders[idA] = Holders[idB];
+        Holders[idB] = holders;
 
         for (int i = 0; i < Instances[idA].Count; i++)
         {
             Instances[idA][i].Change(Roles[idA]);
         }
+        for (int i = 0; i < Holders[idA].Count; i++)
+        {
+            Holders[idA][i].Change(Roles[idA]);
+        }
         for (int i = 0; i < Instances[idB].Count; i++)
         {
             Instances[idB][i].Change(Roles[idB]);
+        }
+        for (int i = 0; i < Holders[idB].Count; i++)
+        {
+            Holders[idB][i].Change(Roles[idB]);
         }
     }
 
@@ -108,6 +125,17 @@ public class RoleManager : Singleton<RoleManager>
             return;
         }
         Instances[idx].Remove(item);
+    }
+
+    public void Register(SwapHolder item)
+    {
+        var idx = Array.IndexOf(Roles, item.ActiveRole);
+        if (idx == -1)
+        {
+            return;
+        }
+        Holders[idx].Add(item);
+        item.Change(Roles[idx]);
     }
 }
 

@@ -16,9 +16,9 @@ ScriptedImporter:
   _customLevelPrefab: {fileID: 3714976713027537704, guid: 33526e487df2dad468fc6e0edd3dca8b,
     type: 3}
   _deparentInRuntime: 0
-  _intGridValueColorsVisible: 1
+  _intGridValueColorsVisible: 0
   _useCompositeCollider: 1
-  _createBackgroundColor: 1
+  _createBackgroundColor: 0
   _createLevelBoundsTrigger: 0
   _intGridValues:
   - _key: Roles_1
@@ -35,7 +35,18 @@ ScriptedImporter:
     _asset: {fileID: 11400000, guid: 952f17a34ebb18d47bca16c0a4a1a688, type: 2}
   - _key: Roles_7
     _asset: {fileID: 11400000, guid: 2940db7b662859349b2b445aa032bbff, type: 2}
-  _entities: []
-  _enumGenerate: 0
-  _enumPath: 
+  - _key: Roles_8
+    _asset: {fileID: 11400000, guid: 7cfb0eb17eef22b45af7a49e145887f2, type: 2}
+  _entities:
+  - _key: SwapHandle
+    _asset: {fileID: 5083625217146381372, guid: 4f27b62268c72854d9d60d4e5ee8aefc,
+      type: 3}
+  - _key: Checkpoint
+    _asset: {instanceID: 0}
+  - _key: Return
+    _asset: {instanceID: 0}
+  - _key: Spawn
+    _asset: {instanceID: 0}
+  _enumGenerate: 1
+  _enumPath: MapEnums.cs
   _enumNamespace: 

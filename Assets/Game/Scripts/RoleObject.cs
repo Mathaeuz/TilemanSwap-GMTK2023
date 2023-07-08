@@ -14,6 +14,7 @@ public class RoleObject : MonoBehaviour
 
     public UnityEvent<Role> OnChangeRole = new();
     public UnityEvent<float> RoleDestroyed = new();
+    public UnityEvent RoleRestored = new();
 
     private void Awake()
     {
@@ -48,5 +49,10 @@ public class RoleObject : MonoBehaviour
     public void DestroyByRole(float time)
     {
         RoleDestroyed.Invoke(time);
+    }
+
+    public void RestoreByRole()
+    {
+        RoleRestored.Invoke();
     }
 }

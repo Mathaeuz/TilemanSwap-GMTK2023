@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class BaloonFlicker : MonoBehaviour
@@ -14,7 +15,14 @@ public class BaloonFlicker : MonoBehaviour
         {
             View = GetComponent<RoleView>();
         }
-        GetComponent<BaloonBehaviour>().OnSetObject += (obj) => obj.RoleDestroyed.AddListener(Hide);
+        var baloon = GetComponent<BaloonBehaviour>();
+        baloon.OnSetObject += ConfigurePop;
+    }
+
+    private void ConfigurePop(RoleObject obj)
+    {
+        obj.RoleDestroyed.AddListener(Hide);
+        obj.RoleRestored.AddListener(Show);
     }
 
     public void Hide(float time)
@@ -24,32 +32,27 @@ public class BaloonFlicker : MonoBehaviour
         StartCoroutine(nameof(HideRoutine));
     }
 
+    public void Show()
+    {
+        StopCoroutine(nameof(HideRoutine));
+
+        //Show
+        View.SetVisible(true);
+    }
+
     private IEnumerator HideRoutine()
     {
         //Hide
-        for (int i = 0; i < View.Targets.Length; i++)
-        {
-            View.Targets[i].enabled = false;
-        }
+        View.SetVisible(false);
         yield return new WaitForSeconds(RoutineTime - FlickerBeforeShow);
 
         //Flicker
-        var timeout = Time.time + FlickerBeforeShow;
         var val = false;
-        while (Time.time < timeout)
+        while (true)
         {
             val = !val;
-            for (int i = 0; i < View.Targets.Length; i++)
-            {
-                View.Targets[i].enabled = val;
-            }
-            yield return 0;
-        }
-
-        //Show
-        for (int i = 0; i < View.Targets.Length; i++)
-        {
-            View.Targets[i].enabled = true;
+            View.SetVisible(val);
+            yield return new WaitForSecondsRealtime(0.05f);
         }
     }
 }

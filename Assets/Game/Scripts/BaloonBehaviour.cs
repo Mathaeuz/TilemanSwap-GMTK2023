@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BaloonBehaviour : RoleBehaviour
 {
@@ -66,12 +67,15 @@ public class BaloonBehaviour : RoleBehaviour
         {
             manipulator.SetEnabled(false);
         }
-        Invoke(nameof(Unpop), ActiveRole.PopDuration);
+        StartCoroutine(nameof(Unpop));
     }
 
-    private void Unpop()
+    private IEnumerator Unpop()
     {
+        yield return new WaitForSeconds(ActiveRole.PopDuration);
+
         Popped = false;
+        Object.RestoreByRole();
         if (DisableCollidersOnPop)
         {
             manipulator.SetEnabled(true);
