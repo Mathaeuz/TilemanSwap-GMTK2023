@@ -14,35 +14,21 @@ public class RoleManager : Singleton<RoleManager>
     public Editor EditorTests;
 #endif
 
-    [Serializable]
-    public class RoleThemePair
-    {
-        public Role Role;
-        public Color Theme;
-    }
-
-    public Role[] Roles;
-    public Color[] Themes;
-    public Dictionary<Role, Color> ThemeMap = new();
+    public RoleSettings RoleSettings;
+    public Dictionary<Role, Theme> ThemeMap = new();
+    Role[] Roles;
     List<RoleObject>[] Instances;
 
     private void Awake()
     {
-        Instances = new List<RoleObject>[Roles.Length];
-        for (int i = 0; i < Roles.Length; i++)
+        Instances = new List<RoleObject>[RoleSettings.Settings.Length];
+        Roles = new Role[RoleSettings.Settings.Length];
+        for (int i = 0; i < RoleSettings.Settings.Length; i++)
         {
-            Roles[i].Init();
+            RoleSettings.Settings[i].Role.Init();
             Instances[i] = new List<RoleObject>();
-        }
-
-        if (Themes.Length != Roles.Length)
-        {
-            Debug.LogError("Theme array has incorrect size");
-            return;
-        }
-        for (int i = 0; i < Themes.Length; i++)
-        {
-            ThemeMap[Roles[i]] = Themes[i];
+            Roles[i] = RoleSettings.Settings[i].Role;
+            ThemeMap[Roles[i]] = RoleSettings.Settings[i].Theme;
         }
     }
 
@@ -81,11 +67,11 @@ public class RoleManager : Singleton<RoleManager>
 
         for (int i = 0; i < Instances[idA].Count; i++)
         {
-            Instances[idA][i].Set(Roles[idA]);
+            Instances[idA][i].Change(Roles[idA]);
         }
         for (int i = 0; i < Instances[idB].Count; i++)
         {
-            Instances[idB][i].Set(Roles[idB]);
+            Instances[idB][i].Change(Roles[idB]);
         }
     }
 
@@ -94,11 +80,11 @@ public class RoleManager : Singleton<RoleManager>
         var idx = Array.IndexOf(Roles, item.ActiveRole);
         if (idx == -1)
         {
-            idx = 0;
+            return;
         }
         Instances[idx].Add(item);
 
-        if (item.ActiveRole.Swappable)
+        if (Roles[idx].Swappable)
         {
             item.Behaviours.Clear();
             for (int i = 0; i < Roles.Length; i++)
@@ -108,10 +94,10 @@ public class RoleManager : Singleton<RoleManager>
         }
         else
         {
-            item.Behaviours[item.ActiveRole] = item.ActiveRole.Install(item);
+            item.Behaviours[Roles[idx]] = Roles[idx].Install(item);
         }
 
-        item.Set(Roles[idx]);
+        item.Change(Roles[idx]);
     }
 
     public void Release(RoleObject item)
@@ -123,4 +109,11 @@ public class RoleManager : Singleton<RoleManager>
         }
         Instances[idx].Remove(item);
     }
+}
+
+[Serializable]
+public class Theme
+{
+    public Sprite Sprite;
+    public Color Color;
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,10 +10,10 @@ public class RoleObject : MonoBehaviour
     public RoleBehaviour ActiveBehaviour { get; private set; }
 
     [field: SerializeField]
-    public Role ActiveRole { get; private set; }
+    public Role ActiveRole { get; set; }
 
-    public UnityEvent<Role> OnChangeRole;
-    public UnityEvent<float> RoleDestroyed;
+    public UnityEvent<Role> OnChangeRole = new();
+    public UnityEvent<float> RoleDestroyed = new();
 
     private void Awake()
     {
@@ -28,16 +28,21 @@ public class RoleObject : MonoBehaviour
         }
     }
 
-    public void Set(Role role)
+    public void Change(Role role)
     {
         ActiveRole = role;
+
         if (ActiveBehaviour != null)
         {
             ActiveBehaviour.enabled = false;
         }
-        ActiveBehaviour = Behaviours[role];
-        ActiveBehaviour.enabled = true;
-        OnChangeRole.Invoke(role);
+
+        if (Behaviours.Any())
+        {
+            ActiveBehaviour = Behaviours[role];
+            ActiveBehaviour.enabled = true;
+            OnChangeRole.Invoke(role);
+        }
     }
 
     public void DestroyByRole(float time)

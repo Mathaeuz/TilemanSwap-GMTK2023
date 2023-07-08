@@ -1,0 +1,41 @@
+fileFormatVersion: 2
+guid: 93e2b76a0044af54e9dab43c47f7ccd2
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
+  _reimportOnDependencyChange: 1
+  _jsonFile: {fileID: -164016180542632921, guid: 93e2b76a0044af54e9dab43c47f7ccd2,
+    type: 3}
+  _pixelsPerUnit: 16
+  _atlas: {instanceID: 0}
+  _customLevelPrefab: {fileID: 3714976713027537704, guid: 33526e487df2dad468fc6e0edd3dca8b,
+    type: 3}
+  _deparentInRuntime: 0
+  _intGridValueColorsVisible: 1
+  _useCompositeCollider: 1
+  _createBackgroundColor: 1
+  _createLevelBoundsTrigger: 0
+  _intGridValues:
+  - _key: Roles_1
+    _asset: {fileID: 11400000, guid: 493c12c4d31421544b8874e1356bcbb9, type: 2}
+  - _key: Roles_2
+    _asset: {fileID: 11400000, guid: afaf439d373572049aa3ef197061b50b, type: 2}
+  - _key: Roles_3
+    _asset: {fileID: 11400000, guid: c51d1bab85911884bacdef7b8cc0f7b5, type: 2}
+  - _key: Roles_4
+    _asset: {fileID: 11400000, guid: 499bb264c3d663f4d8f81a0b5c7efe72, type: 2}
+  - _key: Roles_5
+    _asset: {fileID: 11400000, guid: c34ccc6691ea89c44b5ba18741a6f50d, type: 2}
+  - _key: Roles_6
+    _asset: {fileID: 11400000, guid: 952f17a34ebb18d47bca16c0a4a1a688, type: 2}
+  - _key: Roles_7
+    _asset: {fileID: 11400000, guid: 2940db7b662859349b2b445aa032bbff, type: 2}
+  _entities: []
+  _enumGenerate: 0
+  _enumPath: 
+  _enumNamespace: 

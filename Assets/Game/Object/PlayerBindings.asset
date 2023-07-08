@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b22074e55ee6954aac5e6106ede50ef, type: 3}
-  m_Name: New Player Bindings
+  m_Name: PlayerBindings
   m_EditorClassIdentifier: 
   Movement: {fileID: -1680190386980627800, guid: 2fd18947c68a0934da41850bd9bee737,
     type: 3}

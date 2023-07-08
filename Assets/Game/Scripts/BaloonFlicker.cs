@@ -4,15 +4,15 @@ using UnityEngine;
 public class BaloonFlicker : MonoBehaviour
 {
     public float FlickerBeforeShow = 0.5f;
-    public Renderer[] Targets;
+    public RoleView View;
 
     float RoutineTime;
 
     void Awake()
     {
-        if (Targets == null)
+        if (View == null)
         {
-            Targets = GetComponentsInChildren<Renderer>();
+            View = GetComponent<RoleView>();
         }
         GetComponent<BaloonBehaviour>().OnSetObject += (obj) => obj.RoleDestroyed.AddListener(Hide);
     }
@@ -27,9 +27,9 @@ public class BaloonFlicker : MonoBehaviour
     private IEnumerator HideRoutine()
     {
         //Hide
-        for (int i = 0; i < Targets.Length; i++)
+        for (int i = 0; i < View.Targets.Length; i++)
         {
-            Targets[i].enabled = false;
+            View.Targets[i].enabled = false;
         }
         yield return new WaitForSeconds(RoutineTime - FlickerBeforeShow);
 
@@ -39,17 +39,17 @@ public class BaloonFlicker : MonoBehaviour
         while (Time.time < timeout)
         {
             val = !val;
-            for (int i = 0; i < Targets.Length; i++)
+            for (int i = 0; i < View.Targets.Length; i++)
             {
-                Targets[i].enabled = val;
+                View.Targets[i].enabled = val;
             }
             yield return 0;
         }
 
         //Show
-        for (int i = 0; i < Targets.Length; i++)
+        for (int i = 0; i < View.Targets.Length; i++)
         {
-            Targets[i].enabled = true;
+            View.Targets[i].enabled = true;
         }
     }
 }
