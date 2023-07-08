@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b22074e55ee6954aac5e6106ede50ef, type: 3}
   m_Name: New Player Bindings
   m_EditorClassIdentifier: 
-  Movement: {fileID: -1680190386980627800, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  Movement: {fileID: -1680190386980627800, guid: 2fd18947c68a0934da41850bd9bee737,
     type: 3}
-  Jump: {fileID: -8127095979220794886, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  Swap: {fileID: 1120369429361536294, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  Jump: {fileID: 5355234553814000818, guid: 2fd18947c68a0934da41850bd9bee737, type: 3}
+  Swap: {fileID: 1120369429361536294, guid: 2fd18947c68a0934da41850bd9bee737, type: 3}
+  Crouch: {fileID: -8131188856583054725, guid: 2fd18947c68a0934da41850bd9bee737, type: 3}
+  MousePosition: {fileID: -389085207791792636, guid: 2fd18947c68a0934da41850bd9bee737,
+    type: 3}

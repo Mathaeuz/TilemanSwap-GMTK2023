@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Roles/Baloon")]
 public class BaloonRole : Role
 {
-    public PhysicsMaterial2D Material;
+    public float PopDuration = 3f;
 
     protected override Type GetBehaviourType() => typeof(BaloonBehaviour);
 }

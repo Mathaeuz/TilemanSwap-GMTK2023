@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "Player Bindings")]
@@ -29,21 +30,62 @@ public class PlayerBindings : ScriptableObject
     public class Input
     {
         public float Horizontal;
-        public Button Jump = new(), Swap = new();
+        public float Vertical;
+        public Vector2 MousePosition;
+        public Button Jump = new(), Swap = new(), Crouch = new();
+        bool Locked;
 
         public void Reset()
         {
             Jump.Reset();
             Swap.Reset();
+            Crouch.Reset();
         }
 
-        internal void HorizontalPerformed(InputAction.CallbackContext obj)
+        public void Lock()
         {
-            Horizontal = obj.ReadValue<Vector2>().x;
+            Locked = true;
+            Jump.Unset();
+            Jump.Reset();
+            Swap.Unset();
+            Swap.Reset();
+            Crouch.Unset();
+            Crouch.Reset();
+            Horizontal = 0;
+            Vertical = 0;
         }
 
-        internal void JumpPerformed(InputAction.CallbackContext obj)
+        public void Unlock()
         {
+            Locked = false;
+        }
+
+        public void MovementPerformed(InputAction.CallbackContext obj)
+        {
+            if (Locked)
+            {
+                return;
+            }
+            var value = obj.ReadValue<Vector2>();
+            Horizontal = value.x;
+            Vertical = value.y;
+        }
+        public void MousePerformed(InputAction.CallbackContext obj)
+        {
+            //if (Locked)
+            //{
+            //    return;
+            //}
+
+            MousePosition = obj.ReadValue<Vector2>();
+        }
+
+        public void JumpPerformed(InputAction.CallbackContext obj)
+        {
+            if (Locked)
+            {
+                return;
+            }
             if (obj.ReadValueAsButton())
             {
                 Jump.Set();
@@ -54,8 +96,12 @@ public class PlayerBindings : ScriptableObject
             }
         }
 
-        internal void SwapPerformed(InputAction.CallbackContext obj)
+        public void SwapPerformed(InputAction.CallbackContext obj)
         {
+            if (Locked)
+            {
+                return;
+            }
             if (obj.ReadValueAsButton())
             {
                 Swap.Set();
@@ -65,8 +111,24 @@ public class PlayerBindings : ScriptableObject
                 Swap.Unset();
             }
         }
+
+        internal void CrouchPerformed(InputAction.CallbackContext obj)
+        {
+            if (Locked)
+            {
+                return;
+            }
+            if (obj.ReadValueAsButton())
+            {
+                Crouch.Set();
+            }
+            else
+            {
+                Crouch.Unset();
+            }
+        }
     }
-    public InputActionReference Movement, Jump, Swap;
+    public InputActionReference Movement, Jump, Swap, Crouch, MousePosition;
 
     public Input Init()
     {
@@ -74,8 +136,8 @@ public class PlayerBindings : ScriptableObject
         if (Movement != null)
         {
             Movement.action.Enable();
-            Movement.action.performed += output.HorizontalPerformed;
-            Movement.action.canceled += output.HorizontalPerformed;
+            Movement.action.performed += output.MovementPerformed;
+            Movement.action.canceled += output.MovementPerformed;
         }
         if (Jump != null)
         {
@@ -88,6 +150,18 @@ public class PlayerBindings : ScriptableObject
             Swap.action.Enable();
             Swap.action.performed += output.SwapPerformed;
             Swap.action.canceled += output.SwapPerformed;
+        };
+        if (MousePosition != null)
+        {
+            MousePosition.action.Enable();
+            MousePosition.action.performed += output.MousePerformed;
+            MousePosition.action.canceled += output.MousePerformed;
+        };
+        if (Crouch != null)
+        {
+            Crouch.action.Enable();
+            Crouch.action.performed += output.CrouchPerformed;
+            Crouch.action.canceled += output.CrouchPerformed;
         };
         return output;
     }

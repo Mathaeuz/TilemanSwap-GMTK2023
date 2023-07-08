@@ -97,11 +97,20 @@ public class RoleManager : Singleton<RoleManager>
             idx = 0;
         }
         Instances[idx].Add(item);
-        item.Behaviours.Clear();
-        for (int i = 0; i < Roles.Length; i++)
+
+        if (item.ActiveRole.Swappable)
         {
-            item.Behaviours[Roles[i]] = Roles[i].Install(item);
+            item.Behaviours.Clear();
+            for (int i = 0; i < Roles.Length; i++)
+            {
+                item.Behaviours[Roles[i]] = Roles[i].Install(item);
+            }
         }
+        else
+        {
+            item.Behaviours[item.ActiveRole] = item.ActiveRole.Install(item);
+        }
+
         item.Set(Roles[idx]);
     }
 

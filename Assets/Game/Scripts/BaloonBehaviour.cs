@@ -1,9 +1,20 @@
-﻿public class BaloonBehaviour : RoleBehaviour
+﻿using UnityEngine;
+
+public class BaloonBehaviour : RoleBehaviour
 {
-    PhysicsMaterialSwapper swapper;
+    public bool DisableCollidersOnPop = true;
+    BaloonRole ActiveRole;
+    bool Popped;
+
     private void Awake()
     {
-        swapper = new PhysicsMaterialSwapper(this);
+        SetupColliderManipulator();
+
+        //Todo find another way to load into zone blocks
+        if (GetComponent<BaloonFlicker>() == null)
+        {
+            gameObject.AddComponent<BaloonFlicker>();
+        }
     }
 
     private void OnEnable()
@@ -12,12 +23,58 @@
         {
             return;
         }
-
-        swapper.Swap((Object.ActiveRole as BaloonRole).Material);
+        ActiveRole = Object.ActiveRole as BaloonRole;
+        manipulator.SwapPhysicsMaterial(Object.ActiveRole.Material);
     }
 
     private void OnDisable()
     {
-        swapper.Restore();
+        manipulator.RestorePhysicsMaterial();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleContacts(collision);
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        HandleContacts(collision);
+    }
+
+    private void HandleContacts(Collision2D collision)
+    {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
+
+        if (collision.collider.CompareTag(nameof(SpikeRole)))
+        {
+            Pop();
+        }
+    }
+
+    private void Pop()
+    {
+        if (Popped)
+        {
+            return;
+        }
+        Popped = true;
+        Object.DestroyByRole(ActiveRole.PopDuration);
+        if (DisableCollidersOnPop)
+        {
+            manipulator.SetEnabled(false);
+        }
+        Invoke(nameof(Unpop), ActiveRole.PopDuration);
+    }
+
+    private void Unpop()
+    {
+        Popped = false;
+        if (DisableCollidersOnPop)
+        {
+            manipulator.SetEnabled(true);
+        }
     }
 }

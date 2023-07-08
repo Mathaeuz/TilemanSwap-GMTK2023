@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Role : ScriptableObject
 {
     public bool Swappable = true;
+    public PhysicsMaterial2D Material;
     Type Type;
 
     public void Init()
@@ -18,7 +19,7 @@ public abstract class Role : ScriptableObject
         {
             instance = (RoleBehaviour)obj.gameObject.AddComponent(Type);
         }
-        instance.Object = obj;
+        instance.SetObject(obj);
         instance.enabled = false;
         return instance;
     }

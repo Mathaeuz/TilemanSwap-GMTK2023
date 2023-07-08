@@ -54,9 +54,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84efcfa59677ba24c85b58e712e59521, type: 2}
   - {fileID: 11400000, guid: 357b59c5abc43084e97db138eb692075, type: 2}
   - {fileID: 11400000, guid: 73d4d822f9571cf4aa1ee723959fbe9d, type: 2}
+  - {fileID: 11400000, guid: 2768f046981f45c4c99efe972a09c32e, type: 2}
+  - {fileID: 11400000, guid: 7b6c9862ad0090648b3bd001ca3f2aef, type: 2}
   Themes:
   - {r: 0.15574935, g: 0.17576554, b: 0.18867922, a: 1}
   - {r: 0.6918832, g: 0.7988887, b: 0.8679245, a: 1}
   - {r: 0.92794704, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.6476717, a: 1}
   - {r: 0, g: 0.6090963, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.095808506, a: 1}
+  - {r: 0, g: 0.97032166, b: 1, a: 1}

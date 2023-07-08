@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,7 @@ public class RoleObject : MonoBehaviour
     public Role ActiveRole { get; private set; }
 
     public UnityEvent<Role> OnChangeRole;
+    public UnityEvent<float> RoleDestroyed;
 
     private void Awake()
     {
@@ -36,5 +38,10 @@ public class RoleObject : MonoBehaviour
         ActiveBehaviour = Behaviours[role];
         ActiveBehaviour.enabled = true;
         OnChangeRole.Invoke(role);
+    }
+
+    public void DestroyByRole(float time)
+    {
+        RoleDestroyed.Invoke(time);
     }
 }

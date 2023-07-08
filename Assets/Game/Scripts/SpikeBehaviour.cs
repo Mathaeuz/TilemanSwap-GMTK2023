@@ -1,4 +1,4 @@
-﻿public class BlockBehaviour : RoleBehaviour
+﻿public class SpikeBehaviour : RoleBehaviour
 {
     private void Awake()
     {
@@ -12,10 +12,12 @@
             return;
         }
         manipulator.SwapPhysicsMaterial(Object.ActiveRole.Material);
+        manipulator.SwapTags(nameof(SpikeRole));
     }
 
     private void OnDisable()
     {
         manipulator.RestorePhysicsMaterial();
+        manipulator.RestoreTags();
     }
 }
