@@ -22,22 +22,37 @@ public class RoleManager : Singleton<RoleManager>
     List<SwapHolder>[] Holders;
 
     public UnityEvent<bool> AllowEffects = new();
-    Stack<(Role, Role)> SwapHistory = new();
+    Role[] RoleCheckpoint;
 
     public void SaveSwaps()
     {
-        SwapHistory.Clear();
+        for (int i = 0; i < Roles.Length; i++)
+        {
+            RoleCheckpoint[i] = Roles[i];
+        }
     }
 
     public void RollbackSwaps()
     {
-        AllowEffects.Invoke(false);
-        while (SwapHistory.Count > 0)
+        List<int> apply = new();
+        for (int i = 0; i < Roles.Length; i++)
         {
-            var p = SwapHistory.Pop();
-            Swap(p.Item1, p.Item2, false);
+            if (Roles[i] == RoleCheckpoint[i])
+            {
+                continue;
+            }
+            var role = Roles[i];
+            var altIndex = Array.IndexOf(Roles, RoleCheckpoint[i]);
+            Roles[i] = Roles[altIndex];
+            Roles[altIndex] = role;
+            apply.Add(i);
+            apply.Add(altIndex);
         }
-        AllowEffects.Invoke(true);
+
+        for (int i = 0; i < apply.Count; i++)
+        {
+            ApplyRole(apply[i]);
+        }
     }
 
     private void Awake()
@@ -45,12 +60,16 @@ public class RoleManager : Singleton<RoleManager>
         Instances = new List<RoleObject>[RoleSettings.Settings.Length];
         Holders = new List<SwapHolder>[RoleSettings.Settings.Length];
         Roles = new Role[RoleSettings.Settings.Length];
+        RoleCheckpoint = new Role[RoleSettings.Settings.Length];
         for (int i = 0; i < RoleSettings.Settings.Length; i++)
         {
             RoleSettings.Settings[i].Role.Init();
             Instances[i] = new List<RoleObject>();
             Holders[i] = new List<SwapHolder>();
+
             Roles[i] = RoleSettings.Settings[i].Role;
+            RoleCheckpoint[i] = Roles[i];
+
             ThemeMap[Roles[i]] = RoleSettings.Settings[i].Theme;
         }
     }
@@ -66,15 +85,11 @@ public class RoleManager : Singleton<RoleManager>
 #endif
     }
 
-    public void Swap(Role a, Role b, bool history = true)
+    public void Swap(Role a, Role b)
     {
         if (!a.Swappable || !b.Swappable)
         {
             return;
-        }
-        if (history)
-        {
-            SwapHistory.Push((a, b));
         }
 
         var idA = Array.IndexOf(Roles, a);
@@ -88,29 +103,23 @@ public class RoleManager : Singleton<RoleManager>
             return;
         }
 
-        var instances = Instances[idA];
-        Instances[idA] = Instances[idB];
-        Instances[idB] = instances;
+        var role = Roles[idA];
+        Roles[idA] = Roles[idB];
+        Roles[idB] = role;
 
-        var holders = Holders[idA];
-        Holders[idA] = Holders[idB];
-        Holders[idB] = holders;
+        ApplyRole(idA);
+        ApplyRole(idB);
+    }
 
-        for (int i = 0; i < Instances[idA].Count; i++)
+    private void ApplyRole(int index)
+    {
+        for (int i = 0; i < Instances[index].Count; i++)
         {
-            Instances[idA][i].Change(Roles[idA]);
+            Instances[index][i].Change(Roles[index]);
         }
-        for (int i = 0; i < Holders[idA].Count; i++)
+        for (int i = 0; i < Holders[index].Count; i++)
         {
-            Holders[idA][i].Change(Roles[idA]);
-        }
-        for (int i = 0; i < Instances[idB].Count; i++)
-        {
-            Instances[idB][i].Change(Roles[idB]);
-        }
-        for (int i = 0; i < Holders[idB].Count; i++)
-        {
-            Holders[idB][i].Change(Roles[idB]);
+            Holders[index][i].Change(Roles[index]);
         }
     }
 
