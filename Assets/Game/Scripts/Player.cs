@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -29,12 +26,14 @@ public class Player : MonoBehaviour
         RightWall = 8,
         Ceil = 16,
         Dead = 32,
-        Preserve = Ball | Dead,
+        Selecting = 64,
+        Preserve = Ball | Dead | Selecting,
     };
+    public bool Jumped { get; private set; }
+    public bool SwapAccepted { get; private set; }
     StateFlags LastState;
-    bool Jumped;
     public StateFlags State;
-    public Action<StateFlags> OnStateChange;
+    public Action<StateFlags, StateFlags> OnStateChange;
 
     public GameObject Legs, Block;
     public float MaxSpeed = 7f;
@@ -76,6 +75,13 @@ public class Player : MonoBehaviour
             return;
         }
         State |= StateFlags.Dead;
+
+        if (State.HasFlag(StateFlags.Selecting))
+        {
+            State ^= StateFlags.Selecting;
+            SwapSelector.Instance.EndSelection();
+        }
+
         Velocity = Vector3.zero;
         Body.simulated = false;
         Body.velocity = Vector3.zero;
@@ -113,25 +119,32 @@ public class Player : MonoBehaviour
         {
             RegularState();
         }
-        HandleSwap();
+        TrySelect();
 
         HandleStateChange();
         UserInput.Reset();
     }
 
-    private void HandleSwap()
+    private void TrySelect()
     {
-        if (UserInput.Swap.Down && SwapSelector.Instance.Off)
+        if (!State.HasFlag(StateFlags.Selecting) && UserInput.Swap.Down && SwapSelector.Instance.Off)
         {
+            SwapAccepted = false;
+            State |= StateFlags.Selecting;
             SwapSelector.Instance.BeginSelection(this);
         }
+    }
+
+    public void SelectionDone()
+    {
+        State ^= StateFlags.Selecting;
     }
 
     private void HandleStateChange()
     {
         if (State != LastState)
         {
-            OnStateChange?.Invoke(State);
+            OnStateChange?.Invoke(LastState, State);
         }
         LastState = State;
         State &= StateFlags.Preserve;
@@ -285,6 +298,7 @@ public class Player : MonoBehaviour
 
     public void SwapWith(Role activeRole)
     {
+        SwapAccepted = true;
         RoleManager.Instance.Swap(RoleObject.ActiveRole, activeRole);
     }
 

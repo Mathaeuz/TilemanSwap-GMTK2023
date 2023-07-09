@@ -6,6 +6,7 @@ public class SwapEffect : MonoBehaviour
     public GameObject[] Stages;
     Image[] Images;
     int index = 0;
+    public AudioClip SwapDot, SwapDone;
 
     RectTransform Rtransform;
 
@@ -27,8 +28,10 @@ public class SwapEffect : MonoBehaviour
     {
         if (index == Stages.Length)
         {
+            SharedSoundEmiter.Instance.Play(SwapDone);
             return false;
         }
+        SharedSoundEmiter.Instance.Play(SwapDot);
         Stages[index++].SetActive(true);
         return true;
     }

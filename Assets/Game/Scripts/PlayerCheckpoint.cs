@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
+
 public class PlayerCheckpoint : MonoBehaviour
 {
-    static PlayerCheckpoint ActiveCheckpoint;
+    public static PlayerCheckpoint ActiveCheckpoint = null;
     public SharedParticles Flare, Burst;
+    public AudioClip Get;
     public Transform Sprite;
 
-    protected static void SetCheckpoint(PlayerCheckpoint checkpoint)
+    protected void SetCheckpoint(PlayerCheckpoint checkpoint)
     {
         if (ActiveCheckpoint != null)
         {
@@ -14,6 +16,7 @@ public class PlayerCheckpoint : MonoBehaviour
         }
         if (ActiveCheckpoint != checkpoint)
         {
+            SharedSoundEmiter.Instance.Play(Get);
             RoleManager.Instance.SaveSwaps();
             ActiveCheckpoint = checkpoint;
             checkpoint.Show();

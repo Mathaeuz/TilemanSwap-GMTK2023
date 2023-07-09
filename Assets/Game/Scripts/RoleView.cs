@@ -16,12 +16,19 @@ public class RoleView : MonoBehaviour
         Object = GetComponent<RoleObject>();
         Object.OnChangeRole.AddListener(SetRoleStyle);
         Object.RoleDestroyed.AddListener(BurstBlocks);
+        Object.RoleRestored.AddListener(RestoreBlocks);
         SetRoleStyle(Object.ActiveRole);
         Burst.Init();
     }
 
-    private void BurstBlocks(float arg0)
+    private void RestoreBlocks()
     {
+        SharedSoundEmiter.Instance.Play(Object.ActiveRole.RespawnEffect);
+    }
+
+    private void BurstBlocks(float time)
+    {
+        SharedSoundEmiter.Instance.Play(Object.ActiveRole.PopEffect);
         Burst.SetSprite(BurstSprite);
         for (int i = 0;  i < SpriteSwap.Length;  i++)
         {

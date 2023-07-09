@@ -51,7 +51,7 @@ public class RoleManager : Singleton<RoleManager>
 
         for (int i = 0; i < apply.Count; i++)
         {
-            ApplyRole(apply[i]);
+            ApplyRole(apply[i], true);
         }
     }
 
@@ -111,11 +111,11 @@ public class RoleManager : Singleton<RoleManager>
         ApplyRole(idB);
     }
 
-    private void ApplyRole(int index)
+    private void ApplyRole(int index, bool forceRespawn = false)
     {
         for (int i = 0; i < Instances[index].Count; i++)
         {
-            Instances[index][i].Change(Roles[index]);
+            Instances[index][i].Change(Roles[index], forceRespawn);
         }
         for (int i = 0; i < Holders[index].Count; i++)
         {
@@ -145,7 +145,7 @@ public class RoleManager : Singleton<RoleManager>
             item.Behaviours[Roles[idx]] = Roles[idx].Install(item);
         }
 
-        item.Change(Roles[idx]);
+        item.Change(Roles[idx],false);
     }
 
     public void Release(RoleObject item)

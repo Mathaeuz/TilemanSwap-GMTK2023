@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerAdaptor : MonoBehaviour
 {
     public Animator Animator;
     public SpriteRenderer Sprite;
     public Player Player;
+    public AudioClip JumpClip, LandClip, BallClip, UnballClip, DieClip, RespawnClip, SelectClip, DeselectClip;
     bool flipFacing;
 
     int MovH, MovV, Ground, Ball;
@@ -15,6 +17,53 @@ public class PlayerAdaptor : MonoBehaviour
         MovV = Animator.StringToHash("MovementV");
         Ground = Animator.StringToHash("Ground");
         Ball = Animator.StringToHash("Ball");
+        Player.OnStateChange += PlayStateSfx;
+    }
+
+    private void PlayStateSfx(Player.StateFlags last, Player.StateFlags current)
+    {
+        var lostStats = last ^ (last & current);
+        var newStats = current ^ (last & current);
+
+        if (lostStats.HasFlag(Player.StateFlags.Dead))
+        {
+            SharedSoundEmiter.Instance.Play(RespawnClip);
+            return;
+        }
+        //if (newStats.HasFlag(Player.StateFlags.Dead))
+        //{
+        //    SharedSoundEmiter.Instance.Play(DieClip);
+        //}
+        if (lostStats.HasFlag(Player.StateFlags.Selecting) && !Player.SwapAccepted)
+        {
+            SharedSoundEmiter.Instance.Play(DeselectClip);
+            return;
+        }
+        if (newStats.HasFlag(Player.StateFlags.Selecting))
+        {
+            SharedSoundEmiter.Instance.Play(SelectClip);
+            return;
+        }
+        if (lostStats.HasFlag(Player.StateFlags.Ball))
+        {
+            SharedSoundEmiter.Instance.Play(UnballClip);
+            return;
+        }
+        if (newStats.HasFlag(Player.StateFlags.Ball))
+        {
+            SharedSoundEmiter.Instance.Play(BallClip);
+            return;
+        }
+        if (lostStats.HasFlag(Player.StateFlags.Ground) && Player.Jumped)
+        {
+            SharedSoundEmiter.Instance.Play(JumpClip);
+            return;
+        }
+        if (newStats.HasFlag(Player.StateFlags.Ground))
+        {
+            SharedSoundEmiter.Instance.Play(LandClip);
+            return;
+        }
     }
 
     private void Update()

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   Swappable: 1
-  Material: {fileID: 6200000, guid: 92fcc6df2c70ffa4285866462d987237, type: 2}
+  Material: {fileID: 6200000, guid: b6c1c2e08c764a64c9a40289385184a4, type: 2}
+  PopEffect: {fileID: 8300000, guid: 19a8c2ce36b70494e9d8786a5ef5b9ab, type: 3}
+  RespawnEffect: {fileID: 8300000, guid: ea44beb689390154f9097562890643cf, type: 3}
   PopDuration: 3

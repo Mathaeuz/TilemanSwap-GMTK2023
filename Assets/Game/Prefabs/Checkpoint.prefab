@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Flare: {fileID: 7341400579751390687}
   Burst: {fileID: -1903950901653738214}
+  Get: {fileID: 8300000, guid: 63519d79631c9b44295680d0df660b0e, type: 3}
   Sprite: {fileID: 5670608770436285437}
 --- !u!114 &7341400579751390687
 MonoBehaviour:

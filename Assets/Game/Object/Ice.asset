@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Swappable: 1
   Material: {fileID: 6200000, guid: 92fcc6df2c70ffa4285866462d987237, type: 2}
+  PopEffect: {fileID: 8300000, guid: aa57c9af38cf8674282a0c014ddd42b8, type: 3}
+  RespawnEffect: {fileID: 8300000, guid: 4cabbab7de5d79e4db2db53ca025a16a, type: 3}

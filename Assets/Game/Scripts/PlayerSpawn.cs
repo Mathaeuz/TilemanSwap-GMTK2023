@@ -25,5 +25,6 @@ public class PlayerSpawn : MonoBehaviour
         player.transform.position = transform.position;
         player.RespawnAnchor = transform;
         OnSpawn.Invoke(player);
+        PlayerCheckpoint.ActiveCheckpoint = null;
     }
 }

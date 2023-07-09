@@ -1,24 +1,37 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 
 public class SwapButton : MonoBehaviour
 {
     public Button Button;
     public Image Border, Icon;
     public WorldToUi WorldToUI;
+    public AudioClip BipClip;
+    public EventTrigger Trigger;
 
     SwapHolder Holder;
 
     public void Configure(SwapHolder holder)
     {
+        var ev = new EventTrigger.TriggerEvent();
+        ev.AddListener(PlayBip);
+        Trigger.triggers = new System.Collections.Generic.List<EventTrigger.Entry>() {new EventTrigger.Entry
+        {
+            callback = ev,
+            eventID = EventTriggerType.PointerEnter,
+        } };
         Button.onClick.AddListener(SwapSelect);
         Holder = holder;
         Holder.OnChangeRole += ChangeUI;
         ChangeUI(holder.ActiveRole);
         WorldToUI.Target = holder.transform;
+    }
+
+    private void PlayBip(BaseEventData arg0)
+    {
+        SharedSoundEmiter.Instance.Play(BipClip);
     }
 
     private void ChangeUI(Role role)

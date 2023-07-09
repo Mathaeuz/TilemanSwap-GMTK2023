@@ -478,6 +478,8 @@ MonoBehaviour:
   - {fileID: 5037585267658383266}
   - {fileID: 2345877181300565021}
   - {fileID: 2849845940359833015}
+  SwapDot: {fileID: 8300000, guid: 6cbf7d2e431e90a468973a3f7d5350eb, type: 3}
+  SwapDone: {fileID: 8300000, guid: e0f39d8a36b69c0478c4cf7cfa59d66d, type: 3}
 --- !u!1 &4801356841471521656
 GameObject:
   m_ObjectHideFlags: 0

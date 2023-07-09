@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Swappable: 1
   Material: {fileID: 6200000, guid: caf000a28cd7a5747bcf84503c0bb788, type: 2}
+  PopEffect: {fileID: 8300000, guid: 19a8c2ce36b70494e9d8786a5ef5b9ab, type: 3}
+  RespawnEffect: {fileID: 8300000, guid: ea44beb689390154f9097562890643cf, type: 3}
   PopDuration: 5
+  BounceClip: {fileID: 8300000, guid: a22d2d919c6445c43ae8b56f2d70312d, type: 3}

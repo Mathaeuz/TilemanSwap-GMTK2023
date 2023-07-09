@@ -9,7 +9,6 @@ public class BaloonBehaviour : RoleBehaviour
 
     private void Awake()
     {
-
         //Todo find another way to load into zone blocks
         if (GetComponent<BaloonFlicker>() == null)
         {
@@ -38,28 +37,47 @@ public class BaloonBehaviour : RoleBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
         HandleContacts(collision.collider);
+        if (!Popped)
+        {
+            SharedSoundEmiter.Instance.Play(ActiveRole.BounceClip);
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
-    {
-        HandleContacts(collision.collider);
-    }
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        HandleContacts(collider);
-    }
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        HandleContacts(collider);
-    }
-
-    private void HandleContacts(Collider2D collider)
     {
         if (!isActiveAndEnabled)
         {
             return;
         }
+        HandleContacts(collision.collider);
+    }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
+        HandleContacts(collider);
+        if (!Popped)
+        {
+            SharedSoundEmiter.Instance.Play(ActiveRole.BounceClip);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
+        HandleContacts(collider);
+    }
 
+    private void HandleContacts(Collider2D collider)
+    {
         if (collider.CompareTag(nameof(SpikeRole)))
         {
             Pop();

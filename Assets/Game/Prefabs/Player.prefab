@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 1135182583151012831}
   - component: {fileID: 14001872989760970}
   m_Layer: 3
-  m_Name: BallCollider
+  m_Name: BlockCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 1024822805964627187}
   - component: {fileID: 5332101470726954796}
   m_Layer: 3
-  m_Name: LegsMesh
+  m_Name: PlayerAdaptor
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,6 +418,14 @@ MonoBehaviour:
   Animator: {fileID: 1024822805964627187}
   Sprite: {fileID: 9150884254430713543}
   Player: {fileID: 1135182582697765867}
+  JumpClip: {fileID: 8300000, guid: 76d38a42f3fed2c45961c168421287f9, type: 3}
+  LandClip: {fileID: 8300000, guid: 7edcc80cad7afb144ab5cd9000613431, type: 3}
+  BallClip: {fileID: 8300000, guid: 8f6e1fd64c87182469e3e02683eb3e19, type: 3}
+  UnballClip: {fileID: 8300000, guid: f837bd72f85fe5449acc7382892db92d, type: 3}
+  DieClip: {fileID: 8300000, guid: 931400f5d9c1894489d971f08d04098a, type: 3}
+  RespawnClip: {fileID: 8300000, guid: 2b3ab0138be74c84e93ffff1c28c1c4a, type: 3}
+  SelectClip: {fileID: 8300000, guid: 2129507d5f413174f982a0bbc0cf73ce, type: 3}
+  DeselectClip: {fileID: 8300000, guid: 48a9b19fbb0174543950ed9dae938c13, type: 3}
 --- !u!1 &3750754465339387750
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +641,7 @@ GameObject:
   - component: {fileID: 804527712307585343}
   - component: {fileID: 8692695163645426368}
   m_Layer: 3
-  m_Name: BallMesh
+  m_Name: BlockMesh
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

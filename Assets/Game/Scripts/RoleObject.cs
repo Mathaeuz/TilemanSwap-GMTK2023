@@ -32,7 +32,7 @@ public class RoleObject : MonoBehaviour
         }
     }
 
-    public void Change(Role role)
+    public void Change(Role role, bool forceRespawn)
     {
         if (ColliderManagement == null)
         {
@@ -40,6 +40,10 @@ public class RoleObject : MonoBehaviour
         }
 
         ActiveRole = role;
+        if (forceRespawn)
+        {
+            RestoreByRole();
+        }
 
         if (ActiveBehaviour != null)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +8,12 @@ public class SwapSelector : Singleton<SwapSelector>
     public Button CancelButton;
     public float LerpDuration = 0.3f;
     public SwapEffect SwapEffect;
+
     SwapHolder SwapWithHolder;
     Player Target;
     CanvasGroup Group;
     RectTransform Rtransform;
-    public bool Off;
+    public bool Off { get; private set; }
 
     private void Awake()
     {
@@ -47,7 +47,6 @@ public class SwapSelector : Singleton<SwapSelector>
         StopCoroutine(nameof(ShowGroup));
         StartCoroutine(nameof(HideGroup));
         Invoke(nameof(AllowSelection), 0.2f);
-
     }
 
     private void AllowSelection()
@@ -68,6 +67,7 @@ public class SwapSelector : Singleton<SwapSelector>
         }
         else
         {
+            Target.SelectionDone();
             EndSelection();
         }
     }
@@ -80,6 +80,7 @@ public class SwapSelector : Singleton<SwapSelector>
             yield return new WaitForSecondsRealtime(0.1f);
         }
         Target.SwapWith(SwapWithHolder.ActiveRole);
+        Target.SelectionDone();
         SwapWithHolder = null;
         EndSelection();
         SwapEffect.Hide();
