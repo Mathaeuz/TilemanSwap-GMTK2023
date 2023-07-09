@@ -32,12 +32,12 @@ public class MapRoleLoader : MonoBehaviour
 
     private void ConfigureCameras()
     {
-        var spawner = FindObjectOfType<PlayerSpawn>();
-        spawner.AddListener(SetCameraTarget);
         if (!ConfigureCams)
         {
             return;
         }
+        var spawner = FindObjectOfType<PlayerSpawn>();
+        spawner.AddListener(SetCameraTarget);
         Confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
     }
 
