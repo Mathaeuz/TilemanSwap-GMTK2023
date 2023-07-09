@@ -76,6 +76,7 @@ MonoBehaviour:
       m_Calls: []
   IgnoreMaterial: []
   IgnoreTag: []
+  IgnoreLayer: []
 --- !u!50 &-4727849939482694223
 Rigidbody2D:
   serializedVersion: 4

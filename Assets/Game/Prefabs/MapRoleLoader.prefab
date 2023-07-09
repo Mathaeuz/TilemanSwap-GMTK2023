@@ -140,6 +140,7 @@ MonoBehaviour:
     type: 3}
   Camera: {fileID: 3894579592149598798}
   Confiner: {fileID: 4734959038856860829}
+  ConfigureCams: 1
 --- !u!1 &3774128747376004800
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8095718189946350875
 Transform:
   m_ObjectHideFlags: 0

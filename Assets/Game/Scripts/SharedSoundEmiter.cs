@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -26,5 +27,15 @@ public class SharedSoundEmiter : Singleton<SharedSoundEmiter>
         source.Stop();
         source.clip = clip;
         source.Play();
+    }
+
+    Dictionary<AudioClip, float> Timeouts = new Dictionary<AudioClip, float>();
+    public void PlayWithCooldown(AudioClip clip, float cooldown)
+    {
+        if (!Timeouts.ContainsKey(clip) || Timeouts[clip] < Time.time)
+        {
+            Timeouts[clip] = Time.time + cooldown;
+            Play(clip);
+        }
     }
 }

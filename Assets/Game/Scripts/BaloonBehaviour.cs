@@ -7,6 +7,7 @@ public class BaloonBehaviour : RoleBehaviour
     public bool DisableCollidersOnPop = true;
     BaloonRole ActiveRole;
     bool Popped;
+    public bool CanPlayBounce = true;
 
     private void Awake()
     {
@@ -44,10 +45,10 @@ public class BaloonBehaviour : RoleBehaviour
         {
             return;
         }
-        HandleContacts(collision.collider);
-        if (!Popped)
+        HandleContacts(collision.collider); 
+        if (!Popped && CanPlayBounce)
         {
-            SharedSoundEmiter.Instance.Play(ActiveRole.BounceClip);
+            SharedSoundEmiter.Instance.PlayWithCooldown(ActiveRole.BounceClip,3f);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -65,9 +66,9 @@ public class BaloonBehaviour : RoleBehaviour
             return;
         }
         HandleContacts(collider);
-        if (!Popped)
+        if (!Popped && CanPlayBounce)
         {
-            SharedSoundEmiter.Instance.Play(ActiveRole.BounceClip);
+            SharedSoundEmiter.Instance.PlayWithCooldown(ActiveRole.BounceClip,3f);
         }
     }
     private void OnTriggerStay2D(Collider2D collider)

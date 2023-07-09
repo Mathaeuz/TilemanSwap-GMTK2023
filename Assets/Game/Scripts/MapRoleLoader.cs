@@ -5,11 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[ExecuteInEditMode]
 public class MapRoleLoader : MonoBehaviour
 {
     public RoleSettings RoleSettings;
@@ -17,7 +15,7 @@ public class MapRoleLoader : MonoBehaviour
     public Collider2D CellPrefab;
     public CinemachineVirtualCamera Camera;
     public CinemachineConfiner2D Confiner;
-    public bool ConfigureCams =true;
+    public bool ConfigureCams = true;
 
     [Serializable]
     public class RolePosition
@@ -26,25 +24,20 @@ public class MapRoleLoader : MonoBehaviour
         public Role Role;
     }
 
-    private void Start()
+    private void Awake()
     {
         ConfigureCameras();
-#if UNITY_EDITOR
-        if (!Application.isPlaying)
-        {
-            Process();
-        }
-#endif
+        //Process();
     }
 
     private void ConfigureCameras()
     {
+        var spawner = FindObjectOfType<PlayerSpawn>();
+        spawner.AddListener(SetCameraTarget);
         if (!ConfigureCams)
         {
             return;
         }
-        var spawner = FindObjectOfType<PlayerSpawn>();
-        spawner.AddListener(SetCameraTarget);
         Confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
     }
 
@@ -66,8 +59,6 @@ public class MapRoleLoader : MonoBehaviour
             Camera.gameObject.SetActive(false);
     }
 
-#if UNITY_EDITOR
-
     private void Process()
     {
         Tilemap map = FindMap();
@@ -78,8 +69,8 @@ public class MapRoleLoader : MonoBehaviour
         }
 
         List<RolePosition> tiles = GetTiles(map);
-        var roles = UpdateColliders(map, tiles);
-        UpdateRenderers(roles);
+        var Roles = UpdateColliders(map, tiles);
+        UpdateRenderers(Roles);
     }
 
     private void UpdateRenderers(List<RoleObject> roles)
@@ -87,16 +78,15 @@ public class MapRoleLoader : MonoBehaviour
         for (int i = 0; i < roles.Count; i++)
         {
             var view = roles[i].GetComponent<RoleView>();
-            view.SpriteSwap = roles[i].GetComponentsInChildren<SpriteRenderer>();
-            view.VisibilitySwap = roles[i].GetComponentsInChildren<Renderer>();
+            view.SpriteSwap = roles[i].GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
+            view.VisibilitySwap = roles[i].GetComponentsInChildren<Renderer>(includeInactive: true);
             view.ColorSwap = new Renderer[0];
-
         }
     }
 
     private List<RoleObject> UpdateColliders(Tilemap map, List<RolePosition> tiles)
     {
-        var roles = new List<RoleObject>(GetComponentsInChildren<RoleObject>());
+        var roles = new List<RoleObject>(GetComponentsInChildren<RoleObject>(includeInactive: true));
         var groups = tiles.GroupBy(x => x.Role).ToDictionary(x => x.Key, x => x.ToArray());
 
         for (int i = 0; i < roles.Count; i++)
@@ -112,10 +102,13 @@ public class MapRoleLoader : MonoBehaviour
                 groups.Remove(roles[i].ActiveRole);
             }
         }
+
+        //MissingRoles;
         foreach (var item in groups)
         {
-            var obj = Instantiate(RolePrefab);//PrefabUtility.InstantiatePrefab(RolePrefab).GetComponent<RoleObject>();
+            var obj = Instantiate(RolePrefab);
             obj.ActiveRole = item.Key;
+            obj.name = item.Key.name;
             obj.transform.SetParent(transform);
             BuildColliders(map, obj, item.Value);
             roles.Add(obj);
@@ -131,7 +124,7 @@ public class MapRoleLoader : MonoBehaviour
         {
             if (layers[i].LayerType == TypeEnum.IntGrid)
             {
-                map = layers[i].GetComponentInChildren<Tilemap>();
+                map = layers[i].GetComponentInChildren<Tilemap>(includeInactive: true);
             }
         }
 
@@ -168,23 +161,28 @@ public class MapRoleLoader : MonoBehaviour
         SpriteRenderer cell;
         for (int i = 0; i < rolePositions.Length; i++)
         {
-            cell = PrefabUtility.InstantiatePrefab(CellPrefab).GetComponent<SpriteRenderer>();
+            cell = Instantiate(CellPrefab).GetComponent<SpriteRenderer>();
             cell.transform.SetParent(roleObject.transform);
             cell.transform.position = map.CellToWorld(rolePositions[i].Position) + (Vector3)Vector2.one / 2f;
             cell.sprite = RoleSettings.Get(roleObject.ActiveRole).Theme.Sprite;
         }
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(MapRoleLoader))]
+    [CanEditMultipleObjects]
     public class _Editor : Editor
     {
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
             if (GUILayout.Button("Process"))
             {
-                (target as MapRoleLoader).Process();
+                for (int i = 0; i < targets.Length; i++)
+                {
+                    (targets[i] as MapRoleLoader).Process();
+                }
             }
+            base.OnInspectorGUI();
         }
     }
 #endif

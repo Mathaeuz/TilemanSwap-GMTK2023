@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisableCollidersOnPop: 0
+  CanPlayBounce: 1
 --- !u!114 &8171623847708150960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +420,7 @@ MonoBehaviour:
   Animator: {fileID: 1024822805964627187}
   Sprite: {fileID: 9150884254430713543}
   Player: {fileID: 1135182582697765867}
+  PlayerBaloon: {fileID: 0}
   JumpClip: {fileID: 8300000, guid: 76d38a42f3fed2c45961c168421287f9, type: 3}
   LandClip: {fileID: 8300000, guid: 7edcc80cad7afb144ab5cd9000613431, type: 3}
   BallClip: {fileID: 8300000, guid: 8f6e1fd64c87182469e3e02683eb3e19, type: 3}
@@ -583,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7113336497659377568}
   - component: {fileID: 4636761129220598418}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LevelCollider
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -359,6 +359,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BasicTileset_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbc13fb5ea18b54980a4e7bf2a301b1
+      internalID: -1121865326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BasicTileset_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e5ceda54ac20e4c90568f3e21b1153
+      internalID: -1961115010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -375,12 +417,14 @@ TextureImporter:
       BasicTileset_2: -184610640
       BasicTileset_0: -1322189065
       BasicTileset_9: -1679493677
+      BasicTileset_12: -1961115010
       BasicTileset_7: 948202249
       BasicTileset_8: -1793873729
       BasicTileset_1: -1784696376
       BasicTileset_5: -177505728
       BasicTileset_4: -67147116
       BasicTileset_10: -311724050
+      BasicTileset_11: -1121865326
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

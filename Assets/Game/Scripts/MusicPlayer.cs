@@ -31,7 +31,7 @@ public class MusicPlayer : Singleton<MusicPlayer>
 
     public void Play()
     {
-        if (Clips == null || Clips.Length == 0)
+        if (Clips == null || Clips.Length == 0 || Source.isPlaying)
         {
             return;
         }

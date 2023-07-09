@@ -6,6 +6,7 @@ public class PlayerAdaptor : MonoBehaviour
     public Animator Animator;
     public SpriteRenderer Sprite;
     public Player Player;
+    public BaloonBehaviour PlayerBaloon;
     public AudioClip JumpClip, LandClip, BallClip, UnballClip, DieClip, RespawnClip, SelectClip, DeselectClip;
     bool flipFacing;
 
@@ -18,6 +19,7 @@ public class PlayerAdaptor : MonoBehaviour
         Ground = Animator.StringToHash("Ground");
         Ball = Animator.StringToHash("Ball");
         Player.OnStateChange += PlayStateSfx;
+        PlayerBaloon = Player.GetComponent<BaloonBehaviour>();
     }
 
     private void PlayStateSfx(Player.StateFlags last, Player.StateFlags current)
@@ -73,6 +75,7 @@ public class PlayerAdaptor : MonoBehaviour
         {
             flipFacing = Player.Velocity.x < 0;
         }
+        PlayerBaloon.CanPlayBounce = Player.State.HasFlag(Player.StateFlags.Ball);
         Sprite.flipX = flipFacing;
         Animator.SetFloat(MovH, hspeed);
         Animator.SetFloat(MovV, Player.Velocity.y);
