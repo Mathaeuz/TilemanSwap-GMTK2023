@@ -32,6 +32,11 @@ public class SharedSoundEmiter : Singleton<SharedSoundEmiter>
     Dictionary<AudioClip, float> Timeouts = new Dictionary<AudioClip, float>();
     public void PlayWithCooldown(AudioClip clip, float cooldown)
     {
+        if (clip == null || !isActiveAndEnabled)
+        {
+            return;
+        }
+
         if (!Timeouts.ContainsKey(clip) || Timeouts[clip] < Time.time)
         {
             Timeouts[clip] = Time.time + cooldown;
