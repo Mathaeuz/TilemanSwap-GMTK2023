@@ -1,4 +1,5 @@
-﻿using LDtkUnity;
+﻿using Cinemachine;
+using LDtkUnity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,50 @@ public class MapRoleLoader : MonoBehaviour
     public RoleSettings RoleSettings;
     public RoleObject RolePrefab;
     public Collider2D CellPrefab;
+    public CinemachineVirtualCamera Camera;
+    public CinemachineConfiner2D Confiner;
+
     [Serializable]
     public class RolePosition
     {
         public Vector3Int Position;
         public Role Role;
+    }
+
+    private void Start()
+    {
+        ConfigureCameras();
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            Process();
+        }
+#endif
+    }
+
+    private void ConfigureCameras()
+    {
+        var spawner = FindObjectOfType<PlayerSpawn>();
+        spawner.AddListener(SetCameraTarget);
+        Confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
+    }
+
+    private void SetCameraTarget(Player player)
+    {
+        Camera.LookAt = player.transform;
+        Camera.Follow = player.transform;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+            Camera.gameObject.SetActive(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+            Camera.gameObject.SetActive(false);
     }
 
 #if UNITY_EDITOR
@@ -45,7 +85,7 @@ public class MapRoleLoader : MonoBehaviour
             view.SpriteSwap = roles[i].GetComponentsInChildren<SpriteRenderer>();
             view.VisibilitySwap = roles[i].GetComponentsInChildren<Renderer>();
             view.ColorSwap = new Renderer[0];
-            
+
         }
     }
 

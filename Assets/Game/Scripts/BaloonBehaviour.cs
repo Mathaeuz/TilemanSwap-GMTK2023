@@ -9,7 +9,6 @@ public class BaloonBehaviour : RoleBehaviour
 
     private void Awake()
     {
-        SetupColliderManipulator();
 
         //Todo find another way to load into zone blocks
         if (GetComponent<BaloonFlicker>() == null)
@@ -25,31 +24,43 @@ public class BaloonBehaviour : RoleBehaviour
             return;
         }
         ActiveRole = Object.ActiveRole as BaloonRole;
-        manipulator.SwapPhysicsMaterial(Object.ActiveRole.Material);
+        Object.ColliderManagement?.SwapPhysicsMaterial(Object.ActiveRole.Material);
     }
 
     private void OnDisable()
     {
-        manipulator.RestorePhysicsMaterial();
+        if (Object == null)
+        {
+            return;
+        }
+        Object.ColliderManagement?.RestorePhysicsMaterial();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        HandleContacts(collision);
+        HandleContacts(collision.collider);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        HandleContacts(collision);
+        HandleContacts(collision.collider);
+    }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        HandleContacts(collider);
+    }
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        HandleContacts(collider);
     }
 
-    private void HandleContacts(Collision2D collision)
+    private void HandleContacts(Collider2D collider)
     {
         if (!isActiveAndEnabled)
         {
             return;
         }
 
-        if (collision.collider.CompareTag(nameof(SpikeRole)))
+        if (collider.CompareTag(nameof(SpikeRole)))
         {
             Pop();
         }
@@ -65,7 +76,7 @@ public class BaloonBehaviour : RoleBehaviour
         Object.DestroyByRole(ActiveRole.PopDuration);
         if (DisableCollidersOnPop)
         {
-            manipulator.SetEnabled(false);
+            Object.ColliderManagement.SetEnabled(false);
         }
         StartCoroutine(nameof(Unpop));
     }
@@ -78,7 +89,7 @@ public class BaloonBehaviour : RoleBehaviour
         Object.RestoreByRole();
         if (DisableCollidersOnPop)
         {
-            manipulator.SetEnabled(true);
+            Object.ColliderManagement.SetEnabled(true);
         }
     }
 }

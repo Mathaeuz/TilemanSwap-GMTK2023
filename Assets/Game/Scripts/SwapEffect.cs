@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class SwapEffect : MonoBehaviour
 {
     public GameObject[] Stages;
+    Image[] Images;
     int index = 0;
 
-    SpriteRenderer[] Renderers;
+    RectTransform Rtransform;
 
     private void Awake()
     {
-        Renderers = GetComponentsInChildren<SpriteRenderer>(includeInactive:true);
+        Rtransform = GetComponent<RectTransform>();
+        Images = GetComponentsInChildren<Image>(includeInactive: true);
     }
 
     public void Hide()
@@ -34,13 +37,16 @@ public class SwapEffect : MonoBehaviour
     {
         index = 0;
         var delta = transform1.position - transform2.position;
-        transform.position = transform2.position + delta / 2;
-        transform.right = delta.normalized;
-        var scale = delta.magnitude;
+        Rtransform.right = delta.normalized;
+        Rtransform.anchoredPosition = SwapSelector.Instance.GetCanvasPosition(transform2.position + delta / 2);
 
-        for (int i = 0; i < Renderers.Length; i++)
+        var scale = delta.magnitude;
+        Rtransform.localScale = Vector3.one * delta.magnitude;
+
+        var imageScale = Vector3.one / scale;
+        for (int i = 0; i < Images.Length; i++)
         {
-            Renderers[i].transform.localPosition = Renderers[i].transform.localPosition.normalized * scale / 2f;
+            Images[i].transform.localScale = imageScale;
         }
     }
 }

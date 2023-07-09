@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class ColliderManipulator
 {
     Collider2DManipulator collider;
     Composite2DManipulator composite;
 
-    public ColliderManipulator(Component target)
+    public ColliderManipulator(Component target, Collider2D[] ignoreMaterial, Collider2D[] ignoreTag)
     {
         var c = target.GetComponent<CompositeCollider2D>();
         if (c != null)
@@ -13,7 +16,7 @@ public class ColliderManipulator
             composite = new Composite2DManipulator(c);
             return;
         }
-        collider = new(target.GetComponentsInChildren<Collider2D>(includeInactive: true));
+        collider = new(target.GetComponentsInChildren<Collider2D>(includeInactive: true), ignoreMaterial, ignoreTag);
     }
 
     public void SwapPhysicsMaterial(PhysicsMaterial2D material)
@@ -109,50 +112,66 @@ public class Composite2DManipulator
 public class Collider2DManipulator
 {
     Collider2D[] Contacts;
-    PhysicsMaterial2D[] OriginalMaterials;
-    string[] OriginalTags;
 
-    public Collider2DManipulator(Collider2D[] contacts)
+    List<Collider2D> MaterialContacts;
+    List<PhysicsMaterial2D> OriginalMaterials;
+    List<Collider2D> TagContacts;
+    List<string> OriginalTags;
+
+    public Collider2DManipulator(Collider2D[] contacts, Collider2D[] ignoreMaterial, Collider2D[] ignoreTag)
     {
         Contacts = contacts;
-        OriginalMaterials = new PhysicsMaterial2D[contacts.Length];
-        OriginalTags = new string[contacts.Length];
+
+        MaterialContacts = new();
+        OriginalMaterials = new();
+        TagContacts = new();
+        OriginalTags = new();
+
+
         for (int i = 0; i < Contacts.Length; i++)
         {
-            OriginalMaterials[i] = Contacts[i].sharedMaterial;
-            OriginalTags[i] = Contacts[i].tag;
+            if (Array.IndexOf(ignoreMaterial, Contacts[i]) == -1)
+            {
+                MaterialContacts.Add(Contacts[i]);
+                OriginalMaterials.Add(Contacts[i].sharedMaterial);
+            }
+            if (Array.IndexOf(ignoreTag, Contacts[i]) == -1)
+            {
+                TagContacts.Add(Contacts[i]);
+                OriginalTags.Add(Contacts[i].tag);
+            }
         }
     }
 
     public void SwapPhysicsMaterial(PhysicsMaterial2D material)
     {
-        for (int i = 0; i < Contacts.Length; i++)
+        for (int i = 0; i < MaterialContacts.Count; i++)
         {
-            Contacts[i].sharedMaterial = material;
+            MaterialContacts[i].sharedMaterial = material;
         }
     }
 
     public void RestorePhysicsMaterial()
     {
-        for (int i = 0; i < Contacts.Length; i++)
+        for (int i = 0; i < MaterialContacts.Count; i++)
         {
-            Contacts[i].sharedMaterial = OriginalMaterials[i];
+            MaterialContacts[i].sharedMaterial = OriginalMaterials[i];
         }
     }
 
     public void SwapTags(string tag)
     {
-        for (int i = 0; i < Contacts.Length; i++)
+        for (int i = 0; i < TagContacts.Count; i++)
         {
-            Contacts[i].tag = tag;
+            TagContacts[i].tag = tag;
         }
     }
 
     public void RestoreTags()
     {
-        for (int i = 0; i < Contacts.Length; i++)
+        for (int i = 0; i < TagContacts.Count; i++)
         {
-            Contacts[i].tag = OriginalTags[i];
+            TagContacts[i].tag = OriginalTags[i];
         }
     }
 

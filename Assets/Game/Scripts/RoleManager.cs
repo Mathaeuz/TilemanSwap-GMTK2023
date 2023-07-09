@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
-using static UnityEditor.Progress;
+using UnityEngine.Events;
 
 public class RoleManager : Singleton<RoleManager>
 {
@@ -21,6 +20,25 @@ public class RoleManager : Singleton<RoleManager>
     Role[] Roles;
     List<RoleObject>[] Instances;
     List<SwapHolder>[] Holders;
+
+    public UnityEvent<bool> AllowEffects = new();
+    Stack<(Role, Role)> SwapHistory = new();
+
+    public void SaveSwaps()
+    {
+        SwapHistory.Clear();
+    }
+
+    public void RollbackSwaps()
+    {
+        AllowEffects.Invoke(false);
+        while (SwapHistory.Count > 0)
+        {
+            var p = SwapHistory.Pop();
+            Swap(p.Item1, p.Item2, false);
+        }
+        AllowEffects.Invoke(true);
+    }
 
     private void Awake()
     {
@@ -48,11 +66,15 @@ public class RoleManager : Singleton<RoleManager>
 #endif
     }
 
-    public void Swap(Role a, Role b)
+    public void Swap(Role a, Role b, bool history = true)
     {
         if (!a.Swappable || !b.Swappable)
         {
             return;
+        }
+        if (history)
+        {
+            SwapHistory.Push((a, b));
         }
 
         var idA = Array.IndexOf(Roles, a);

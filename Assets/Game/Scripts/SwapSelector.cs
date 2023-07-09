@@ -29,6 +29,7 @@ public class SwapSelector : Singleton<SwapSelector>
     {
         var bt = Instantiate(SwapPrefab);
         bt.transform.SetParent(transform);
+        bt.transform.SetSiblingIndex(1);
         bt.Configure(holder);
         bt.gameObject.SetActive(true);
     }
@@ -76,7 +77,7 @@ public class SwapSelector : Singleton<SwapSelector>
         SwapEffect.Prepare(SwapWithHolder.transform, Target.transform);
         while (SwapEffect.Next())
         {
-            yield return new WaitForSecondsRealtime(0.2f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
         Target.SwapWith(SwapWithHolder.ActiveRole);
         SwapWithHolder = null;

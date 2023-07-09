@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public Transform RespawnAnchor;
 
-    public SwapSelector SwapSelector;
     public PlayerBindings Bindings;
     public RoleObject RoleObject;
     public Rigidbody2D Body;
@@ -28,16 +28,20 @@ public class Player : MonoBehaviour
         LeftWall = 4,
         RightWall = 8,
         Ceil = 16,
+        Dead = 32,
+        Preserve = Ball | Dead,
     };
     StateFlags LastState;
+    bool Jumped;
     public StateFlags State;
     public Action<StateFlags> OnStateChange;
 
-    public Collider2D Legs;
+    public GameObject Legs, Block;
     public float MaxSpeed = 7f;
     public float Acceleration = 14f;
     public float Decceleration = 7f;
-    public float JumpPower = 8f;
+    public float JumpHeight = 4f;
+    float JumpPower;
 
     public Vector2 LastVelocity, Velocity;
 
@@ -46,35 +50,51 @@ public class Player : MonoBehaviour
         RoleObject = GetComponent<RoleObject>();
         Body = GetComponent<Rigidbody2D>();
         BaloonFlicker = GetComponent<BaloonFlicker>();
-        if (SwapSelector == null) SwapSelector = GetComponentInChildren<SwapSelector>();
         RoleObject.RoleDestroyed.AddListener(ExternalDeath);
         RoleObject.RoleRestored.AddListener(ExternalRespawn);
         UserInput = Bindings.Init();
+        Legs.SetActive(true);
+        Block.SetActive(false);
+
+        JumpPower = Mathf.Sqrt(-2 * Body.gravityScale * Physics2D.gravity.y * JumpHeight);
     }
 
     private void Death()
     {
-        BaloonFlicker.Hide(3f);
-        ExternalDeath(3f);
-        Invoke(nameof(Respawn), 2.5f);
+        RoleObject.RoleDestroyed.Invoke(3f);
+        Invoke(nameof(Respawn), 3f);
     }
     private void Respawn()
     {
-        ExternalRespawn();
+        RoleObject.RoleRestored.Invoke();
     }
 
     private void ExternalDeath(float time)
     {
+        if (State.HasFlag(StateFlags.Dead))
+        {
+            return;
+        }
+        State |= StateFlags.Dead;
         Velocity = Vector3.zero;
         Body.simulated = false;
         Body.velocity = Vector3.zero;
+        Legs.SetActive(false);
+        Block.SetActive(false);
         UserInput.Lock();
+        RoleManager.Instance.RollbackSwaps();
+        Invoke(nameof(ExternalRespawn), time - 0.5f);
     }
 
     private void ExternalRespawn()
     {
+        if (!State.HasFlag(StateFlags.Dead))
+        {
+            return;
+        }
         State = StateFlags.None;
-        Legs.enabled = true;
+        Legs.SetActive(true);
+        Block.SetActive(false);
         Body.simulated = true;
         Body.position = RespawnAnchor.position;
         UserInput.Unlock();
@@ -101,9 +121,9 @@ public class Player : MonoBehaviour
 
     private void HandleSwap()
     {
-        if (UserInput.Swap.Down && SwapSelector.Off)
+        if (UserInput.Swap.Down && SwapSelector.Instance.Off)
         {
-            SwapSelector.BeginSelection(this);
+            SwapSelector.Instance.BeginSelection(this);
         }
     }
 
@@ -114,7 +134,7 @@ public class Player : MonoBehaviour
             OnStateChange?.Invoke(State);
         }
         LastState = State;
-        State &= StateFlags.Ball;
+        State &= StateFlags.Preserve;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -124,6 +144,7 @@ public class Player : MonoBehaviour
             Death();
             return;
         }
+
 
         for (int i = 0; i < collision.contacts.Length; i++)
         {
@@ -149,7 +170,10 @@ public class Player : MonoBehaviour
 
     private void RegularState()
     {
-        if (State.HasFlag(StateFlags.Ground))
+        var shouldBall = UserInput.Crouch.Hold;
+
+        //Rettach
+        /* if (State.HasFlag(StateFlags.Ground))
         {
             if (LastVelocity.y < 0)
             {
@@ -157,7 +181,8 @@ public class Player : MonoBehaviour
             }
             Velocity.y = 0;
         }
-        else if (State.HasFlag(StateFlags.Ceil))
+        else*/
+        if (State.HasFlag(StateFlags.Ceil) && Velocity.y > 0)
         {
             Velocity.y = 0;
         }
@@ -176,30 +201,43 @@ public class Player : MonoBehaviour
 
         if (State.HasFlag(StateFlags.Ground))
         {
-            if (UserInput.Crouch.Hold)
+            if (shouldBall)
             {
-                State |= StateFlags.Ball;
-                Legs.enabled = false;
+                EnterBallState();
             }
             else if (UserInput.Jump.Down)
             {
                 Velocity.y = JumpPower;
+                Jumped = true;
             }
         }
         else
         {
-            if (Velocity.y > 0 && !UserInput.Jump.Hold)
+            if (Velocity.y > 0 && (Jumped && !UserInput.Jump.Hold))
             {
                 //break jump
                 Velocity.y *= 0.4f;
             }
-            else if (Velocity.y < 0 && (UserInput.Crouch.Hold || UserInput.Jump.Hold))
+            else if (Velocity.y < 0 && (shouldBall || UserInput.Jump.Hold))
             {
-                State |= StateFlags.Ball;
-                Legs.enabled = false;
+                EnterBallState();
             }
         }
         Body.velocity = Velocity;
+    }
+
+    private void EnterBallState()
+    {
+        State |= StateFlags.Ball;
+        Legs.SetActive(false);
+        Block.SetActive(true);
+    }
+
+    private void ExitBallState()
+    {
+        State ^= StateFlags.Ball;
+        Legs.SetActive(true);
+        Block.SetActive(false);
     }
 
     private void BallState()
@@ -217,17 +255,16 @@ public class Player : MonoBehaviour
         {
             return;
         }
-
-        State ^= StateFlags.Ball;
-        Legs.enabled = true;
-
+        ExitBallState();
     }
+
 
     private void DigestNormal(Vector2 normal)
     {
         if (normal.y > 0.7f && Velocity.y <= 0)
         {
             State |= StateFlags.Ground;
+            Jumped = false;
         }
         else if (normal.y < -0.7f && Velocity.y >= 0)
         {

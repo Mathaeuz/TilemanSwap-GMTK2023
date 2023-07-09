@@ -17,6 +17,10 @@ public class BaloonFlicker : MonoBehaviour
         }
         var baloon = GetComponent<BaloonBehaviour>();
         baloon.OnSetObject += ConfigurePop;
+        if (baloon.Object != null)
+        {
+            ConfigurePop(baloon.Object);
+        }
     }
 
     private void ConfigurePop(RoleObject obj)

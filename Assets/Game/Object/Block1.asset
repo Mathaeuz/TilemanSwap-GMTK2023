@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8321738ad8d1e4b9363da30f6c21b0, type: 3}
   m_Name: Block1
   m_EditorClassIdentifier: 
+  Swappable: 1
+  Material: {fileID: 6200000, guid: b6c1c2e08c764a64c9a40289385184a4, type: 2}
