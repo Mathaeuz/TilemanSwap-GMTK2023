@@ -8,7 +8,7 @@ public class ColliderManipulator
     Collider2DManipulator collider;
     Composite2DManipulator composite;
 
-    public ColliderManipulator(Component target, Collider2D[] ignoreMaterial, Collider2D[] ignoreTag)
+    public ColliderManipulator(Component target, Collider2D[] ignoreMaterial, Collider2D[] ignoreTag, Collider2D[] ignoreLayer)
     {
         var c = target.GetComponent<CompositeCollider2D>();
         if (c != null)
@@ -16,7 +16,7 @@ public class ColliderManipulator
             composite = new Composite2DManipulator(c);
             return;
         }
-        collider = new(target.GetComponentsInChildren<Collider2D>(includeInactive: true), ignoreMaterial, ignoreTag);
+        collider = new(target.GetComponentsInChildren<Collider2D>(includeInactive: true), ignoreMaterial, ignoreTag, ignoreLayer);
     }
 
     public void SwapPhysicsMaterial(PhysicsMaterial2D material)
@@ -117,8 +117,10 @@ public class Collider2DManipulator
     List<PhysicsMaterial2D> OriginalMaterials;
     List<Collider2D> TagContacts;
     List<string> OriginalTags;
+    List<Collider2D> LayerContacts;
+    List<int> OriginalLayers;
 
-    public Collider2DManipulator(Collider2D[] contacts, Collider2D[] ignoreMaterial, Collider2D[] ignoreTag)
+    public Collider2DManipulator(Collider2D[] contacts, Collider2D[] ignoreMaterial, Collider2D[] ignoreTag, Collider2D[] ignoreLayer)
     {
         Contacts = contacts;
 
@@ -126,6 +128,8 @@ public class Collider2DManipulator
         OriginalMaterials = new();
         TagContacts = new();
         OriginalTags = new();
+        LayerContacts = new();
+        OriginalLayers = new();
 
 
         for (int i = 0; i < Contacts.Length; i++)
@@ -139,6 +143,11 @@ public class Collider2DManipulator
             {
                 TagContacts.Add(Contacts[i]);
                 OriginalTags.Add(Contacts[i].tag);
+            }
+            if (Array.IndexOf(ignoreLayer, Contacts[i]) == -1)
+            {
+                LayerContacts.Add(Contacts[i]);
+                OriginalLayers.Add(Contacts[i].gameObject.layer);
             }
         }
     }
@@ -172,6 +181,21 @@ public class Collider2DManipulator
         for (int i = 0; i < TagContacts.Count; i++)
         {
             TagContacts[i].tag = OriginalTags[i];
+        }
+    }
+    public void SwapLayer(int layer)
+    {
+        for (int i = 0; i < LayerContacts.Count; i++)
+        {
+            LayerContacts[i].gameObject.layer = layer;
+        }
+    }
+
+    public void RestoreLayer()
+    {
+        for (int i = 0; i < LayerContacts.Count; i++)
+        {
+            LayerContacts[i].gameObject.layer = OriginalLayers[i];
         }
     }
 

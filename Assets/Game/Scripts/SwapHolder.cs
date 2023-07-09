@@ -6,6 +6,8 @@ public class SwapHolder : MonoBehaviour
 {
     public Role ActiveRole;
     public Action<Role> OnChangeRole;
+    public bool ButtonEnabled = true,
+        ShouldRegister = true;
 
     public void Change(Role role)
     {
@@ -22,7 +24,10 @@ public class SwapHolder : MonoBehaviour
         }
         if (ActiveRole != null)
         {
-            RoleManager.Instance.Register(this);
+            if (ShouldRegister)
+            {
+                RoleManager.Instance.Register(this);
+            }
             SwapSelector.Instance.AddSwapButton(this);
         }
     }

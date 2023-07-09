@@ -12,4 +12,12 @@ public abstract class RoleBehaviour : MonoBehaviour
         Object = obj;
         OnSetObject?.Invoke(obj);
     }
+
+    protected void SwapLayer()
+    {
+    }
+
+    protected void RestoreLayer()
+    {
+    }
 }

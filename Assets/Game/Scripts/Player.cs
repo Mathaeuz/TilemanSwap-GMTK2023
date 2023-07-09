@@ -129,10 +129,15 @@ public class Player : MonoBehaviour
     {
         if (!State.HasFlag(StateFlags.Selecting) && UserInput.Swap.Down && SwapSelector.Instance.Off)
         {
-            SwapAccepted = false;
-            State |= StateFlags.Selecting;
-            SwapSelector.Instance.BeginSelection(this);
+            BeginSelection();
         }
+    }
+
+    public void BeginSelection()
+    {
+        SwapAccepted = false;
+        State |= StateFlags.Selecting;
+        SwapSelector.Instance.BeginSelection(this);
     }
 
     public void SelectionDone()

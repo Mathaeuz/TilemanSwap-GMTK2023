@@ -17,6 +17,7 @@ public class MapRoleLoader : MonoBehaviour
     public Collider2D CellPrefab;
     public CinemachineVirtualCamera Camera;
     public CinemachineConfiner2D Confiner;
+    public bool ConfigureCams =true;
 
     [Serializable]
     public class RolePosition
@@ -38,6 +39,10 @@ public class MapRoleLoader : MonoBehaviour
 
     private void ConfigureCameras()
     {
+        if (!ConfigureCams)
+        {
+            return;
+        }
         var spawner = FindObjectOfType<PlayerSpawn>();
         spawner.AddListener(SetCameraTarget);
         Confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();

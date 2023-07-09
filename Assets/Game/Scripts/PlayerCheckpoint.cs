@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class PlayerCheckpoint : MonoBehaviour
 {
     public static PlayerCheckpoint ActiveCheckpoint = null;

@@ -38,16 +38,17 @@ ScriptedImporter:
   - _key: Roles_8
     _asset: {fileID: 11400000, guid: 7cfb0eb17eef22b45af7a49e145887f2, type: 2}
   _entities:
+  - _key: Spawn
+    _asset: {fileID: 8383160315447021675, guid: 2aa72a8f309452541887ab3e8bc54feb,
+      type: 3}
   - _key: SwapHandle
     _asset: {fileID: 5083625217146381372, guid: 4f27b62268c72854d9d60d4e5ee8aefc,
       type: 3}
   - _key: Checkpoint
     _asset: {fileID: 4454365330336455888, guid: ef40d6f7b25d4f848b10535e72550a37,
       type: 3}
-  - _key: Return
-    _asset: {instanceID: 0}
-  - _key: Spawn
-    _asset: {fileID: 8383160315447021675, guid: 2aa72a8f309452541887ab3e8bc54feb,
+  - _key: ForceRollbacks
+    _asset: {fileID: 8397540292000044444, guid: ddcb08c6c40bf8e4f909b7b2d966454b,
       type: 3}
   _enumGenerate: 1
   _enumPath: MapEnums.cs

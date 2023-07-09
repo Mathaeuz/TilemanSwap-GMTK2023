@@ -175,6 +175,7 @@ MonoBehaviour:
   IgnoreTag:
   - {fileID: 4636761129220598418}
   - {fileID: 7327572777199693777}
+  IgnoreLayer: []
 --- !u!50 &1135182582697765866
 Rigidbody2D:
   serializedVersion: 4

@@ -17,7 +17,7 @@ public class RoleObject : MonoBehaviour
     public UnityEvent RoleRestored = new();
 
     public ColliderManipulator ColliderManagement;
-    public Collider2D[] IgnoreMaterial, IgnoreTag;
+    public Collider2D[] IgnoreMaterial, IgnoreTag, IgnoreLayer;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class RoleObject : MonoBehaviour
     {
         if (ColliderManagement == null)
         {
-            ColliderManagement = new ColliderManipulator(this, IgnoreMaterial, IgnoreTag);
+            ColliderManagement = new ColliderManipulator(this, IgnoreMaterial, IgnoreTag, IgnoreLayer);
         }
 
         ActiveRole = role;

@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+
 public class SharedSoundEmiter : Singleton<SharedSoundEmiter>
 {
     AudioSource[] Sources;
@@ -19,7 +20,7 @@ public class SharedSoundEmiter : Singleton<SharedSoundEmiter>
             return;
         }
 
-        Debug.Log($"Playing: {clip.name}");
+        //Debug.Log($"Playing: {clip.name}");
         var source = Sources[index];
         index = (index + 1) % Sources.Length;
         source.Stop();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class BaloonBehaviour : RoleBehaviour
@@ -24,6 +25,7 @@ public class BaloonBehaviour : RoleBehaviour
         }
         ActiveRole = Object.ActiveRole as BaloonRole;
         Object.ColliderManagement?.SwapPhysicsMaterial(Object.ActiveRole.Material);
+        SwapLayer();
     }
 
     private void OnDisable()
@@ -33,6 +35,7 @@ public class BaloonBehaviour : RoleBehaviour
             return;
         }
         Object.ColliderManagement?.RestorePhysicsMaterial();
+        RestoreLayer();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

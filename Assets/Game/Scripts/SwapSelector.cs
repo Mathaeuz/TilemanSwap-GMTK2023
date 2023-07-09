@@ -59,6 +59,7 @@ public class SwapSelector : Singleton<SwapSelector>
         {
             return;
         }
+        Group.interactable = false;
 
         if (Target.CanSwap(holder.ActiveRole))
         {
