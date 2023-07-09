@@ -82,7 +82,6 @@ public class Player : MonoBehaviour
         Legs.SetActive(false);
         Block.SetActive(false);
         UserInput.Lock();
-        RoleManager.Instance.RollbackSwaps();
         Invoke(nameof(ExternalRespawn), time - 0.5f);
     }
 
@@ -97,6 +96,7 @@ public class Player : MonoBehaviour
         Block.SetActive(false);
         Body.simulated = true;
         Body.position = RespawnAnchor.position;
+        RoleManager.Instance.RollbackSwaps();
         UserInput.Unlock();
     }
 
