@@ -20,7 +20,7 @@ public class SwapHolder : MonoBehaviour
         var fields = GetComponent<LDtkFields>();
         if (fields != null)
         {
-            ActiveRole = RoleManager.Instance.RoleSettings.Get(fields.GetEnum<RoleSwap>("Roles")).Role;
+            ActiveRole = RoleManager.Instance.RoleSettings.Get(fields.GetEnum<RoleSwap>("Roles"));
         }
         if (ActiveRole != null)
         {

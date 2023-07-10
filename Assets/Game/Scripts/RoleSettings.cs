@@ -5,36 +5,27 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(menuName = "Role Settings")]
 public class RoleSettings : ScriptableObject
 {
-    [Serializable]
-    public class Data
-    {
-        public Role Role;
-        public TileBase Tile;
-        public Theme Theme;
-        public RoleSwap RoleEnum;
-    }
+    public Role[] Roles;
 
-    public Data[] Settings;
-
-    public Data Get(Role role)
+    public Role Get(RoleSwap roleEnum)
     {
-        for (int i = 0; i < Settings.Length; i++)
+        for (int i = 0; i < Roles.Length; i++)
         {
-            if (Settings[i].Role == role)
+            if (Roles[i].RoleEnum == roleEnum)
             {
-                return Settings[i];
+                return Roles[i];
             }
         }
         return null;
     }
 
-    public Data Get(RoleSwap roleEnum)
+    public Role Get(TileBase tile)
     {
-        for (int i = 0; i < Settings.Length; i++)
+        for (int i = 0; i < Roles.Length; i++)
         {
-            if (Settings[i].RoleEnum == roleEnum)
+            if (Roles[i].Tile == tile)
             {
-                return Settings[i];
+                return Roles[i];
             }
         }
         return null;

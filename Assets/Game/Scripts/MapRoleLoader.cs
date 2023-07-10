@@ -133,7 +133,7 @@ public class MapRoleLoader : MonoBehaviour
 
     private List<RolePosition> GetTiles(Tilemap map)
     {
-        var translations = RoleSettings.Settings.ToDictionary(x => x.Tile, x => x.Role);
+        var translations = RoleSettings.Roles.ToDictionary(x => x.Tile, x => x);
         var roles = new List<RolePosition>();
         for (int i = 0; i < map.size.y; i++)
         {
@@ -164,7 +164,7 @@ public class MapRoleLoader : MonoBehaviour
             cell = Instantiate(CellPrefab).GetComponent<SpriteRenderer>();
             cell.transform.SetParent(roleObject.transform);
             cell.transform.position = map.CellToWorld(rolePositions[i].Position) + (Vector3)Vector2.one / 2f;
-            cell.sprite = RoleSettings.Get(roleObject.ActiveRole).Theme.Sprite;
+            cell.sprite = roleObject.ActiveRole.Theme.Sprite;
         }
     }
 

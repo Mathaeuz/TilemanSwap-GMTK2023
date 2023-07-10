@@ -46,13 +46,8 @@ public class SwapButton : MonoBehaviour
 
     private void ChangeUI(Role role)
     {
-        var data = RoleManager.Instance.RoleSettings.Get(role);
-        if (data == null)
-        {
-            return;
-        }
-        Border.color = data.Theme.Color;
-        Icon.sprite = data.Theme.Sprite;
+        Border.color = role.Theme.Color;
+        Icon.sprite = role.Theme.Sprite;
     }
 
     private void SwapSelect()

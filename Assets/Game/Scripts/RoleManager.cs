@@ -41,10 +41,8 @@ public class RoleManager : Singleton<RoleManager>
             {
                 continue;
             }
-            var role = Roles[i];
             var altIndex = Array.IndexOf(Roles, RoleCheckpoint[i]);
-            Roles[i] = Roles[altIndex];
-            Roles[altIndex] = role;
+            (Roles[i], Roles[altIndex]) = (Roles[altIndex], Roles[i]);
             apply.Add(i);
             apply.Add(altIndex);
         }
@@ -57,20 +55,20 @@ public class RoleManager : Singleton<RoleManager>
 
     private void Awake()
     {
-        Instances = new List<RoleObject>[RoleSettings.Settings.Length];
-        Holders = new List<SwapHolder>[RoleSettings.Settings.Length];
-        Roles = new Role[RoleSettings.Settings.Length];
-        RoleCheckpoint = new Role[RoleSettings.Settings.Length];
-        for (int i = 0; i < RoleSettings.Settings.Length; i++)
+        Instances = new List<RoleObject>[RoleSettings.Roles.Length];
+        Holders = new List<SwapHolder>[RoleSettings.Roles.Length];
+        Roles = new Role[RoleSettings.Roles.Length];
+        RoleCheckpoint = new Role[RoleSettings.Roles.Length];
+        for (int i = 0; i < RoleSettings.Roles.Length; i++)
         {
-            RoleSettings.Settings[i].Role.Init();
+            RoleSettings.Roles[i].Init();
             Instances[i] = new List<RoleObject>();
             Holders[i] = new List<SwapHolder>();
 
-            Roles[i] = RoleSettings.Settings[i].Role;
+            Roles[i] = RoleSettings.Roles[i];
             RoleCheckpoint[i] = Roles[i];
 
-            ThemeMap[Roles[i]] = RoleSettings.Settings[i].Theme;
+            ThemeMap[Roles[i]] = RoleSettings.Roles[i].Theme;
         }
     }
 
@@ -103,10 +101,7 @@ public class RoleManager : Singleton<RoleManager>
             return;
         }
 
-        var role = Roles[idA];
-        Roles[idA] = Roles[idB];
-        Roles[idB] = role;
-
+        (Roles[idB], Roles[idA]) = (Roles[idA], Roles[idB]);
         ApplyRole(idA);
         ApplyRole(idB);
     }
@@ -145,7 +140,7 @@ public class RoleManager : Singleton<RoleManager>
             item.Behaviours[Roles[idx]] = Roles[idx].Install(item);
         }
 
-        item.Change(Roles[idx],false);
+        item.Change(Roles[idx], false);
     }
 
     public void Release(RoleObject item)
@@ -174,5 +169,5 @@ public class RoleManager : Singleton<RoleManager>
 public class Theme
 {
     public Sprite Sprite;
-    public Color Color;
+    public Color Color = Color.white;
 }

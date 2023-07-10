@@ -12,46 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3006db7688736f48952cfab1df706e8, type: 3}
   m_Name: RoleSettings
   m_EditorClassIdentifier: 
-  Settings:
-  - Role: {fileID: 11400000, guid: 9fad51fdd5ebd5048b6b8690c1291d10, type: 2}
-    Tile: {fileID: 11400000, guid: 493c12c4d31421544b8874e1356bcbb9, type: 2}
-    Theme:
-      Sprite: {fileID: -1784696376, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 0.19215688, g: 0.20392159, b: 0.25882354, a: 1}
-    RoleEnum: 0
-  - Role: {fileID: 11400000, guid: 357b59c5abc43084e97db138eb692075, type: 2}
-    Tile: {fileID: 11400000, guid: afaf439d373572049aa3ef197061b50b, type: 2}
-    Theme:
-      Sprite: {fileID: -177505728, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 0.99215686, g: 0.027450996, b: 0.69768757, a: 1}
-    RoleEnum: 1
-  - Role: {fileID: 11400000, guid: 73d4d822f9571cf4aa1ee723959fbe9d, type: 2}
-    Tile: {fileID: 11400000, guid: c51d1bab85911884bacdef7b8cc0f7b5, type: 2}
-    Theme:
-      Sprite: {fileID: -67147116, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 0.38823533, g: 0.60784316, b: 1, a: 1}
-    RoleEnum: 2
-  - Role: {fileID: 11400000, guid: 84efcfa59677ba24c85b58e712e59521, type: 2}
-    Tile: {fileID: 11400000, guid: 499bb264c3d663f4d8f81a0b5c7efe72, type: 2}
-    Theme:
-      Sprite: {fileID: -1322189065, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 0.77647066, g: 0.6509804, b: 0.3529412, a: 1}
-    RoleEnum: 3
-  - Role: {fileID: 11400000, guid: 94f0eab40e6599549b8d897b264affa7, type: 2}
-    Tile: {fileID: 11400000, guid: c34ccc6691ea89c44b5ba18741a6f50d, type: 2}
-    Theme:
-      Sprite: {fileID: -184610640, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 0.70980394, g: 0.8000001, b: 0.83921576, a: 1}
-    RoleEnum: 4
-  - Role: {fileID: 11400000, guid: 2768f046981f45c4c99efe972a09c32e, type: 2}
-    Tile: {fileID: 11400000, guid: 952f17a34ebb18d47bca16c0a4a1a688, type: 2}
-    Theme:
-      Sprite: {fileID: -1540494690, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 1, g: 0, b: 0.008000374, a: 1}
-    RoleEnum: 5
-  - Role: {fileID: 11400000, guid: 7b6c9862ad0090648b3bd001ca3f2aef, type: 2}
-    Tile: {fileID: 11400000, guid: 2940db7b662859349b2b445aa032bbff, type: 2}
-    Theme:
-      Sprite: {fileID: 948202249, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
-      Color: {r: 0.22352943, g: 0.7960785, b: 1, a: 1}
-    RoleEnum: 6
+  Roles:
+  - {fileID: 11400000, guid: 9fad51fdd5ebd5048b6b8690c1291d10, type: 2}
+  - {fileID: 11400000, guid: 84efcfa59677ba24c85b58e712e59521, type: 2}
+  - {fileID: 11400000, guid: 94f0eab40e6599549b8d897b264affa7, type: 2}
+  - {fileID: 11400000, guid: 357b59c5abc43084e97db138eb692075, type: 2}
+  - {fileID: 11400000, guid: 73d4d822f9571cf4aa1ee723959fbe9d, type: 2}
+  - {fileID: 11400000, guid: 2768f046981f45c4c99efe972a09c32e, type: 2}
+  - {fileID: 11400000, guid: 7b6c9862ad0090648b3bd001ca3f2aef, type: 2}

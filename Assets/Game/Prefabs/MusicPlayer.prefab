@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de4daa8153bf36489fd67afc32063fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayOnWake: 1
+  PlayOnWake: 0
   StartRandom: 0
   Clips:
   - {fileID: 8300000, guid: 8761abbf2d11e1342833d72ce4f700a5, type: 3}

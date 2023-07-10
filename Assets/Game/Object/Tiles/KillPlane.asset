@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31471dfd53d5490a956a89a1b2d11ad9, type: 3}
   m_Name: KillPlane
   m_EditorClassIdentifier: 
-  _colliderType: 2
+  _colliderType: 0
   _customPhysicsSprite: {fileID: 0}
-  _tilemapTag: KillPlane
+  _tilemapTag: Untagged
   _tilemapLayerMask: 0
   _physicsMaterial: {fileID: 0}
   _gameObject: {fileID: 4240346584495183915, guid: eff5f72310f961f4f9664771cd93e053,

@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Swappable: 1
   Material: {fileID: 6200000, guid: caf000a28cd7a5747bcf84503c0bb788, type: 2}
+  Tile: {fileID: 11400000, guid: afaf439d373572049aa3ef197061b50b, type: 2}
+  Theme:
+    Sprite: {fileID: -177505728, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
+    Color: {r: 0.9921569, g: 0.027450982, b: 0.2901961, a: 1}
+  RoleEnum: 1
   PopEffect: {fileID: 8300000, guid: 19a8c2ce36b70494e9d8786a5ef5b9ab, type: 3}
   RespawnEffect: {fileID: 8300000, guid: ea44beb689390154f9097562890643cf, type: 3}
   PopDuration: 3
