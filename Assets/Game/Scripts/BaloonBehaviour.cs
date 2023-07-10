@@ -25,18 +25,13 @@ public class BaloonBehaviour : RoleBehaviour
             return;
         }
         ActiveRole = Object.ActiveRole as BaloonRole;
-        Object.ColliderManagement?.SwapPhysicsMaterial(Object.ActiveRole.Material);
-        SwapLayer();
-    }
 
-    private void OnDisable()
-    {
-        if (Object == null)
+        if (Object.Physics == null)
         {
             return;
         }
-        Object.ColliderManagement?.RestorePhysicsMaterial();
-        RestoreLayer();
+        Object.Physics.SwapPhysicsMaterial(Object.ActiveRole.Material);
+        Object.Physics.SwapTags("Untagged");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,10 +40,10 @@ public class BaloonBehaviour : RoleBehaviour
         {
             return;
         }
-        HandleContacts(collision.collider); 
+        HandleContacts(collision.collider);
         if (!Popped && CanPlayBounce)
         {
-            SharedSoundEmiter.Instance.PlayWithCooldown(ActiveRole.BounceClip,3f);
+            SharedSoundEmiter.Instance.PlayWithCooldown(ActiveRole.BounceClip, 3f);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -68,7 +63,7 @@ public class BaloonBehaviour : RoleBehaviour
         HandleContacts(collider);
         if (!Popped && CanPlayBounce)
         {
-            SharedSoundEmiter.Instance.PlayWithCooldown(ActiveRole.BounceClip,3f);
+            SharedSoundEmiter.Instance.PlayWithCooldown(ActiveRole.BounceClip, 3f);
         }
     }
     private void OnTriggerStay2D(Collider2D collider)
@@ -98,7 +93,7 @@ public class BaloonBehaviour : RoleBehaviour
         Object.DestroyByRole(ActiveRole.PopDuration);
         if (DisableCollidersOnPop)
         {
-            Object.ColliderManagement.SetEnabled(false);
+            Object.Physics.SetEnabled(false);
         }
         StartCoroutine(nameof(Unpop));
     }
@@ -111,7 +106,7 @@ public class BaloonBehaviour : RoleBehaviour
         Object.RestoreByRole();
         if (DisableCollidersOnPop)
         {
-            Object.ColliderManagement.SetEnabled(true);
+            Object.Physics.SetEnabled(true);
         }
     }
 }

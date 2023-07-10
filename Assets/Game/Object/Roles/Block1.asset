@@ -18,6 +18,8 @@ MonoBehaviour:
   Theme:
     Sprite: {fileID: -1322189065, guid: 0c838b0b1c38ed645b095e7a58ea9beb, type: 3}
     Color: {r: 0.77647066, g: 0.6509804, b: 0.3529412, a: 1}
+    TileSource: {fileID: 2800000, guid: a5900d9a30bde9744b4890c23bfb1841, type: 3}
+    Tiles: []
   RoleEnum: 3
   PopEffect: {fileID: 0}
   RespawnEffect: {fileID: 8300000, guid: ea44beb689390154f9097562890643cf, type: 3}

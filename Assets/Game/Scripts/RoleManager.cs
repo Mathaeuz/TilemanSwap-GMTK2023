@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 public class RoleManager : Singleton<RoleManager>
 {
@@ -16,7 +17,6 @@ public class RoleManager : Singleton<RoleManager>
 #endif
 
     public RoleSettings RoleSettings;
-    public Dictionary<Role, Theme> ThemeMap = new();
     Role[] Roles;
     List<RoleObject>[] Instances;
     List<SwapHolder>[] Holders;
@@ -67,8 +67,6 @@ public class RoleManager : Singleton<RoleManager>
 
             Roles[i] = RoleSettings.Roles[i];
             RoleCheckpoint[i] = Roles[i];
-
-            ThemeMap[Roles[i]] = RoleSettings.Roles[i].Theme;
         }
     }
 
@@ -163,11 +161,4 @@ public class RoleManager : Singleton<RoleManager>
         Holders[idx].Add(item);
         item.Change(Roles[idx]);
     }
-}
-
-[Serializable]
-public class Theme
-{
-    public Sprite Sprite;
-    public Color Color = Color.white;
 }

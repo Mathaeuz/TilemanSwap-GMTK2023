@@ -13,7 +13,7 @@
 /// </summary>
 public enum RoleSwap
 {
-    Unset,
+    Foundation,
     Baloon1,
     Baloon2,
     Block1,

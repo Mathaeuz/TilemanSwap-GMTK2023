@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 1135182582697765867}
   - component: {fileID: 2096627118682002511}
   - component: {fileID: 1002492996410895686}
+  - component: {fileID: 2162448296081777229}
   - component: {fileID: 1135182582697765866}
   - component: {fileID: 6980322728980891444}
   - component: {fileID: 1319726482389661757}
@@ -126,6 +127,7 @@ MonoBehaviour:
   Acceleration: 21
   Decceleration: 14
   JumpHeight: 4.5
+  RespawnEarly: 0.5
   LastVelocity: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
 --- !u!114 &2096627118682002511
@@ -142,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteSwap:
   - {fileID: 8692695163645426368}
-  ColorSwap: []
+  TileSwap: []
   VisibilitySwap:
   - {fileID: 8692695163645426368}
   - {fileID: 9150884254430713543}
@@ -170,12 +172,41 @@ MonoBehaviour:
   RoleRestored:
     m_PersistentCalls:
       m_Calls: []
-  IgnoreMaterial:
-  - {fileID: 8197233076716728093}
-  IgnoreTag:
-  - {fileID: 4636761129220598418}
-  - {fileID: 7327572777199693777}
-  IgnoreLayer: []
+  Physics: {fileID: 2162448296081777229}
+--- !u!114 &2162448296081777229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135182582697765863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75facae3698927e48bf83f56b46527fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveState:
+    Bodies: []
+    Colliders:
+    - {fileID: 8197233076716728093}
+    - {fileID: 14001872989760970}
+    - {fileID: 1849517596973588734}
+    - {fileID: 4636761129220598418}
+    - {fileID: 7327572777199693777}
+  Material:
+    Bodies: []
+    Colliders:
+    - {fileID: 14001872989760970}
+  Tag:
+    Bodies: []
+    Colliders:
+    - {fileID: 14001872989760970}
+    - {fileID: 8197233076716728093}
+  Layer:
+    Bodies: []
+    Colliders:
+    - {fileID: 14001872989760970}
+    - {fileID: 8197233076716728093}
 --- !u!50 &1135182582697765866
 Rigidbody2D:
   serializedVersion: 4
@@ -210,7 +241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlickerBeforeShow: 0.5
-  View: {fileID: 0}
+  ShowOnRestore: 0
+  View: {fileID: 2096627118682002511}
 --- !u!114 &1319726482389661757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +453,7 @@ MonoBehaviour:
   Sprite: {fileID: 9150884254430713543}
   Player: {fileID: 1135182582697765867}
   PlayerBaloon: {fileID: 0}
+  PlayerFlicker: {fileID: 0}
   JumpClip: {fileID: 8300000, guid: 76d38a42f3fed2c45961c168421287f9, type: 3}
   LandClip: {fileID: 8300000, guid: 7edcc80cad7afb144ab5cd9000613431, type: 3}
   BallClip: {fileID: 8300000, guid: 8f6e1fd64c87182469e3e02683eb3e19, type: 3}

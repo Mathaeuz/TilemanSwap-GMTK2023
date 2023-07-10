@@ -7,6 +7,7 @@ public class PlayerAdaptor : MonoBehaviour
     public SpriteRenderer Sprite;
     public Player Player;
     public BaloonBehaviour PlayerBaloon;
+    public BaloonFlicker PlayerFlicker;
     public AudioClip JumpClip, LandClip, BallClip, UnballClip, DieClip, RespawnClip, SelectClip, DeselectClip;
     bool flipFacing;
 
@@ -18,11 +19,23 @@ public class PlayerAdaptor : MonoBehaviour
         MovV = Animator.StringToHash("MovementV");
         Ground = Animator.StringToHash("Ground");
         Ball = Animator.StringToHash("Ball");
-        Player.OnStateChange += PlayStateSfx;
+        Player.OnStateChange += HandleStateChange;
+        Player.RoleObject.RoleDestroyed.AddListener(HandleDeath);
         PlayerBaloon = Player.GetComponent<BaloonBehaviour>();
+        PlayerFlicker = Player.GetComponent<BaloonFlicker>();
     }
 
-    private void PlayStateSfx(Player.StateFlags last, Player.StateFlags current)
+    private void HandleDeath(float respawnTimer)
+    {
+        Invoke(nameof(ShowBaloon), respawnTimer);
+    }
+
+    private void ShowBaloon()
+    {
+        PlayerFlicker.Show();
+    }
+
+    private void HandleStateChange(Player.StateFlags last, Player.StateFlags current)
     {
         var lostStats = last ^ (last & current);
         var newStats = current ^ (last & current);

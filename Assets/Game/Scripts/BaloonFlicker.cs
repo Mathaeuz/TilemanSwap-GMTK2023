@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaloonFlicker : MonoBehaviour
 {
     public float FlickerBeforeShow = 0.5f;
+    public bool ShowOnRestore = true;
     public RoleView View;
 
     float RoutineTime;
@@ -26,7 +27,11 @@ public class BaloonFlicker : MonoBehaviour
     private void ConfigurePop(RoleObject obj)
     {
         obj.RoleDestroyed.AddListener(Hide);
-        obj.RoleRestored.AddListener(Show);
+
+        if (ShowOnRestore)
+        {
+            obj.RoleRestored.AddListener(Show);
+        }
     }
 
     public void Hide(float time)

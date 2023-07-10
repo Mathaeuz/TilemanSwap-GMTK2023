@@ -16,7 +16,7 @@ public class PlayerCheckpoint : MonoBehaviour
         if (ActiveCheckpoint != checkpoint)
         {
             SharedSoundEmiter.Instance.Play(Get);
-            RoleManager.Instance.SaveSwaps();
+            //RoleManager.Instance.SaveSwaps();
             ActiveCheckpoint = checkpoint;
             checkpoint.Show();
         }

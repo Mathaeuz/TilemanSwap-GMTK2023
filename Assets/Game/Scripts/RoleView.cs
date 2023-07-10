@@ -1,12 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(SharedParticles))]
 public class RoleView : MonoBehaviour
 {
     RoleObject Object;
     public SpriteRenderer[] SpriteSwap;
-    public Renderer[] ColorSwap;
+    public Tilemap[] TileSwap;
     public Renderer[] VisibilitySwap;
     public SharedParticles Burst;
     Sprite BurstSprite;
@@ -17,23 +17,8 @@ public class RoleView : MonoBehaviour
         Object.OnChangeRole.AddListener(SetRoleStyle);
         Object.RoleDestroyed.AddListener(BurstBlocks);
         Object.RoleRestored.AddListener(RestoreBlocks);
-        SetRoleStyle(Object.ActiveRole);
+        SetRoleStyle(null, Object.ActiveRole);
         Burst.Init();
-    }
-
-    private void RestoreBlocks()
-    {
-        SharedSoundEmiter.Instance.Play(Object.ActiveRole.RespawnEffect);
-    }
-
-    private void BurstBlocks(float time)
-    {
-        SharedSoundEmiter.Instance.Play(Object.ActiveRole.PopEffect);
-        Burst.SetSprite(BurstSprite);
-        for (int i = 0;  i < SpriteSwap.Length;  i++)
-        {
-            Burst.Emit(SpriteSwap[i].transform.position);
-        }
     }
 
     private void OnDestroy()
@@ -45,22 +30,50 @@ public class RoleView : MonoBehaviour
         Object.OnChangeRole.RemoveListener(SetRoleStyle);
     }
 
-    public void SetRoleStyle(Role role)
+    private void RestoreBlocks()
+    {
+        SharedSoundEmiter.Instance.Play(Object.ActiveRole.RespawnEffect);
+    }
+
+    private void BurstBlocks(float time)
+    {
+        SharedSoundEmiter.Instance.Play(Object.ActiveRole.PopEffect);
+        Burst.SetSprite(BurstSprite);
+        for (int i = 0; i < SpriteSwap.Length; i++)
+        {
+            Burst.Emit(SpriteSwap[i].transform.position);
+        }
+        for (int i = 0; i < TileSwap.Length; i++)
+        {
+            BurstTilemap(TileSwap[i]);
+        }
+    }
+
+
+    public void SetRoleStyle(Role oldRole, Role role)
     {
         if (role == null)
         {
             return;
         }
-        var theme = RoleManager.Instance.ThemeMap[role];
-        BurstSprite = theme.Sprite;
+        BurstSprite = role.Theme.Sprite;
+
+        if (oldRole == role)
+        {
+            return;
+        }
 
         for (int i = 0; i < SpriteSwap.Length; i++)
         {
-            SpriteSwap[i].sprite = theme.Sprite;
+            SpriteSwap[i].sprite = role.Theme.Sprite;
         }
-        for (int i = 0; i < ColorSwap.Length; i++)
+
+        if (oldRole != null)
         {
-            ColorSwap[i].material.color = theme.Color;
+            for (int i = 0; i < TileSwap.Length; i++)
+            {
+                SwapTilemap(TileSwap[i], oldRole.Theme.Tiles, role.Theme.Tiles);
+            }
         }
     }
 
@@ -69,6 +82,19 @@ public class RoleView : MonoBehaviour
         for (int i = 0; i < VisibilitySwap.Length; i++)
         {
             VisibilitySwap[i].enabled = value;
+        }
+    }
+
+    private void BurstTilemap(Tilemap tilemap)
+    {
+
+    }
+
+    private void SwapTilemap(Tilemap tilemap, TileBase[] old, TileBase[] current)
+    {
+        for (int i = 0; i < old.Length; i++)
+        {
+            tilemap.SwapTile(old[i], current[i]);
         }
     }
 }

@@ -31,3 +31,12 @@ public abstract class Role : ScriptableObject
 
     protected abstract Type GetBehaviourType();
 }
+
+[Serializable]
+public class Theme
+{
+    public Sprite Sprite;
+    public Color Color = Color.white;
+    public Texture2D TileSource;
+    public TileBase[] Tiles;
+}

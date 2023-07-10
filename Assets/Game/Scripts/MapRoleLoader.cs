@@ -1,9 +1,7 @@
 ﻿using Cinemachine;
-using LDtkUnity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -17,17 +15,9 @@ public class MapRoleLoader : MonoBehaviour
     public CinemachineConfiner2D Confiner;
     public bool ConfigureCams = true;
 
-    [Serializable]
-    public class RolePosition
-    {
-        public Vector3Int Position;
-        public Role Role;
-    }
-
     private void Awake()
     {
         ConfigureCameras();
-        //Process();
     }
 
     private void ConfigureCameras()
@@ -58,117 +48,65 @@ public class MapRoleLoader : MonoBehaviour
         if (collider.CompareTag("Player"))
             Camera.gameObject.SetActive(false);
     }
+#if UNITY_EDITOR
 
     private void Process()
     {
-        Tilemap map = FindMap();
-
-        if (map == null)
+        var renderers = GetComponentsInChildren<TilemapRenderer>();
+        Dictionary<Role, TilemapRenderer> rendererMap = new();
+        for (int i = 0; i < renderers.Length; i++)
         {
-            return;
-        }
-
-        List<RolePosition> tiles = GetTiles(map);
-        var Roles = UpdateColliders(map, tiles);
-        UpdateRenderers(Roles);
-    }
-
-    private void UpdateRenderers(List<RoleObject> roles)
-    {
-        for (int i = 0; i < roles.Count; i++)
-        {
-            var view = roles[i].GetComponent<RoleView>();
-            view.SpriteSwap = roles[i].GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
-            view.VisibilitySwap = roles[i].GetComponentsInChildren<Renderer>(includeInactive: true);
-            view.ColorSwap = new Renderer[0];
-        }
-    }
-
-    private List<RoleObject> UpdateColliders(Tilemap map, List<RolePosition> tiles)
-    {
-        var roles = new List<RoleObject>(GetComponentsInChildren<RoleObject>(includeInactive: true));
-        var groups = tiles.GroupBy(x => x.Role).ToDictionary(x => x.Key, x => x.ToArray());
-
-        for (int i = 0; i < roles.Count; i++)
-        {
-            for (int j = roles[i].transform.childCount - 1; j >= 0; j--)
+            if (Enum.TryParse(renderers[i].transform.parent.name, out RoleSwap enumVal))
             {
-                DestroyImmediate(roles[i].transform.GetChild(j).gameObject);
-            }
-
-            if (groups.ContainsKey(roles[i].ActiveRole))
-            {
-                BuildColliders(map, roles[i], groups[roles[i].ActiveRole]);
-                groups.Remove(roles[i].ActiveRole);
+                rendererMap[RoleSettings.Get(enumVal)] = renderers[i];
             }
         }
 
-        //MissingRoles;
-        foreach (var item in groups)
-        {
-            var obj = Instantiate(RolePrefab);
-            obj.ActiveRole = item.Key;
-            obj.name = item.Key.name;
-            obj.transform.SetParent(transform);
-            BuildColliders(map, obj, item.Value);
-            roles.Add(obj);
-        }
-        return roles;
-    }
+        var configuredObjects = GetComponentsInChildren<RoleObject>().ToDictionary(x => x.ActiveRole, x => x);
+        var objectColliders = GetComponentsInChildren<Rigidbody2D>();
 
-    private Tilemap FindMap()
-    {
-        var layers = GetComponentsInChildren<LDtkComponentLayer>();
-        Tilemap map = null;
-        for (int i = 0; i < layers.Length; i++)
+        Role role;
+        RoleObject roleObject;
+        RoleView view;
+        TilemapRenderer renderer;
+        for (int i = 0; i < objectColliders.Length; i++)
         {
-            if (layers[i].LayerType == TypeEnum.IntGrid)
+            role = RoleSettings.Get(objectColliders[i].sharedMaterial);
+
+            if (role == null)
             {
-                map = layers[i].GetComponentInChildren<Tilemap>(includeInactive: true);
+                continue;
             }
-        }
 
-        return map;
-    }
-
-    private List<RolePosition> GetTiles(Tilemap map)
-    {
-        var translations = RoleSettings.Roles.ToDictionary(x => x.Tile, x => x);
-        var roles = new List<RolePosition>();
-        for (int i = 0; i < map.size.y; i++)
-        {
-            for (int j = 0; j < map.size.x; j++)
+            if (configuredObjects.ContainsKey(role))
             {
-                var pos = new Vector3Int(j, i);
-                if (!map.HasTile(pos))
-                {
-                    continue;
-                }
-
-                roles.Add(new RolePosition
-                {
-                    Role = translations[map.GetTile(pos)],
-                    Position = pos
-                });
+                roleObject = configuredObjects[role];
             }
-        }
+            else
+            {
+                roleObject = objectColliders[i].gameObject.AddComponent<RoleObject>();
+                roleObject.ActiveRole = role;
+                configuredObjects[role] = roleObject;
+            }
 
-        return roles;
+            roleObject.Physics = roleObject.GetComponent<RolePhysics>();
+            if (roleObject.Physics == null)
+            {
+                roleObject.Physics = roleObject.gameObject.AddComponent<RolePhysics>();
+            }
+            roleObject.Physics.AutoConfigure();
+
+            renderer = rendererMap[role];
+            view = roleObject.GetComponent<RoleView>();
+            if (view == null)
+            {
+                view = roleObject.gameObject.AddComponent<RoleView>();
+            }
+            view.TileSwap = new[] { renderer.GetComponent<Tilemap>() };
+            view.VisibilitySwap = new[] { renderer };
+        }
     }
 
-    private void BuildColliders(Tilemap map, RoleObject roleObject, RolePosition[] rolePositions)
-    {
-        SpriteRenderer cell;
-        for (int i = 0; i < rolePositions.Length; i++)
-        {
-            cell = Instantiate(CellPrefab).GetComponent<SpriteRenderer>();
-            cell.transform.SetParent(roleObject.transform);
-            cell.transform.position = map.CellToWorld(rolePositions[i].Position) + (Vector3)Vector2.one / 2f;
-            cell.sprite = roleObject.ActiveRole.Theme.Sprite;
-        }
-    }
-
-#if UNITY_EDITOR
     [CustomEditor(typeof(MapRoleLoader))]
     [CanEditMultipleObjects]
     public class _Editor : Editor

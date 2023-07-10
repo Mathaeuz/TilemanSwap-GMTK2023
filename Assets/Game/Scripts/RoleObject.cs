@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(RolePhysics))]
 public class RoleObject : MonoBehaviour
 {
     public Dictionary<Role, RoleBehaviour> Behaviours = new();
@@ -12,12 +13,11 @@ public class RoleObject : MonoBehaviour
     [field: SerializeField]
     public Role ActiveRole { get; set; }
 
-    public UnityEvent<Role> OnChangeRole = new();
+    public UnityEvent<Role, Role> OnChangeRole = new();
     public UnityEvent<float> RoleDestroyed = new();
     public UnityEvent RoleRestored = new();
 
-    public ColliderManipulator ColliderManagement;
-    public Collider2D[] IgnoreMaterial, IgnoreTag, IgnoreLayer;
+    public RolePhysics Physics;
 
     private void Awake()
     {
@@ -34,11 +34,11 @@ public class RoleObject : MonoBehaviour
 
     public void Change(Role role, bool forceRespawn)
     {
-        if (ColliderManagement == null)
+        if (Physics == null)
         {
-            ColliderManagement = new ColliderManipulator(this, IgnoreMaterial, IgnoreTag, IgnoreLayer);
+            Physics = GetComponent<RolePhysics>();
         }
-
+        var oldRole = ActiveRole;
         ActiveRole = role;
         if (forceRespawn)
         {
@@ -54,7 +54,7 @@ public class RoleObject : MonoBehaviour
         {
             ActiveBehaviour = Behaviours[role];
             ActiveBehaviour.enabled = true;
-            OnChangeRole.Invoke(role);
+            OnChangeRole.Invoke(oldRole, role);
         }
     }
 

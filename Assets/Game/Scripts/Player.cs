@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     public float Acceleration = 14f;
     public float Decceleration = 7f;
     public float JumpHeight = 4f;
+    public float RespawnEarly = 0.5f;
     float JumpPower;
 
     public Vector2 LastVelocity, Velocity;
@@ -61,11 +62,6 @@ public class Player : MonoBehaviour
     private void Death()
     {
         RoleObject.RoleDestroyed.Invoke(3f);
-        Invoke(nameof(Respawn), 3f);
-    }
-    private void Respawn()
-    {
-        RoleObject.RoleRestored.Invoke();
     }
 
     private void ExternalDeath(float time)
@@ -88,7 +84,7 @@ public class Player : MonoBehaviour
         Legs.SetActive(false);
         Block.SetActive(false);
         UserInput.Lock();
-        Invoke(nameof(ExternalRespawn), time - 0.5f);
+        Invoke(nameof(ExternalRespawn), time - RespawnEarly);
     }
 
     private void ExternalRespawn()
