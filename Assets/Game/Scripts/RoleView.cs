@@ -87,7 +87,19 @@ public class RoleView : MonoBehaviour
 
     private void BurstTilemap(Tilemap tilemap)
     {
-
+        var bounds = tilemap.cellBounds;
+        Vector3Int pos;
+        for (int i = bounds.min.y; i < bounds.max.y; i++)
+        {
+            for (int j = bounds.min.x; j < bounds.max.x; j++)
+            {
+                pos = new Vector3Int(j, i);
+                if (tilemap.HasTile(pos))
+                {
+                    Burst.Emit(tilemap.CellToWorld(pos));
+                }
+            }
+        }
     }
 
     private void SwapTilemap(Tilemap tilemap, TileBase[] old, TileBase[] current)
