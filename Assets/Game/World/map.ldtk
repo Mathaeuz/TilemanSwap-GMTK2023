@@ -40,6 +40,36 @@
 	"flags": ["IgnoreBackupSuggest"],
 	"defs": { "layers": [
 		{
+			"__type": "Entities",
+			"identifier": "Swaps",
+			"type": "Entities",
+			"uid": 86,
+			"doc": null,
+			"uiColor": null,
+			"gridSize": 16,
+			"guideGridWid": 0,
+			"guideGridHei": 0,
+			"displayOpacity": 1,
+			"inactiveOpacity": 0.6,
+			"hideInList": false,
+			"hideFieldsWhenInactive": true,
+			"canSelectWhenInactive": true,
+			"renderInWorldView": true,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"parallaxFactorX": 0,
+			"parallaxFactorY": 0,
+			"parallaxScaling": true,
+			"requiredTags": [],
+			"excludedTags": [],
+			"intGridValues": [],
+			"autoRuleGroups": [],
+			"autoSourceLayerDefUid": null,
+			"tilesetDefUid": null,
+			"tilePivotX": 0,
+			"tilePivotY": 0
+		},
+		{
 			"__type": "AutoLayer",
 			"identifier": "Block1",
 			"type": "AutoLayer",
@@ -10456,36 +10486,6 @@
 			"tilePivotY": 0
 		},
 		{
-			"__type": "Entities",
-			"identifier": "Swaps",
-			"type": "Entities",
-			"uid": 86,
-			"doc": null,
-			"uiColor": null,
-			"gridSize": 16,
-			"guideGridWid": 0,
-			"guideGridHei": 0,
-			"displayOpacity": 1,
-			"inactiveOpacity": 0.6,
-			"hideInList": false,
-			"hideFieldsWhenInactive": true,
-			"canSelectWhenInactive": true,
-			"renderInWorldView": true,
-			"pxOffsetX": 0,
-			"pxOffsetY": 0,
-			"parallaxFactorX": 0,
-			"parallaxFactorY": 0,
-			"parallaxScaling": true,
-			"requiredTags": [],
-			"excludedTags": [],
-			"intGridValues": [],
-			"autoRuleGroups": [],
-			"autoSourceLayerDefUid": null,
-			"tilesetDefUid": null,
-			"tilePivotX": 0,
-			"tilePivotY": 0
-		},
-		{
 			"__type": "IntGrid",
 			"identifier": "Roles",
 			"type": "IntGrid",
@@ -10900,6 +10900,46 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 32,
+					"__cHei": 46,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "06d65d51-1460-11ee-ae67-6ff50521b536",
+					"levelId": 92,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 2945045,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "Spawn",
+							"__grid": [15,3],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#D1FFF7",
+							"iid": "7ac8a420-1460-11ee-b2ac-b904dc0542e6",
+							"width": 16,
+							"height": 16,
+							"defUid": 90,
+							"px": [248,56],
+							"fieldInstances": []
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -11916,46 +11956,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 32,
-					"__cHei": 46,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "06d65d51-1460-11ee-ae67-6ff50521b536",
-					"levelId": 92,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 2945045,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "Spawn",
-							"__grid": [15,3],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#D1FFF7",
-							"iid": "7ac8a420-1460-11ee-b2ac-b904dc0542e6",
-							"width": 16,
-							"height": 16,
-							"defUid": 90,
-							"px": [248,56],
-							"fieldInstances": []
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 32,
@@ -12048,6 +12048,83 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 32,
+					"__cHei": 20,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "444a0601-1460-11ee-ae67-07f0549a2cd2",
+					"levelId": 93,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 3423183,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [8,15],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#00E4FF",
+							"iid": "76c06b60-1460-11ee-ae67-9d6fcacd39ec",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [136,248],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Ice"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [22,15],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#00E4FF",
+							"iid": "7a58d460-1460-11ee-ae67-bf54a571dd22",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [360,248],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Ice"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [15,15],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#DCCB95",
+							"iid": "e1dbb6d0-1460-11ee-b2ac-1babced07a5c",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [248,248],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Block1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Block1"]
+							}] }]
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -12551,83 +12628,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 32,
-					"__cHei": 20,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "444a0601-1460-11ee-ae67-07f0549a2cd2",
-					"levelId": 93,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 3423183,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [8,15],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#00E4FF",
-							"iid": "76c06b60-1460-11ee-ae67-9d6fcacd39ec",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [136,248],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Ice"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [22,15],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#00E4FF",
-							"iid": "7a58d460-1460-11ee-ae67-bf54a571dd22",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [360,248],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Ice"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [15,15],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#DCCB95",
-							"iid": "e1dbb6d0-1460-11ee-b2ac-1babced07a5c",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [248,248],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Block1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Block1"]
-							}] }]
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 32,
@@ -12696,6 +12696,46 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 26,
+					"__cHei": 20,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "a42ab381-1460-11ee-ae67-05ab23b0d71d",
+					"levelId": 94,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 6030626,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "ForceRollbacks",
+							"__grid": [11,18],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#75C3FF",
+							"iid": "458db750-1460-11ee-ae67-63c08030f068",
+							"width": 64,
+							"height": 48,
+							"defUid": 89,
+							"px": [184,296],
+							"fieldInstances": []
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -13062,46 +13102,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 26,
-					"__cHei": 20,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "a42ab381-1460-11ee-ae67-05ab23b0d71d",
-					"levelId": 94,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 6030626,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "ForceRollbacks",
-							"__grid": [11,18],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
-							"iid": "458db750-1460-11ee-ae67-63c08030f068",
-							"width": 64,
-							"height": 48,
-							"defUid": 89,
-							"px": [184,296],
-							"fieldInstances": []
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 26,
@@ -13166,6 +13166,125 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 103,
+					"__cHei": 22,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "082e5d20-1460-11ee-ae67-f5bb0c061696",
+					"levelId": 95,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 8788069,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [58,16],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#FF0075",
+							"iid": "4597cca0-1460-11ee-ae67-b5f92e92f749",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [936,264],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon1"]
+							}] }]
+						},
+						{
+							"__identifier": "Checkpoint",
+							"__grid": [11,10],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#4C14DC",
+							"iid": "5bdba660-1460-11ee-ae67-1598ba91a88d",
+							"width": 96,
+							"height": 304,
+							"defUid": 88,
+							"px": [184,168],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "Checkpoint",
+							"__grid": [47,9],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#4C14DC",
+							"iid": "9129e3e0-1460-11ee-ae67-09cb187bf971",
+							"width": 48,
+							"height": 288,
+							"defUid": 88,
+							"px": [760,152],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [89,16],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "b13ec7e0-1460-11ee-ae67-23c48f9018e0",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [1432,264],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [95,16],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "354b86f0-1460-11ee-ae67-7f75c859883c",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [1528,264],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
+							}] }]
+						},
+						{
+							"__identifier": "ForceRollbacks",
+							"__grid": [92,20],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#75C3FF",
+							"iid": "d8853c00-1460-11ee-ae67-5d68922501e2",
+							"width": 64,
+							"height": 32,
+							"defUid": 89,
+							"px": [1480,328],
+							"fieldInstances": []
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -14187,125 +14306,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 103,
-					"__cHei": 22,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "082e5d20-1460-11ee-ae67-f5bb0c061696",
-					"levelId": 95,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 8788069,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [58,18],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#FF0075",
-							"iid": "4597cca0-1460-11ee-ae67-b5f92e92f749",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [936,296],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon1"]
-							}] }]
-						},
-						{
-							"__identifier": "Checkpoint",
-							"__grid": [11,10],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#4C14DC",
-							"iid": "5bdba660-1460-11ee-ae67-1598ba91a88d",
-							"width": 96,
-							"height": 304,
-							"defUid": 88,
-							"px": [184,168],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "Checkpoint",
-							"__grid": [47,9],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#4C14DC",
-							"iid": "9129e3e0-1460-11ee-ae67-09cb187bf971",
-							"width": 48,
-							"height": 288,
-							"defUid": 88,
-							"px": [760,152],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [89,16],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#841900",
-							"iid": "b13ec7e0-1460-11ee-ae67-23c48f9018e0",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [1432,264],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Spike"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [95,16],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#841900",
-							"iid": "354b86f0-1460-11ee-ae67-7f75c859883c",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [1528,264],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Spike"]
-							}] }]
-						},
-						{
-							"__identifier": "ForceRollbacks",
-							"__grid": [92,20],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
-							"iid": "d8853c00-1460-11ee-ae67-5d68922501e2",
-							"width": 64,
-							"height": 32,
-							"defUid": 89,
-							"px": [1480,328],
-							"fieldInstances": []
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 103,
@@ -14420,6 +14420,128 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 53,
+					"__cHei": 17,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "9e5b4fd0-1460-11ee-ae67-432ee1989dc7",
+					"levelId": 96,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 916730,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "Checkpoint",
+							"__grid": [49,6],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#4C14DC",
+							"iid": "9ec7f450-1460-11ee-ae67-f3bf2384f76e",
+							"width": 80,
+							"height": 80,
+							"defUid": 88,
+							"px": [792,104],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [43,11],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "ddcd1270-1460-11ee-ae67-e1be88805a89",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [696,184],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [47,11],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#FF0075",
+							"iid": "e002b720-1460-11ee-ae67-d3806f16f9aa",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [760,184],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon1"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [27,11],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "5e9ae510-1460-11ee-ae67-878d62109fe9",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [440,184],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [30,11],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#FF0075",
+							"iid": "606ff330-1460-11ee-ae67-2539e0c4ec34",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [488,184],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon1"]
+							}] }]
+						},
+						{
+							"__identifier": "ForceRollbacks",
+							"__grid": [3,15],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#75C3FF",
+							"iid": "7de721e0-1460-11ee-ae67-c79e09e9961e",
+							"width": 80,
+							"height": 48,
+							"defUid": 89,
+							"px": [56,248],
+							"fieldInstances": []
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -14918,128 +15040,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 53,
-					"__cHei": 17,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "9e5b4fd0-1460-11ee-ae67-432ee1989dc7",
-					"levelId": 96,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 916730,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "Checkpoint",
-							"__grid": [49,6],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#4C14DC",
-							"iid": "9ec7f450-1460-11ee-ae67-f3bf2384f76e",
-							"width": 80,
-							"height": 80,
-							"defUid": 88,
-							"px": [792,104],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [43,11],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#841900",
-							"iid": "ddcd1270-1460-11ee-ae67-e1be88805a89",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [696,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Spike"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [50,11],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#FF0075",
-							"iid": "e002b720-1460-11ee-ae67-d3806f16f9aa",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [808,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon1"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [27,11],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#841900",
-							"iid": "5e9ae510-1460-11ee-ae67-878d62109fe9",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [440,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Spike"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [30,11],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#FF0075",
-							"iid": "606ff330-1460-11ee-ae67-2539e0c4ec34",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [488,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon1"]
-							}] }]
-						},
-						{
-							"__identifier": "ForceRollbacks",
-							"__grid": [3,15],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
-							"iid": "7de721e0-1460-11ee-ae67-c79e09e9961e",
-							"width": 80,
-							"height": 48,
-							"defUid": 89,
-							"px": [56,248],
-							"fieldInstances": []
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 53,
@@ -15115,6 +15115,148 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 32,
+					"__cHei": 27,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "56b844b1-1460-11ee-ae67-d533b8644cfc",
+					"levelId": 97,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 2715223,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "Checkpoint",
+							"__grid": [15,2],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#4C14DC",
+							"iid": "66e38520-1460-11ee-ae67-c5bf7ac0ce8a",
+							"width": 112,
+							"height": 48,
+							"defUid": 88,
+							"px": [248,40],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [3,23],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#FF0075",
+							"iid": "6e396b50-1460-11ee-ae67-8112872b15e9",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [56,376],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon1"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [8,23],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#DCCB95",
+							"iid": "6f209700-1460-11ee-ae67-ff846edd07fa",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [136,376],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Block1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Block1"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [13,23],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#007CFF",
+							"iid": "6fa27130-1460-11ee-ae67-6b318c4dc9b8",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [216,376],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon2", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon2"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [18,23],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "713e6df0-1460-11ee-ae67-6dad53bd8c8d",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [296,376],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [23,23],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#00E4FF",
+							"iid": "71d1d450-1460-11ee-ae67-97468d852c3c",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [376,376],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Ice"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [28,23],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#B5DBE0",
+							"iid": "72a9e4d0-1460-11ee-ae67-eb4f80ac04db",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [456,376],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Player"]
+							}] }]
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -15519,148 +15661,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 32,
-					"__cHei": 27,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "56b844b1-1460-11ee-ae67-d533b8644cfc",
-					"levelId": 97,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 2715223,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "Checkpoint",
-							"__grid": [15,2],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#4C14DC",
-							"iid": "66e38520-1460-11ee-ae67-c5bf7ac0ce8a",
-							"width": 112,
-							"height": 48,
-							"defUid": 88,
-							"px": [248,40],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [3,23],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#FF0075",
-							"iid": "6e396b50-1460-11ee-ae67-8112872b15e9",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [56,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon1"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [8,23],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#DCCB95",
-							"iid": "6f209700-1460-11ee-ae67-ff846edd07fa",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [136,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Block1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Block1"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [13,23],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#007CFF",
-							"iid": "6fa27130-1460-11ee-ae67-6b318c4dc9b8",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [216,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon2", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon2"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [18,23],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#841900",
-							"iid": "713e6df0-1460-11ee-ae67-6dad53bd8c8d",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [296,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Spike"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [23,23],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#00E4FF",
-							"iid": "71d1d450-1460-11ee-ae67-97468d852c3c",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [376,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Ice"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [28,23],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#B5DBE0",
-							"iid": "72a9e4d0-1460-11ee-ae67-eb4f80ac04db",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [456,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Player"]
-							}] }]
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 32,
@@ -15735,6 +15735,94 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 40,
+					"__cHei": 20,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "9cb55511-1460-11ee-ae67-2507a7f8e2ba",
+					"levelId": 98,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 3892233,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "Checkpoint",
+							"__grid": [33,3],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#4C14DC",
+							"iid": "e423ec40-1460-11ee-ae67-cf407696a0ed",
+							"width": 80,
+							"height": 64,
+							"defUid": 88,
+							"px": [536,56],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [27,6],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "eda31b10-1460-11ee-ae67-93066be51bff",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [440,104],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
+							}] }]
+						},
+						{
+							"__identifier": "ForceRollbacks",
+							"__grid": [0,3],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#75C3FF",
+							"iid": "34ef2430-1460-11ee-ae67-d1f8baf891f8",
+							"width": 32,
+							"height": 80,
+							"defUid": 89,
+							"px": [8,56],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [30,6],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#FF0075",
+							"iid": "89ca0d70-1460-11ee-ae67-09f3f3ed3c63",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [488,104],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon1"]
+							}] }]
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -16327,94 +16415,6 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 40,
-					"__cHei": 20,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "9cb55511-1460-11ee-ae67-2507a7f8e2ba",
-					"levelId": 98,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 3892233,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "Checkpoint",
-							"__grid": [33,3],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#4C14DC",
-							"iid": "e423ec40-1460-11ee-ae67-cf407696a0ed",
-							"width": 80,
-							"height": 64,
-							"defUid": 88,
-							"px": [536,56],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [27,6],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#841900",
-							"iid": "eda31b10-1460-11ee-ae67-93066be51bff",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [440,104],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Spike"]
-							}] }]
-						},
-						{
-							"__identifier": "ForceRollbacks",
-							"__grid": [0,3],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
-							"iid": "34ef2430-1460-11ee-ae67-d1f8baf891f8",
-							"width": 32,
-							"height": 80,
-							"defUid": 89,
-							"px": [8,56],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [30,6],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#FF0075",
-							"iid": "89ca0d70-1460-11ee-ae67-09f3f3ed3c63",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [488,104],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon1"]
-							}] }]
-						}
-					]
-				},
-				{
 					"__identifier": "Roles",
 					"__type": "IntGrid",
 					"__cWid": 40,
@@ -16487,6 +16487,97 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Swaps",
+					"__type": "Entities",
+					"__cWid": 62,
+					"__cHei": 26,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "fef5eb90-1460-11ee-ae67-65a7747a9f4e",
+					"levelId": 99,
+					"layerDefUid": 86,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 5117136,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "Checkpoint",
+							"__grid": [60,9],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#4C14DC",
+							"iid": "1bf2e130-1460-11ee-ae67-edcfb9d56a1b",
+							"width": 32,
+							"height": 80,
+							"defUid": 88,
+							"px": [968,152],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [28,12],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#00E4FF",
+							"iid": "20a6cc50-1460-11ee-ae67-012186b4c975",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [456,200],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Ice"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [22,22],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#007CFF",
+							"iid": "53387670-1460-11ee-8370-ad5db38f28d1",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [360,360],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon2", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Baloon2"]
+							}] }]
+						},
+						{
+							"__identifier": "SwapHandle",
+							"__grid": [33,22],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
+							"__smartColor": "#00E4FF",
+							"iid": "8859d790-1460-11ee-8370-e17e3ac7e08a",
+							"width": 16,
+							"height": 16,
+							"defUid": 79,
+							"px": [536,360],
+							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Ice"]
+							}] }]
+						}
+					]
+				},
 				{
 					"__identifier": "Block1",
 					"__type": "AutoLayer",
@@ -17683,97 +17774,6 @@
 					"overrideTilesetUid": null,
 					"gridTiles": [],
 					"entityInstances": []
-				},
-				{
-					"__identifier": "Swaps",
-					"__type": "Entities",
-					"__cWid": 62,
-					"__cHei": 26,
-					"__gridSize": 16,
-					"__opacity": 1,
-					"__pxTotalOffsetX": 0,
-					"__pxTotalOffsetY": 0,
-					"__tilesetDefUid": null,
-					"__tilesetRelPath": null,
-					"iid": "fef5eb90-1460-11ee-ae67-65a7747a9f4e",
-					"levelId": 99,
-					"layerDefUid": 86,
-					"pxOffsetX": 0,
-					"pxOffsetY": 0,
-					"visible": true,
-					"optionalRules": [],
-					"intGridCsv": [],
-					"autoLayerTiles": [],
-					"seed": 5117136,
-					"overrideTilesetUid": null,
-					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "Checkpoint",
-							"__grid": [60,9],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#4C14DC",
-							"iid": "1bf2e130-1460-11ee-ae67-edcfb9d56a1b",
-							"width": 32,
-							"height": 80,
-							"defUid": 88,
-							"px": [968,152],
-							"fieldInstances": []
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [28,12],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#00E4FF",
-							"iid": "20a6cc50-1460-11ee-ae67-012186b4c975",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [456,200],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Ice"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [21,22],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#007CFF",
-							"iid": "53387670-1460-11ee-8370-ad5db38f28d1",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [344,360],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon2", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Baloon2"]
-							}] }]
-						},
-						{
-							"__identifier": "SwapHandle",
-							"__grid": [32,22],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": { "tilesetUid": 84, "x": 40, "y": 20, "w": 16, "h": 16 },
-							"__smartColor": "#00E4FF",
-							"iid": "8859d790-1460-11ee-8370-e17e3ac7e08a",
-							"width": 16,
-							"height": 16,
-							"defUid": 79,
-							"px": [520,360],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Ice"]
-							}] }]
-						}
-					]
 				},
 				{
 					"__identifier": "Roles",
