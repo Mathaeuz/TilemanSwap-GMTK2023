@@ -8,7 +8,8 @@ public class MusicPlayer : Singleton<MusicPlayer>
     public AudioClip[] Clips;
     AudioSource Source;
     public float FadeLength = 0.5f;
-    float TargetVolume = 0.6f;
+    public float SongInterval = 0.5f;
+    float TargetVolume;
     int index = 0;
 
     public UnityEvent<AudioClip> OnChangeSong = new();
@@ -17,6 +18,7 @@ public class MusicPlayer : Singleton<MusicPlayer>
     {
         Source = GetComponent<AudioSource>();
         Source.loop = false;
+        TargetVolume = Source.volume;
         if (PlayOnWake)
         {
             Play();
@@ -60,8 +62,9 @@ public class MusicPlayer : Singleton<MusicPlayer>
             OnChangeSong.Invoke(Source.clip);
             index = (index + 1) % Clips.Length;
             StartCoroutine(Fade(TargetVolume));
-            yield return new WaitForSeconds(Source.clip.length - FadeLength);
+            yield return new WaitForSecondsRealtime(Source.clip.length);
             StartCoroutine(Fade(0f));
+            yield return new WaitForSecondsRealtime(SongInterval);
         }
     }
 

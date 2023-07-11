@@ -159,13 +159,8 @@ public class Player : MonoBehaviour
             return;
         }
 
-
         for (int i = 0; i < collision.contacts.Length; i++)
         {
-            //Debug.DrawLine(collision.contacts[i].point + Vector2.left, collision.contacts[i].point + Vector2.right, Color.red);
-            //Debug.DrawLine(collision.contacts[i].point + Vector2.down, collision.contacts[i].point + Vector2.up, Color.red);
-            //Debug.DrawLine(Body.position + Vector2.left, Body.position + Vector2.right, Color.green);
-            //Debug.DrawLine(Body.position + Vector2.down, Body.position + Vector2.up, Color.green);
             DigestNormal(collision.contacts[i].normal);
         }
     }
@@ -173,10 +168,6 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < collision.contacts.Length; i++)
         {
-            //Debug.DrawLine(collision.contacts[i].point + Vector2.left, collision.contacts[i].point + Vector2.right, Color.red);
-            //Debug.DrawLine(collision.contacts[i].point + Vector2.down, collision.contacts[i].point + Vector2.up, Color.red);
-            //Debug.DrawLine(Body.position + Vector2.left, Body.position + Vector2.right, Color.green);
-            //Debug.DrawLine(Body.position + Vector2.down, Body.position + Vector2.up, Color.green);
             DigestNormal(collision.contacts[i].normal);
         }
     }
@@ -210,7 +201,12 @@ public class Player : MonoBehaviour
         {
             var hor = (UserInput.Horizontal - 0.3f) / (1 - 0.3f);
             var maxSpeed = Mathf.Max(MaxSpeed, Mathf.Abs(Velocity.x));
-            Velocity.x = Mathf.Max(-maxSpeed, Mathf.Min(maxSpeed, Velocity.x + Acceleration * hor * Time.fixedDeltaTime));
+            var acc = Acceleration * hor * Time.fixedDeltaTime;
+            if (hor * Velocity.x < 0)
+            {
+                acc *= 2;
+            }
+            Velocity.x = Mathf.Max(-maxSpeed, Mathf.Min(maxSpeed, Velocity.x + acc));
         }
 
         if (State.HasFlag(StateFlags.Ground))
