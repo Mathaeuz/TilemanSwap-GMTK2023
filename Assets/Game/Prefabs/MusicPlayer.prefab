@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 74817f94e5cc41244b2450f00f2e46ce, type: 3}
   - {fileID: 8300000, guid: 47fd7b314c1b6a14db77bb8044c7561c, type: 3}
   FadeLength: 0.3
+  SongInterval: 0.5
   OnChangeSong:
     m_PersistentCalls:
       m_Calls: []

@@ -110,6 +110,8 @@ public class MapRoleLoader : MonoBehaviour
             view.Burst = roleObject.GetComponent<SharedParticles>();
             view.Burst.Prefab = BurstParticlePrefab;
             view.Burst.EmitCount = 1;
+
+            EditorUtility.SetDirty(roleObject.gameObject);
         }
     }
 
