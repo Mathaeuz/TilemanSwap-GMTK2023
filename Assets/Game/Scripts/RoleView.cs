@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(SharedParticles))]
@@ -9,6 +10,7 @@ public class RoleView : MonoBehaviour
     public Tilemap[] TileSwap;
     public Renderer[] VisibilitySwap;
     public SharedParticles Burst;
+    Vector3[] BurstPositions;
     Sprite BurstSprite;
 
     private void Awake()
@@ -17,8 +19,31 @@ public class RoleView : MonoBehaviour
         Object.OnChangeRole.AddListener(SetRoleStyle);
         Object.RoleDestroyed.AddListener(BurstBlocks);
         Object.RoleRestored.AddListener(RestoreBlocks);
+        BuildBurstDictionary();
         SetRoleStyle(null, Object.ActiveRole);
         Burst.Init();
+    }
+
+    public void BuildBurstDictionary()
+    {
+        List<Vector3> positions = new();
+        for (int k = 0; k < TileSwap.Length; k++)
+        {
+            var bounds = TileSwap[k].cellBounds;
+            Vector3Int pos;
+            for (int i = bounds.min.y; i < bounds.max.y; i++)
+            {
+                for (int j = bounds.min.x; j < bounds.max.x; j++)
+                {
+                    pos = new Vector3Int(j, i);
+                    if (TileSwap[k].HasTile(pos))
+                    {
+                        positions.Add(TileSwap[k].CellToWorld(pos));
+                    }
+                }
+            }
+        }
+        BurstPositions = positions.ToArray();
     }
 
     private void OnDestroy()
@@ -43,9 +68,9 @@ public class RoleView : MonoBehaviour
         {
             Burst.Emit(SpriteSwap[i].transform.position);
         }
-        for (int i = 0; i < TileSwap.Length; i++)
+        for (int i = 0; i < BurstPositions.Length; i++)
         {
-            BurstTilemap(TileSwap[i]);
+            Burst.Emit(BurstPositions[i]);
         }
     }
 
@@ -82,23 +107,6 @@ public class RoleView : MonoBehaviour
         for (int i = 0; i < VisibilitySwap.Length; i++)
         {
             VisibilitySwap[i].enabled = value;
-        }
-    }
-
-    private void BurstTilemap(Tilemap tilemap)
-    {
-        var bounds = tilemap.cellBounds;
-        Vector3Int pos;
-        for (int i = bounds.min.y; i < bounds.max.y; i++)
-        {
-            for (int j = bounds.min.x; j < bounds.max.x; j++)
-            {
-                pos = new Vector3Int(j, i);
-                if (tilemap.HasTile(pos))
-                {
-                    Burst.Emit(tilemap.CellToWorld(pos));
-                }
-            }
         }
     }
 

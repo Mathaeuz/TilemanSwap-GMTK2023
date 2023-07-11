@@ -82,6 +82,7 @@ public class RoleSettings : ScriptableObject
                 }
 
                 roleSettings.Roles[i].Theme.Tiles = tiles[roleSettings.Roles[i].Theme.TileSource];
+                EditorUtility.SetDirty(roleSettings.Roles[i]);
             }
         }
     }
