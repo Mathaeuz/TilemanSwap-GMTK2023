@@ -114,7 +114,10 @@ public class RoleView : MonoBehaviour
     {
         for (int i = 0; i < old.Length; i++)
         {
-            tilemap.SwapTile(old[i], current[i]);
+            if (old[i] != null && current[i] != null)
+            {
+                tilemap.SwapTile(old[i], current[i]);
+            }
         }
     }
 }

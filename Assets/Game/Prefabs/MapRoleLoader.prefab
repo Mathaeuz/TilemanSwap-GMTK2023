@@ -134,9 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoleSettings: {fileID: 11400000, guid: a19bba82b32e11f4c937346c863f4ebd, type: 2}
-  RolePrefab: {fileID: 1098586445271242459, guid: 491da186947b2024792ff1c43c7a54d9,
-    type: 3}
-  CellPrefab: {fileID: -4969330428168769882, guid: 2a101bfe2c2ff684f8592eaeab6a51ed,
+  BurstParticlePrefab: {fileID: 4240346584495183917, guid: 202b6fd7f55138a44a83b49d603ae489,
     type: 3}
   Camera: {fileID: 3894579592149598798}
   Confiner: {fileID: 4734959038856860829}

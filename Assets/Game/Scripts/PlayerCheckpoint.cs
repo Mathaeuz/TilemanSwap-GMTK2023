@@ -6,15 +6,15 @@ public class PlayerCheckpoint : MonoBehaviour
     public static PlayerCheckpoint ActiveCheckpoint = null;
     public SharedParticles Flare, Burst;
     public AudioClip Get;
-    public Transform Sprite;
+    public Transform SpritePrefab;
     Role[] CpState;
 
     private void Awake()
     {
         Flare.Init();
         Burst.Init();
-        Sprite.SetParent(null);
-        Sprite.localScale = Vector3.one;
+        var sprite = Instantiate(SpritePrefab);
+        sprite.position = transform.position;
         CpState = new Role[RoleManager.Instance.RoleSettings.Roles.Length];
     }
 

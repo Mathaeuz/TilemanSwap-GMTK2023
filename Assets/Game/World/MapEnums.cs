@@ -19,5 +19,6 @@ public enum RoleSwap
     Block1,
     Player,
     Spike,
-    Ice
+    Ice,
+    Null
 }

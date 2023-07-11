@@ -37,6 +37,8 @@ ScriptedImporter:
     _asset: {fileID: 11400000, guid: 2940db7b662859349b2b445aa032bbff, type: 2}
   - _key: Roles_8
     _asset: {fileID: 11400000, guid: 7cfb0eb17eef22b45af7a49e145887f2, type: 2}
+  - _key: Roles_9
+    _asset: {fileID: 11400000, guid: 6333490fc96a5624591a0627c16a4fd9, type: 2}
   _entities:
   - _key: Spawn
     _asset: {fileID: 8383160315447021675, guid: 2aa72a8f309452541887ab3e8bc54feb,

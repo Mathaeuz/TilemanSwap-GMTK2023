@@ -9,8 +9,7 @@ using UnityEngine.Tilemaps;
 public class MapRoleLoader : MonoBehaviour
 {
     public RoleSettings RoleSettings;
-    public RoleObject RolePrefab;
-    public Collider2D CellPrefab;
+    public ParticleSystem BurstParticlePrefab;
     public CinemachineVirtualCamera Camera;
     public CinemachineConfiner2D Confiner;
     public bool ConfigureCams = true;
@@ -69,6 +68,7 @@ public class MapRoleLoader : MonoBehaviour
         RoleObject roleObject;
         RoleView view;
         TilemapRenderer renderer;
+        CompositeCollider2D composite;
         for (int i = 0; i < objectColliders.Length; i++)
         {
             role = RoleSettings.Get(objectColliders[i].sharedMaterial);
@@ -95,6 +95,9 @@ public class MapRoleLoader : MonoBehaviour
                 roleObject.Physics = roleObject.gameObject.AddComponent<RolePhysics>();
             }
             roleObject.Physics.AutoConfigure();
+            composite = roleObject.GetComponent<CompositeCollider2D>();
+            composite.geometryType = CompositeCollider2D.GeometryType.Polygons;
+            composite.GenerateGeometry();
 
             renderer = rendererMap[role];
             view = roleObject.GetComponent<RoleView>();
@@ -104,6 +107,9 @@ public class MapRoleLoader : MonoBehaviour
             }
             view.TileSwap = new[] { renderer.GetComponent<Tilemap>() };
             view.VisibilitySwap = new[] { renderer };
+            view.Burst = roleObject.GetComponent<SharedParticles>();
+            view.Burst.Prefab = BurstParticlePrefab;
+            view.Burst.EmitCount = 1;
         }
     }
 
