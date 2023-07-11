@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerCheckpoint : MonoBehaviour
 {
@@ -6,6 +7,16 @@ public class PlayerCheckpoint : MonoBehaviour
     public SharedParticles Flare, Burst;
     public AudioClip Get;
     public Transform Sprite;
+    Role[] CpState;
+
+    private void Awake()
+    {
+        Flare.Init();
+        Burst.Init();
+        Sprite.SetParent(null);
+        Sprite.localScale = Vector3.one;
+        CpState = new Role[RoleManager.Instance.RoleSettings.Roles.Length];
+    }
 
     protected void SetCheckpoint(PlayerCheckpoint checkpoint)
     {
@@ -16,20 +27,11 @@ public class PlayerCheckpoint : MonoBehaviour
         if (ActiveCheckpoint != checkpoint)
         {
             SharedSoundEmiter.Instance.Play(Get);
-            RoleManager.Instance.SaveSwaps();
+            RoleManager.Instance.SaveSwaps(CpState);
             ActiveCheckpoint = checkpoint;
             checkpoint.Show();
         }
     }
-
-    private void Awake()
-    {
-        Flare.Init();
-        Burst.Init();
-        Sprite.SetParent(null);
-        Sprite.localScale = Vector3.one;
-    }
-
     private void Show()
     {
         Flare.Play(transform.position);
@@ -43,11 +45,16 @@ public class PlayerCheckpoint : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag("Player"))
+        if (!col.CompareTag(nameof(Player)))
         {
             return;
         }
         SetCheckpoint(this);
-        col.GetComponentInParent<Player>().RespawnAnchor = transform;
+        col.GetComponentInParent<Player>().Checkpoint = this;
+    }
+
+    public void Return()
+    {
+        RoleManager.Instance.RollbackSwaps(CpState);
     }
 }

@@ -206,7 +206,6 @@ MonoBehaviour:
     Bodies: []
     Colliders:
     - {fileID: 14001872989760970}
-    - {fileID: 8197233076716728093}
 --- !u!50 &1135182582697765866
 Rigidbody2D:
   serializedVersion: 4

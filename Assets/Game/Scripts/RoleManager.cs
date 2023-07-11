@@ -22,26 +22,30 @@ public class RoleManager : Singleton<RoleManager>
     List<SwapHolder>[] Holders;
 
     public UnityEvent<bool> AllowEffects = new();
-    Role[] RoleCheckpoint;
+    Role[] FullRollback;
 
-    public void SaveSwaps()
+    public void SaveSwaps(Role[] target)
     {
         for (int i = 0; i < Roles.Length; i++)
         {
-            RoleCheckpoint[i] = Roles[i];
+            target[i] = Roles[i];
         }
     }
-
     public void RollbackSwaps()
+    {
+        RollbackSwaps(FullRollback);
+    }
+
+    public void RollbackSwaps(Role[] memory)
     {
         List<int> apply = new();
         for (int i = 0; i < Roles.Length; i++)
         {
-            if (Roles[i] == RoleCheckpoint[i])
+            if (Roles[i] == memory[i])
             {
                 continue;
             }
-            var altIndex = Array.IndexOf(Roles, RoleCheckpoint[i]);
+            var altIndex = Array.IndexOf(Roles, memory[i]);
             (Roles[i], Roles[altIndex]) = (Roles[altIndex], Roles[i]);
             apply.Add(i);
             apply.Add(altIndex);
@@ -58,7 +62,7 @@ public class RoleManager : Singleton<RoleManager>
         Instances = new List<RoleObject>[RoleSettings.Roles.Length];
         Holders = new List<SwapHolder>[RoleSettings.Roles.Length];
         Roles = new Role[RoleSettings.Roles.Length];
-        RoleCheckpoint = new Role[RoleSettings.Roles.Length];
+        FullRollback = new Role[RoleSettings.Roles.Length];
         for (int i = 0; i < RoleSettings.Roles.Length; i++)
         {
             RoleSettings.Roles[i].Init();
@@ -66,7 +70,7 @@ public class RoleManager : Singleton<RoleManager>
             Holders[i] = new List<SwapHolder>();
 
             Roles[i] = RoleSettings.Roles[i];
-            RoleCheckpoint[i] = Roles[i];
+            FullRollback[i] = Roles[i];
         }
     }
 

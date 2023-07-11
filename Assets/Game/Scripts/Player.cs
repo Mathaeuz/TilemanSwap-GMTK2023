@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform RespawnAnchor;
+    public Vector3 SpawnPosition;
+    public PlayerCheckpoint Checkpoint;
 
     public PlayerBindings Bindings;
     public RoleObject RoleObject;
@@ -97,8 +98,16 @@ public class Player : MonoBehaviour
         Legs.SetActive(true);
         Block.SetActive(false);
         Body.simulated = true;
-        Body.position = RespawnAnchor.position;
-        RoleManager.Instance.RollbackSwaps();
+
+        if (Checkpoint == null)
+        {
+            Body.position = SpawnPosition;
+        }
+        else
+        {
+            Checkpoint.Return();
+            Body.position = Checkpoint.transform.position;
+        }
         UserInput.Unlock();
     }
 

@@ -6,6 +6,8 @@ public abstract class Role : ScriptableObject
 {
     public bool Swappable = true;
     public PhysicsMaterial2D Material;
+    public TagSelector Tag = new TagSelector { Value = "Untagged" };
+    public LayerSelector Layer;
     public TileBase Tile;
     public Theme Theme;
     public RoleSwap RoleEnum;

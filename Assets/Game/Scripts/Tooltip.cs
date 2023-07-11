@@ -16,7 +16,7 @@ public class Tooltip : PlayerTrigger
 
     private void ContactEvent(bool contact, Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(nameof(Player)))
         {
             StartCoroutine(Fade(contact ? Color.white : Color.clear));
         }

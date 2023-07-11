@@ -39,13 +39,13 @@ public class MapRoleLoader : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag(nameof(Player)))
             Camera.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag(nameof(Player)))
             Camera.gameObject.SetActive(false);
     }
 #if UNITY_EDITOR

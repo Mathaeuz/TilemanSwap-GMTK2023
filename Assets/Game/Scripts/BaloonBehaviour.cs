@@ -20,18 +20,12 @@ public class BaloonBehaviour : RoleBehaviour
 
     private void OnEnable()
     {
+        DefaultSwaps();
         if (Object == null)
         {
             return;
         }
         ActiveRole = Object.ActiveRole as BaloonRole;
-
-        if (Object.Physics == null)
-        {
-            return;
-        }
-        Object.Physics.SwapPhysicsMaterial(Object.ActiveRole.Material);
-        Object.Physics.SwapTags("Untagged");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -23,7 +23,7 @@ public class PlayerSpawn : MonoBehaviour
     {
         player = Instantiate(Prefab);
         player.transform.position = transform.position;
-        player.RespawnAnchor = transform;
+        player.SpawnPosition = transform.position;
         OnSpawn.Invoke(player);
         PlayerCheckpoint.ActiveCheckpoint = null;
     }
