@@ -13,7 +13,7 @@ ScriptedImporter:
     TextureShape: 1
     SpriteMode: 2
     PixelsPerUnit: 16
-    MeshType: 0
+    MeshType: 1
     ExtrudeEdges: 0
     Pivot: 0
     _pivot: {x: 0.5, y: 0.5}

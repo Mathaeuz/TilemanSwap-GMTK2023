@@ -10,9 +10,17 @@ public class MapRoleLoader : MonoBehaviour
 {
     public RoleSettings RoleSettings;
     public ParticleSystem BurstParticlePrefab;
+    public int BurstEmitCount = 1;
     public CinemachineVirtualCamera Camera;
     public CinemachineConfiner2D Confiner;
     public bool ConfigureCams = true;
+
+#if UNITY_EDITOR
+    private void Start()
+    {
+        Process();
+    }
+#endif
 
     private void Awake()
     {
@@ -109,7 +117,7 @@ public class MapRoleLoader : MonoBehaviour
             view.VisibilitySwap = new[] { renderer };
             view.Burst = roleObject.GetComponent<SharedParticles>();
             view.Burst.Prefab = BurstParticlePrefab;
-            view.Burst.EmitCount = 1;
+            view.Burst.EmitCount = BurstEmitCount;
 
             EditorUtility.SetDirty(roleObject.gameObject);
         }
