@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Tilemaps;
 
 public class RoleManager : Singleton<RoleManager>
 {
@@ -24,16 +22,40 @@ public class RoleManager : Singleton<RoleManager>
     public UnityEvent<bool> AllowEffects = new();
     Role[] FullRollback;
 
-    public void SaveSwaps(Role[] target)
+
+    public Role[] NewRoleState()
     {
-        for (int i = 0; i < Roles.Length; i++)
+        return new Role[RoleSettings.Roles.Length];
+    }
+
+    public void ReadCurrentSwaps(Role[] output)
+    {
+        for (int i = 0; i < FullRollback.Length; i++)
         {
-            target[i] = Roles[i];
+            output[i] = Roles[i];
         }
     }
-    public void RollbackSwaps()
+
+    public void ReadRollbackToRole(Role[] output, Role rollbackRole)
     {
-        RollbackSwaps(FullRollback);
+        int player = -1, role = -1;
+        for (int i = 0; i < FullRollback.Length; i++)
+        {
+            output[i] = FullRollback[i];
+            if (output[i].RoleEnum == RoleSwap.Player)
+            {
+                player = i;
+            }
+            if (output[i] == rollbackRole)
+            {
+                role = i;
+            }
+        }
+
+        if (player != -1 && role != -1 && player != role)
+        {
+            (output[player], output[role]) = (output[role], output[player]);
+        }
     }
 
     public void RollbackSwaps(Role[] memory)

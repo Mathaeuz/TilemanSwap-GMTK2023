@@ -338,7 +338,7 @@ PrefabInstance:
     - target: {fileID: 8969812737585512950, guid: bc62acdd0230de04c9c21843afc11e01,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc62acdd0230de04c9c21843afc11e01, type: 3}
@@ -44248,6 +44248,11 @@ PrefabInstance:
       propertyPath: ConfigureCams
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7069217170128493424, guid: 93e2b76a0044af54e9dab43c47f7ccd2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7488144900911498109, guid: 93e2b76a0044af54e9dab43c47f7ccd2,
         type: 3}
       propertyPath: m_ColliderPaths.Array.size
@@ -52814,18 +52819,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3728695553324767609, guid: a46c2a3643998d24f8b10faac614bbe5,
-        type: 3}
-      propertyPath: EditorTests.A
-      value: 
-      objectReference: {fileID: 11400000, guid: 573524c46031b564a8810ccfc4ab593d,
-        type: 2}
-    - target: {fileID: 3728695553324767609, guid: a46c2a3643998d24f8b10faac614bbe5,
-        type: 3}
-      propertyPath: EditorTests.B
-      value: 
-      objectReference: {fileID: 11400000, guid: 2768f046981f45c4c99efe972a09c32e,
-        type: 2}
     - target: {fileID: 5239516736863569479, guid: a46c2a3643998d24f8b10faac614bbe5,
         type: 3}
       propertyPath: m_RootOrder
@@ -52895,6 +52888,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2844941349563456231, guid: af403829e72ccd544858e1c420e786cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3518145083962732569, guid: af403829e72ccd544858e1c420e786cb,
         type: 3}
       propertyPath: m_Pivot.x
@@ -53005,6 +53003,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3518145084424865231, guid: af403829e72ccd544858e1c420e786cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954297442885004358, guid: af403829e72ccd544858e1c420e786cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af403829e72ccd544858e1c420e786cb, type: 3}
 --- !u!1001 &8969812738630762862
@@ -53048,7 +53056,7 @@ PrefabInstance:
     - target: {fileID: 8969812737585512948, guid: bc62acdd0230de04c9c21843afc11e01,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8969812737585512948, guid: bc62acdd0230de04c9c21843afc11e01,
         type: 3}

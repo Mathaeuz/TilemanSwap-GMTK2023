@@ -49,7 +49,7 @@ ScriptedImporter:
   - _key: Checkpoint
     _asset: {fileID: 4454365330336455888, guid: ef40d6f7b25d4f848b10535e72550a37,
       type: 3}
-  - _key: ForceRollbacks
+  - _key: ForceRollback
     _asset: {fileID: 8397540292000044444, guid: ddcb08c6c40bf8e4f909b7b2d966454b,
       type: 3}
   _enumGenerate: 1

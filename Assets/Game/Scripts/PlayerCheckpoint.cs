@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerCheckpoint : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public class PlayerCheckpoint : MonoBehaviour
     public SharedParticles Flare, Burst;
     public AudioClip Get;
     public Transform SpritePrefab;
-    Role[] CpState;
+    Role[] TargetState;
 
     private void Awake()
     {
@@ -15,7 +14,7 @@ public class PlayerCheckpoint : MonoBehaviour
         Burst.Init();
         var sprite = Instantiate(SpritePrefab);
         sprite.position = transform.position;
-        CpState = new Role[RoleManager.Instance.RoleSettings.Roles.Length];
+        TargetState = RoleManager.Instance.NewRoleState();
     }
 
     protected void SetCheckpoint(PlayerCheckpoint checkpoint)
@@ -27,11 +26,12 @@ public class PlayerCheckpoint : MonoBehaviour
         if (ActiveCheckpoint != checkpoint)
         {
             SharedSoundEmiter.Instance.Play(Get);
-            RoleManager.Instance.SaveSwaps(CpState);
+            RoleManager.Instance.ReadCurrentSwaps(TargetState);
             ActiveCheckpoint = checkpoint;
             checkpoint.Show();
         }
     }
+
     private void Show()
     {
         Flare.Play(transform.position);
@@ -55,6 +55,6 @@ public class PlayerCheckpoint : MonoBehaviour
 
     public void Return()
     {
-        RoleManager.Instance.RollbackSwaps(CpState);
+        RoleManager.Instance.RollbackSwaps(TargetState);
     }
 }

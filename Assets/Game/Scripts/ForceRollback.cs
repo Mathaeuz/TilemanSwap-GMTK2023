@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class ForceRollback : PlayerTrigger
 {
     public SwapHolder Holder;
+    Role[] TargetState;
 
     private void Awake()
     {
         ContactEnter.AddListener(BeginSwap);
+        TargetState = RoleManager.Instance.NewRoleState();
+        RoleManager.Instance.ReadRollbackToRole(TargetState, Holder.ActiveRole);
     }
 
     private void BeginSwap(Collider2D arg0)
@@ -17,9 +19,11 @@ public class ForceRollback : PlayerTrigger
         if (player.RoleObject.ActiveRole != Holder.ActiveRole)
         {
             StartCoroutine(SwapAnimation(player));
-            return;
         }
-        Rollback();
+        else
+        {
+            Rollback();
+        }
     }
 
     private IEnumerator SwapAnimation(Player player)
@@ -31,8 +35,8 @@ public class ForceRollback : PlayerTrigger
         Rollback();
     }
 
-    void Rollback()
+    private void Rollback()
     {
-        RoleManager.Instance.RollbackSwaps();
+        RoleManager.Instance.RollbackSwaps(TargetState);
     }
 }

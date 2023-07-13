@@ -232,10 +232,11 @@ public class Player : MonoBehaviour
         }
         else
         {
+            Body.gravityScale = 2;
             if (Velocity.y > 0 && (Jumped && !UserInput.Jump.Hold))
             {
                 //break jump
-                Velocity.y *= 0.4f;
+                Body.gravityScale = 4;
             }
             else if (Velocity.y < 0 && (shouldBall || UserInput.Jump.Hold))
             {

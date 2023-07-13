@@ -11,7 +11,7 @@
 	"iid": "062f7630-1460-11ee-b1d6-67ef690bb296",
 	"jsonVersion": "1.3.3",
 	"appBuildId": 467698,
-	"nextUid": 1022,
+	"nextUid": 1023,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -12080,7 +12080,7 @@
 			"pivotY": 0.5,
 			"fieldDefs": [
 				{
-					"identifier": "Roles",
+					"identifier": "Role",
 					"doc": null,
 					"__type": "LocalEnum.RoleSwap",
 					"uid": 83,
@@ -12149,7 +12149,7 @@
 			"fieldDefs": []
 		},
 		{
-			"identifier": "ForceRollbacks",
+			"identifier": "ForceRollback",
 			"uid": 89,
 			"tags": [],
 			"exportToToc": false,
@@ -12179,7 +12179,45 @@
 			"limitBehavior": "MoveLastOne",
 			"pivotX": 0.5,
 			"pivotY": 0.5,
-			"fieldDefs": []
+			"fieldDefs": [
+				{
+					"identifier": "Role",
+					"doc": null,
+					"__type": "LocalEnum.RoleSwap",
+					"uid": 1022,
+					"type": "F_Enum(80)",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "ValueOnly",
+					"editorDisplayScale": 0.1,
+					"editorDisplayPos": "Beneath",
+					"editorLinkStyle": "StraightArrow",
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": true,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["Player"]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -13644,7 +13682,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [312,248],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -13661,7 +13699,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [184,248],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -14718,18 +14756,18 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "ForceRollbacks",
+							"__identifier": "ForceRollback",
 							"__grid": [11,18],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
+							"__smartColor": "#B5DBE0",
 							"iid": "458db750-1460-11ee-ae67-63c08030f068",
 							"width": 64,
 							"height": 48,
 							"defUid": 89,
 							"px": [184,296],
-							"fieldInstances": []
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 1022, "realEditorValues": [] }]
 						}
 					]
 				},
@@ -15242,7 +15280,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [856,264],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -15273,7 +15311,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [1432,264],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -15290,24 +15328,24 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [1528,264],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
 						},
 						{
-							"__identifier": "ForceRollbacks",
+							"__identifier": "ForceRollback",
 							"__grid": [92,20],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
+							"__smartColor": "#B5DBE0",
 							"iid": "d8853c00-1460-11ee-ae67-5d68922501e2",
 							"width": 64,
 							"height": 32,
 							"defUid": 89,
 							"px": [1480,328],
-							"fieldInstances": []
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 1022, "realEditorValues": [] }]
 						},
 						{
 							"__identifier": "SwapHandle",
@@ -15321,7 +15359,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [1016,264],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -16529,7 +16567,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [904,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -16546,7 +16584,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [968,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -16563,7 +16601,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [648,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -16580,24 +16618,24 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [696,184],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
 						},
 						{
-							"__identifier": "ForceRollbacks",
+							"__identifier": "ForceRollback",
 							"__grid": [16,15],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
+							"__smartColor": "#B5DBE0",
 							"iid": "7de721e0-1460-11ee-ae67-c79e09e9961e",
 							"width": 80,
 							"height": 48,
 							"defUid": 89,
 							"px": [264,248],
-							"fieldInstances": []
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 1022, "realEditorValues": [] }]
 						}
 					]
 				},
@@ -17486,7 +17524,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [56,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -17503,7 +17541,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [136,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Block1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Block1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Block1"]
 							}] }]
@@ -17520,7 +17558,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [216,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon2", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon2", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon2"]
 							}] }]
@@ -17537,7 +17575,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [296,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -17554,7 +17592,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [376,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Ice"]
 							}] }]
@@ -17571,7 +17609,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [456,376],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -18148,24 +18186,24 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [440,104],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
 						},
 						{
-							"__identifier": "ForceRollbacks",
+							"__identifier": "ForceRollback",
 							"__grid": [0,3],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
+							"__smartColor": "#B5DBE0",
 							"iid": "34ef2430-1460-11ee-ae67-d1f8baf891f8",
 							"width": 32,
 							"height": 80,
 							"defUid": 89,
 							"px": [8,56],
-							"fieldInstances": []
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 1022, "realEditorValues": [] }]
 						},
 						{
 							"__identifier": "SwapHandle",
@@ -18179,7 +18217,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [488,104],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -18930,7 +18968,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [456,200],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Ice"]
 							}] }]
@@ -18947,7 +18985,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [408,392],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -18964,7 +19002,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [648,344],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Baloon1", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Baloon1"]
 							}] }]
@@ -20458,7 +20496,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [184,152],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -20489,7 +20527,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [1096,40],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -20506,7 +20544,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [1208,296],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -20523,7 +20561,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [1304,296],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -20540,7 +20578,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [536,136],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -21782,16 +21820,16 @@
 					"entityInstances": [
 						{
 							"__identifier": "Checkpoint",
-							"__grid": [19,5],
+							"__grid": [19,6],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": { "tilesetUid": 84, "x": 40, "y": 40, "w": 16, "h": 16 },
 							"__smartColor": "#4C14DC",
 							"iid": "c0432280-1460-11ee-8626-11883eaf58f4",
-							"width": 80,
-							"height": 64,
+							"width": 96,
+							"height": 48,
 							"defUid": 88,
-							"px": [312,88],
+							"px": [312,104],
 							"fieldInstances": []
 						},
 						{
@@ -21806,7 +21844,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [152,136],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Spike"]
 							}] }]
@@ -21823,9 +21861,26 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [360,136],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
+							}] }]
+						},
+						{
+							"__identifier": "ForceRollback",
+							"__grid": [19,1],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
+							"__smartColor": "#841900",
+							"iid": "edc8f8e0-1460-11ee-904c-ebeb63630e21",
+							"width": 64,
+							"height": 32,
+							"defUid": 89,
+							"px": [312,24],
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Spike", "__tile": null, "defUid": 1022, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Spike"]
 							}] }]
 						}
 					]
@@ -22599,18 +22654,18 @@
 							"fieldInstances": []
 						},
 						{
-							"__identifier": "ForceRollbacks",
+							"__identifier": "ForceRollback",
 							"__grid": [11,20],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": { "tilesetUid": 84, "x": 60, "y": 40, "w": 16, "h": 16 },
-							"__smartColor": "#75C3FF",
+							"__smartColor": "#B5DBE0",
 							"iid": "308b00a0-1460-11ee-8626-9b589714a537",
 							"width": 80,
 							"height": 48,
 							"defUid": 89,
 							"px": [184,328],
-							"fieldInstances": []
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Player", "__tile": null, "defUid": 1022, "realEditorValues": [] }]
 						}
 					]
 				},
@@ -23349,7 +23404,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [488,296],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]
@@ -23366,7 +23421,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [216,152],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Ice", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Ice"]
 							}] }]
@@ -23383,7 +23438,7 @@
 							"height": 16,
 							"defUid": 79,
 							"px": [216,296],
-							"fieldInstances": [{ "__identifier": "Roles", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Role", "__type": "LocalEnum.RoleSwap", "__value": "Null", "__tile": null, "defUid": 83, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["Null"]
 							}] }]

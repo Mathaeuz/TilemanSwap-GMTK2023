@@ -15,13 +15,6 @@ public class MapRoleLoader : MonoBehaviour
     public CinemachineConfiner2D Confiner;
     public bool ConfigureCams = true;
 
-#if UNITY_EDITOR
-    private void Start()
-    {
-        Process();
-    }
-#endif
-
     private void Awake()
     {
         ConfigureCameras();

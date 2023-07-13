@@ -9,26 +9,29 @@ public class SwapHolder : MonoBehaviour
     public bool ButtonEnabled = true,
         ShouldRegister = true;
 
-    public void Change(Role role)
-    {
-        ActiveRole = role;
-        OnChangeRole?.Invoke(role);
-    }
-
     private void Awake()
     {
         var fields = GetComponent<LDtkFields>();
         if (fields != null)
         {
-            ActiveRole = RoleManager.Instance.RoleSettings.Get(fields.GetEnum<RoleSwap>("Roles"));
+            ActiveRole = RoleManager.Instance.RoleSettings.Get(fields.GetEnum<RoleSwap>("Role"));
         }
-        if (ActiveRole != null)
+
+        if (ActiveRole == null)
         {
-            if (ShouldRegister)
-            {
-                RoleManager.Instance.Register(this);
-            }
-            SwapSelector.Instance.AddSwapButton(this);
+            return;
         }
+
+        if (ShouldRegister)
+        {
+            RoleManager.Instance.Register(this);
+        }
+        SwapSelector.Instance.AddSwapButton(this);
+    }
+
+    public void Change(Role role)
+    {
+        ActiveRole = role;
+        OnChangeRole?.Invoke(role);
     }
 }
