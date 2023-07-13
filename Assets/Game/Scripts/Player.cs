@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public float Decceleration = 7f;
     public float JumpHeight = 4f;
     public float RespawnEarly = 0.5f;
+    public float MaxVelocity = 48f;
     float JumpPower;
 
     public Vector2 LastVelocity, Velocity;
@@ -115,7 +116,6 @@ public class Player : MonoBehaviour
     {
         LastVelocity = Velocity;
         Velocity = Body.velocity;
-
         if (State.HasFlag(StateFlags.Ball))
         {
             BallState();
@@ -124,10 +124,21 @@ public class Player : MonoBehaviour
         {
             RegularState();
         }
+        HandleVelocity();
         TrySelect();
 
         HandleStateChange();
         UserInput.Reset();
+    }
+
+    private void HandleVelocity()
+    {
+        if (MaxVelocity * MaxVelocity < Velocity.sqrMagnitude)
+        {
+            Debug.Log(Velocity);
+            Velocity = Velocity.normalized * MaxVelocity;
+        }
+        Body.velocity = Velocity;
     }
 
     private void TrySelect()
@@ -243,7 +254,6 @@ public class Player : MonoBehaviour
                 EnterBallState();
             }
         }
-        Body.velocity = Velocity;
     }
 
     private void EnterBallState()

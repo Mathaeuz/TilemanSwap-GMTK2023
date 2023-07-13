@@ -129,6 +129,7 @@ MonoBehaviour:
   Decceleration: 14
   JumpHeight: 4.5
   RespawnEarly: 0.5
+  MaxVelocity: 36
   LastVelocity: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
 --- !u!114 &2096627118682002511

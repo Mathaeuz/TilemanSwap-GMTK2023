@@ -4,16 +4,6 @@ using UnityEngine.Events;
 
 public class RoleManager : Singleton<RoleManager>
 {
-#if UNITY_EDITOR
-    [Serializable]
-    public class Editor
-    {
-        public Role A, B;
-        public bool Swap;
-    }
-    public Editor EditorTests;
-#endif
-
     public RoleSettings RoleSettings;
     Role[] Roles;
     List<RoleObject>[] Instances;
@@ -94,17 +84,6 @@ public class RoleManager : Singleton<RoleManager>
             Roles[i] = RoleSettings.Roles[i];
             FullRollback[i] = Roles[i];
         }
-    }
-
-    private void FixedUpdate()
-    {
-#if UNITY_EDITOR
-        if (EditorTests.Swap)
-        {
-            EditorTests.Swap = false;
-            Swap(EditorTests.A, EditorTests.B);
-        }
-#endif
     }
 
     public void Swap(Role a, Role b)

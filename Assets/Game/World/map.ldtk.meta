@@ -52,6 +52,11 @@ ScriptedImporter:
   - _key: ForceRollback
     _asset: {fileID: 8397540292000044444, guid: ddcb08c6c40bf8e4f909b7b2d966454b,
       type: 3}
+  - _key: Anchor
+    _asset: {instanceID: 0}
+  - _key: SpeedBoost
+    _asset: {fileID: 8661783383996691192, guid: 2b7e0820dfbab314dad7af3cced33bc7,
+      type: 3}
   _enumGenerate: 1
   _enumPath: MapEnums.cs
   _enumNamespace: 
