@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcce4dbf16c1e543a68395e84ab6a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveRole: {fileID: 11400000, guid: 94f0eab40e6599549b8d897b264affa7, type: 2}
+  ActiveRole: {fileID: 0}
   ButtonEnabled: 0
   ShouldRegister: 0
 --- !u!61 &6172219591180826574

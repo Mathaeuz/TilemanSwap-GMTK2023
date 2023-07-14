@@ -135,7 +135,6 @@ public class Player : MonoBehaviour
     {
         if (MaxVelocity * MaxVelocity < Velocity.sqrMagnitude)
         {
-            Debug.Log(Velocity);
             Velocity = Velocity.normalized * MaxVelocity;
         }
         Body.velocity = Velocity;

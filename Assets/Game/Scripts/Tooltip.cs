@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Tooltip : PlayerTrigger
+public class Tooltip : MonoBehaviour
 {
     public SpriteRenderer Renderer;
     public float FadeLength = 0.2f;
@@ -9,9 +9,15 @@ public class Tooltip : PlayerTrigger
     // Start is called before the first frame update
     void Awake()
     {
-        ContactEnter.AddListener((other) => ContactEvent(true, other));
-        ContactExit.AddListener((other) => ContactEvent(false, other));
         Renderer.color = Color.clear;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        ContactEvent(true, other);
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        ContactEvent(false, other);
     }
 
     private void ContactEvent(bool contact, Collider2D other)

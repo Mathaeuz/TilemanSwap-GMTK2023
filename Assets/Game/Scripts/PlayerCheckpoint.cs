@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LDtkUnity;
+using UnityEngine;
 
 public class PlayerCheckpoint : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerCheckpoint : MonoBehaviour
     public SharedParticles Flare, Burst;
     public AudioClip Get;
     public Transform SpritePrefab;
+    public string SaveName;
     Role[] TargetState;
 
     private void Awake()
@@ -15,6 +17,9 @@ public class PlayerCheckpoint : MonoBehaviour
         var sprite = Instantiate(SpritePrefab);
         sprite.position = transform.position;
         TargetState = RoleManager.Instance.NewRoleState();
+
+        var fields = GetComponent<LDtkFields>();
+        SaveName = fields.GetString(nameof(SaveName));
     }
 
     protected void SetCheckpoint(PlayerCheckpoint checkpoint)
@@ -27,6 +32,7 @@ public class PlayerCheckpoint : MonoBehaviour
         {
             SharedSoundEmiter.Instance.Play(Get);
             RoleManager.Instance.ReadCurrentSwaps(TargetState);
+            SaveManager.Instance.NewHistory(TargetState, transform.position, SaveName);
             ActiveCheckpoint = checkpoint;
             checkpoint.Show();
         }

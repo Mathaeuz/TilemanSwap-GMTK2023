@@ -166,4 +166,24 @@ public class RoleManager : Singleton<RoleManager>
         Holders[idx].Add(item);
         item.Change(Roles[idx]);
     }
+
+    public Role[] BuildSwapsFromIndex(int[] swaps)
+    {
+        var result = new Role[swaps.Length];
+        for (int i = 0; i < swaps.Length; i++)
+        {
+            result[i] = RoleSettings.Roles[swaps[i]];
+        }
+        return result;
+    }
+
+    public int[] BuildIndexFromSwaps(Role[] swaps)
+    {
+        var result = new int[swaps.Length];
+        for (int i = 0; i < swaps.Length; i++)
+        {
+            result[i] = Array.IndexOf(RoleSettings.Roles, swaps[i]);
+        }
+        return result;
+    }
 }

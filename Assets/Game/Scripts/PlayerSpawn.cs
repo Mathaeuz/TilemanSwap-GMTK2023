@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerSpawn : MonoBehaviour
+public class PlayerSpawn : Singleton<PlayerSpawn>
 {
     public Player Prefab;
     Player player;
@@ -21,10 +20,19 @@ public class PlayerSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        player = Instantiate(Prefab);
-        player.transform.position = transform.position;
-        player.SpawnPosition = transform.position;
-        OnSpawn.Invoke(player);
         PlayerCheckpoint.ActiveCheckpoint = null;
+    }
+
+    public void SpawnPlayer()
+    {
+        SpawnPlayer(transform.position);
+    }
+
+    public void SpawnPlayer(Vector3 position)
+    {
+        player = Instantiate(Prefab);
+        player.transform.position = position;
+        player.SpawnPosition = position;
+        OnSpawn.Invoke(player);
     }
 }

@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ForceRollback : PlayerTrigger
+public class ForceRollback : MonoBehaviour
 {
     public SwapHolder Holder;
     Role[] TargetState;
 
     private void Awake()
     {
-        ContactEnter.AddListener(BeginSwap);
         TargetState = RoleManager.Instance.NewRoleState();
         RoleManager.Instance.ReadRollbackToRole(TargetState, Holder.ActiveRole);
     }
 
-    private void BeginSwap(Collider2D arg0)
+    private void OnTriggerEnter2D(Collider2D arg0)
     {
         var player = arg0.GetComponentInParent<Player>();
         if (player.RoleObject.ActiveRole != Holder.ActiveRole)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class SwapButton : MonoBehaviour
         {
             var ev = new EventTrigger.TriggerEvent();
             ev.AddListener(PlayBip);
-            Trigger.triggers = new System.Collections.Generic.List<EventTrigger.Entry>() {new EventTrigger.Entry
+            Trigger.triggers = new List<EventTrigger.Entry>() {new EventTrigger.Entry
             {
                 callback = ev,
                 eventID = EventTriggerType.PointerEnter,

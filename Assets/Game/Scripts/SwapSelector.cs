@@ -19,7 +19,8 @@ public class SwapSelector : Singleton<SwapSelector>
     {
         Rtransform = (RectTransform)transform.parent;
         Group = GetComponent<CanvasGroup>();
-        Group.interactable = false;
+        Group.alpha = 0;
+        Group.blocksRaycasts = false;
         Off = false;
         CancelButton.onClick.AddListener(EndSelection);
         Invoke(nameof(AllowSelection), 0.2f);
@@ -59,7 +60,7 @@ public class SwapSelector : Singleton<SwapSelector>
         {
             return;
         }
-        Group.interactable = false;
+        Group.blocksRaycasts = false;
 
         if (Target.CanSwap(holder.ActiveRole))
         {
@@ -101,12 +102,12 @@ public class SwapSelector : Singleton<SwapSelector>
         Group.alpha = 1;
         Time.timeScale = 0;
 
-        Group.interactable = true;
+        Group.blocksRaycasts = true;
     }
 
     private IEnumerator HideGroup()
     {
-        Group.interactable = false;
+        Group.blocksRaycasts = false;
         var alpha = Group.alpha;
         var time = LerpDuration * Group.alpha;
         while (time > 0)
