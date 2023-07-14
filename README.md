@@ -27,5 +27,5 @@ Zane Little (FreeMusicArchive - CC0 License)
 Albuns : A Bag of Chips / Another Bag of Chips 
 
 ### Font
-[FontSquirrel](https://www.fontsquirrel.com)https://www.fontsquirrel.com
+[FontSquirrel](https://www.fontsquirrel.com)
 - League Gothic
